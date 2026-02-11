@@ -1,0 +1,62 @@
+name: Chinese Localization Verification
+
+on:
+  push:
+    branches: [ main, develop, 'feature/**' ]
+    paths:
+      - 'src/utils/i18n.ts'
+      - 'src/App.ts'
+      - 'src/components/Panel.ts'
+      - 'src/components/NewsPanel.ts'
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  i18n-check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Verify Chinese translations exist
+      run: |
+        echo "Checking for Traditional Chinese (zh-TW) translations..."
+        node -e "
+          const i18n = require('./src/utils/i18n.ts');
+          const translations = i18n.translations;
+          if (!translations || !translations['zh-TW']) {
+            console.error('❌ Missing zh-TW translations!');
+            process.exit(1);
+          }
+          const zhKeys = Object.keys(translations['zh-TW']);
+          const enKeys = Object.keys(translations['en'] || {});
+          console.log(\`✅ zh-TW translations found: \${zhKeys.length} keys\`);
+          
+          const missing = enKeys.filter(k => !zhKeys.includes(k));
+          if (missing.length > 0) {
+            console.warn(\`⚠️  Missing translations for: \${missing.slice(0, 5).join(', ')}\${missing.length > 5 ? '...' : ''}\`);
+          }
+        "
+      continue-on-error: true
+
+    - name: Check translation coverage
+      run: |
+        echo "## i18n Translation Coverage" >> $GITHUB_STEP_SUMMARY
+        node -e "
+          const fs = require('fs');
+          const appContent = fs.readFileSync('./src/App.ts', 'utf8');
+          const tCalls = (appContent.match(/t\(['\"]/g) || []).length;
+          console.log(\`Found \${tCalls} translation function calls in App.ts\`);
+        " >> $GITHUB_STEP_SUMMARY
+
+    - name: TypeScript check for i18n
+      run: npm run typecheck

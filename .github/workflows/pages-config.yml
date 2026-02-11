@@ -1,0 +1,32 @@
+# GitHub Pages Configuration
+# This workflow ensures GitHub Pages is properly configured for the repository
+
+name: Configure GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  configure:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Create CNAME file for custom domain (if needed)
+      run: |
+        # Uncomment and modify if using custom domain
+        # echo "your-domain.com" > docs/CNAME
+        echo "GitHub Pages will be available at: https://pachelbel23.github.io/worldmonitor/"
+    
+    - name: Commit CNAME if changed
+      continue-on-error: true
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add docs/CNAME 2>/dev/null || true
+        git commit -m "chore: update GitHub Pages config" || true
+        git push || true
