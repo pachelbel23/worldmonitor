@@ -123,6 +123,7 @@ export default defineConfig({
   define: {
     __APP_VERSION__: JSON.stringify(pkg.version),
   },
+  base: process.env.GITHUB_PAGES === 'true' ? '/worldmonitor/' : '/',
   plugins: [htmlVariantPlugin(), youtubeLivePlugin()],
   resolve: {
     alias: {
