@@ -120,7 +120,6 @@ function youtubeLivePlugin(): Plugin {
 }
 
 export default defineConfig({
-  base: '/worldmonitor/',
   define: {
     __APP_VERSION__: JSON.stringify(pkg.version),
   },
