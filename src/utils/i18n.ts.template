@@ -1,0 +1,57 @@
+/**
+ * Internationalization (i18n) utility class
+ * Support for language switching, persistence, and browser language detection.
+ */
+
+const translations: Record<string, Record<string, string>> = {
+  'en': {
+    // Add English translations here
+    'Example': 'Example'
+  },
+  'zh-TW': {
+    // Add Traditional Chinese translations here
+    'Example': '範例'
+  }
+};
+
+class I18n {
+  private locale: string = 'en';
+
+  constructor() {
+    this.init();
+  }
+
+  private init() {
+    const savedLocale = localStorage.getItem('app-locale');
+    if (savedLocale) {
+      this.locale = savedLocale;
+    } else {
+      const browserLang = navigator.language;
+      // Auto-detect Traditional Chinese (Taiwan/HK)
+      if (browserLang.toLowerCase().includes('zh-tw') || browserLang.toLowerCase().includes('zh-hk')) {
+        this.locale = 'zh-TW';
+      } else {
+        this.locale = 'en';
+      }
+    }
+  }
+
+  public setLocale(locale: string) {
+    this.locale = locale;
+    localStorage.setItem('app-locale', locale);
+    window.location.reload();
+  }
+
+  public getLocale() {
+    return this.locale;
+  }
+
+  public t(key: string): string {
+    const dict = translations[this.locale] || translations['en'];
+    if (!dict) return key;
+    return dict[key] || key;
+  }
+}
+
+export const i18n = new I18n();
+export const t = (key: string) => i18n.t(key);

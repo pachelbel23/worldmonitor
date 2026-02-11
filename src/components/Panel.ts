@@ -1,3 +1,5 @@
+import { t } from '@/utils/i18n';
+
 export interface PanelOptions {
   id: string;
   title: string;
@@ -72,7 +74,7 @@ export class Panel {
 
     const title = document.createElement('span');
     title.className = 'panel-title';
-    title.textContent = options.title;
+    title.textContent = t(options.title);
     headerLeft.appendChild(title);
 
     if (options.infoTooltip) {
@@ -139,7 +141,7 @@ export class Panel {
       setSpanClass(this.element, savedSpan);
     }
 
-    this.showLoading();
+    this.showLoading(t('Loading'));
   }
 
   private setupResizeHandlers(): void {
@@ -257,7 +259,7 @@ export class Panel {
     return this.element;
   }
 
-  public showLoading(message = 'Loading'): void {
+  public showLoading(message = t('Loading')): void {
     this.content.innerHTML = `
       <div class="panel-loading">
         <div class="panel-loading-radar">
@@ -269,7 +271,7 @@ export class Panel {
     `;
   }
 
-  public showError(message = 'Failed to load data'): void {
+  public showError(message = t('Failed to load data')): void {
     this.content.innerHTML = `<div class="error-message">${message}</div>`;
   }
 

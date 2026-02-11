@@ -1,0 +1,29 @@
+version: 2
+updates:
+  # Enable version updates for npm
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "03:00"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "pachelbel23"
+    labels:
+      - "dependencies"
+      - "npm"
+    allow:
+      - dependency-type: "production"
+      - dependency-type: "development"
+
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+    labels:
+      - "github-actions"
+      - "ci"

@@ -28,7 +28,7 @@ import { dataFreshness, type DataSourceId } from '@/services/data-freshness';
 import { fetchConflictEvents } from '@/services/conflicts';
 import { fetchUcdpClassifications } from '@/services/ucdp';
 import { fetchHapiSummary } from '@/services/hapi';
-import { buildMapUrl, debounce, loadFromStorage, parseMapUrlState, saveToStorage, ExportPanel, getCircuitBreakerCooldownInfo, isMobileDevice } from '@/utils';
+import { buildMapUrl, debounce, loadFromStorage, parseMapUrlState, saveToStorage, ExportPanel, getCircuitBreakerCooldownInfo, isMobileDevice, i18n, t } from '@/utils';
 import { reverseGeocode } from '@/utils/reverse-geocode';
 import { CountryIntelModal } from '@/components/CountryIntelModal';
 import { escapeHtml } from '@/utils/sanitize';
@@ -1105,31 +1105,37 @@ export class App {
           </div>
           <div class="region-selector">
             <select id="regionSelect" class="region-select">
-              <option value="global">Global</option>
-              <option value="america">Americas</option>
-              <option value="mena">MENA</option>
-              <option value="eu">Europe</option>
-              <option value="asia">Asia</option>
-              <option value="latam">Latin America</option>
-              <option value="africa">Africa</option>
-              <option value="oceania">Oceania</option>
+              <option value="global">${t('Global')}</option>
+              <option value="america">${t('Americas')}</option>
+              <option value="mena">${t('MENA')}</option>
+              <option value="eu">${t('Europe')}</option>
+              <option value="asia">${t('Asia')}</option>
+              <option value="latam">${t('Latin America')}</option>
+              <option value="africa">${t('Africa')}</option>
+              <option value="oceania">${t('Oceania')}</option>
             </select>
           </div>
         </div>
         <div class="header-right">
-          <button class="search-btn" id="searchBtn"><kbd>⌘K</kbd> Search</button>
-          <button class="copy-link-btn" id="copyLinkBtn">Copy Link</button>
-          <span class="time-display" id="timeDisplay">--:--:-- UTC</span>
+          <div class="language-selector">
+            <select id="languageSelect" class="language-select">
+              <option value="en" ${i18n.getLocale() === 'en' ? 'selected' : ''}>EN</option>
+              <option value="zh-TW" ${i18n.getLocale() === 'zh-TW' ? 'selected' : ''}>繁中</option>
+            </select>
+          </div>
+          <button class="search-btn" id="searchBtn"><kbd>⌘K</kbd> ${t('Search')}</button>
+          <button class="copy-link-btn" id="copyLinkBtn">${t('Copy Link')}</button>
+          <span class="time-display" id="timeDisplay">--:--:-- ${t('UTC')}</span>
           <button class="fullscreen-btn" id="fullscreenBtn" title="Toggle Fullscreen">⛶</button>
-          <button class="settings-btn" id="settingsBtn">⚙ PANELS</button>
-          <button class="sources-btn" id="sourcesBtn">📡 SOURCES</button>
+          <button class="settings-btn" id="settingsBtn">⚙ ${t('PANELS')}</button>
+          <button class="sources-btn" id="sourcesBtn">📡 ${t('SOURCES')}</button>
         </div>
       </div>
       <div class="main-content">
         <div class="map-section" id="mapSection">
           <div class="panel-header">
             <div class="panel-header-left">
-              <span class="panel-title">${SITE_VARIANT === 'tech' ? 'Global Tech' : 'Global Situation'}</span>
+              <span class="panel-title">${SITE_VARIANT === 'tech' ? t('Global Tech') : t('Global Situation')}</span>
             </div>
             <button class="map-pin-btn" id="mapPinBtn" title="Pin map to top">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1145,7 +1151,7 @@ export class App {
       <div class="modal-overlay" id="settingsModal">
         <div class="modal">
           <div class="modal-header">
-            <span class="modal-title">Panel Settings</span>
+            <span class="modal-title">${t('Panel Settings')}</span>
             <button class="modal-close" id="modalClose">×</button>
           </div>
           <div class="panel-toggle-grid" id="panelToggles"></div>
@@ -1739,10 +1745,10 @@ export class App {
       const button = document.getElementById('copyLinkBtn');
       try {
         await this.copyToClipboard(shareUrl);
-        this.setCopyLinkFeedback(button, 'Copied!');
+        this.setCopyLinkFeedback(button, t('Copied!'));
       } catch (error) {
         console.warn('Failed to copy share link:', error);
-        this.setCopyLinkFeedback(button, 'Copy failed');
+        this.setCopyLinkFeedback(button, t('Copy failed'));
       }
     });
 
@@ -1777,6 +1783,12 @@ export class App {
     const regionSelect = document.getElementById('regionSelect') as HTMLSelectElement;
     regionSelect?.addEventListener('change', () => {
       this.map?.setView(regionSelect.value as MapView);
+    });
+
+    // Language selector
+    const languageSelect = document.getElementById('languageSelect') as HTMLSelectElement;
+    languageSelect?.addEventListener('change', () => {
+      i18n.setLocale(languageSelect.value);
     });
 
     // Window resize
