@@ -2,17 +2,12 @@ import type { Feed } from '@/types';
 
 const SITE_VARIANT = import.meta.env.VITE_VARIANT || 'full';
 
-// Helper to create RSS proxy URL (Vercel)
-const rss = (url: string) => `/api/rss-proxy?url=${encodeURIComponent(url)}`;
+// Helper to create RSS proxy URL using free rss2json.com service
+// This allows CORS access to RSS feeds without needing a backend proxy
+const rss = (url: string) => `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`;
 
-// Railway proxy for feeds blocked by Vercel IPs (UN News, CISA, etc.)
-// Reuses VITE_WS_RELAY_URL which is already configured for AIS/OpenSky
-const wsRelayUrl = import.meta.env.VITE_WS_RELAY_URL || '';
-const railwayBaseUrl = wsRelayUrl
-  ? wsRelayUrl.replace('wss://', 'https://').replace('ws://', 'http://').replace(/\/$/, '')
-  : '';
-const railwayRss = (url: string) =>
-  railwayBaseUrl ? `${railwayBaseUrl}/rss?url=${encodeURIComponent(url)}` : rss(url);
+// For feeds that may have rate limits, use the same service
+const railwayRss = (url: string) => rss(url);
 
 // Source tier system for prioritization (lower = more authoritative)
 // Tier 1: Wire services - fastest, most reliable breaking news

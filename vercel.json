@@ -2,7 +2,5 @@
   "buildCommand": "npm run build",
   "outputDirectory": "./dist",
   "framework": "vite",
-  "env": {},
-  "regions": ["sin1"],
-  "functions": {}
+  "regions": ["sin1"]
 }

@@ -90,6 +90,52 @@ export async function fetchFeed(feed: Feed): Promise<NewsItem[]> {
   try {
     const response = await fetchWithProxy(feed.url);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    
+    // Handle rss2json.com JSON format
+    if (feed.url.includes('api.rss2json.com')) {
+      const jsonData = await response.json();
+      if (jsonData.status !== 'ok' || !jsonData.items) {
+        throw new Error(`RSS feed error: ${jsonData.message || 'unknown'}`);
+      }
+      
+      const parsed = jsonData.items
+        .slice(0, 5)
+        .map((item: any) => {
+          const title = item.title || '';
+          const link = item.link || '';
+          const pubDate = item.pubDate ? new Date(item.pubDate) : new Date();
+          
+          const threat = classifyByKeyword(title, SITE_VARIANT);
+          const isAlert = threat.level === 'critical' || threat.level === 'high';
+          const geoMatches = inferGeoHubsFromTitle(title);
+          const topGeo = geoMatches[0];
+          
+          return {
+            source: feed.name,
+            title,
+            link,
+            pubDate,
+            isAlert,
+            threat,
+            ...(topGeo && { lat: topGeo.hub.lat, lon: topGeo.hub.lon, locationName: topGeo.hub.name }),
+          };
+        });
+
+      feedCache.set(feed.name, { items: parsed, timestamp: Date.now() });
+      recordFeedSuccess(feed.name);
+      
+      for (const item of parsed) {
+        if (item.threat.source === 'keyword') {
+          classifyWithAI(item.title, SITE_VARIANT).then((aiResult) => {
+            if (aiResult) item.threat = aiResult;
+          }).catch(() => {});
+        }
+      }
+
+      return parsed;
+    }
+
+    // Handle XML RSS/Atom format
     const text = await response.text();
     const parser = new DOMParser();
     const doc = parser.parseFromString(text, 'text/xml');
