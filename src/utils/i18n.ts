@@ -1,0 +1,252 @@
+
+type TranslationDict = Record<string, string>;
+
+const translations: Record<string, TranslationDict> = {
+  'en': {
+    'Global Map': 'Global Map',
+    'Live News': 'Live News',
+    'AI Insights': 'AI Insights',
+    'AI Strategic Posture': 'AI Strategic Posture',
+    'Country Instability': 'Country Instability',
+    'Strategic Risk Overview': 'Strategic Risk Overview',
+    'Intel Feed': 'Intel Feed',
+    'Live Intelligence': 'Live Intelligence',
+    'Infrastructure Cascade': 'Infrastructure Cascade',
+    'World News': 'World News',
+    'Middle East': 'Middle East',
+    'Africa': 'Africa',
+    'Latin America': 'Latin America',
+    'Asia-Pacific': 'Asia-Pacific',
+    'Energy & Resources': 'Energy & Resources',
+    'Government': 'Government',
+    'Think Tanks': 'Think Tanks',
+    'Predictions': 'Predictions',
+    'Commodities': 'Commodities',
+    'Markets': 'Markets',
+    'Economic Indicators': 'Economic Indicators',
+    'Financial': 'Financial',
+    'Technology': 'Technology',
+    'Crypto': 'Crypto',
+    'Sector Heatmap': 'Sector Heatmap',
+    'AI/ML': 'AI/ML',
+    'Layoffs Tracker': 'Layoffs Tracker',
+    'My Monitors': 'My Monitors',
+    'Fires': 'Fires',
+    'Global Tech Map': 'Global Tech Map',
+    'Tech Headlines': 'Tech Headlines',
+    'AI/ML News': 'AI/ML News',
+    'Startups & VC': 'Startups & VC',
+    'VC Insights & Essays': 'VC Insights & Essays',
+    'Global Startup News': 'Global Startup News',
+    'Unicorn Tracker': 'Unicorn Tracker',
+    'Accelerators & Demo Days': 'Accelerators & Demo Days',
+    'Cybersecurity': 'Cybersecurity',
+    'AI Policy & Regulation': 'AI Policy & Regulation',
+    'AI Regulation Dashboard': 'AI Regulation Dashboard',
+    'Tech Stocks': 'Tech Stocks',
+    'Financial News': 'Financial News',
+    'Semiconductors & Hardware': 'Semiconductors & Hardware',
+    'Cloud & Infrastructure': 'Cloud & Infrastructure',
+    'Developer Community': 'Developer Community',
+    'GitHub Trending': 'GitHub Trending',
+    'IPO & SPAC': 'IPO & SPAC',
+    'Tech Predictions': 'Tech Predictions',
+    'Funding & VC': 'Funding & VC',
+    'Product Hunt': 'Product Hunt',
+    'Tech Events': 'Tech Events',
+    'Service Status': 'Service Status',
+    'Tech Readiness Index': 'Tech Readiness Index',
+    'Loading': 'Loading',
+    'Failed to load data': 'Failed to load data',
+    'Search...': 'Search...',
+    'Settings': 'Settings',
+    'Snapshot': 'Snapshot',
+    'Export': 'Export',
+    'UTC': 'UTC',
+    'New': 'New',
+    'Close': 'Close',
+    'Methodology': 'Methodology',
+    'Select infrastructure to analyze cascade impact': 'Select infrastructure to analyze cascade impact',
+    'Waiting for news data...': 'Waiting for news data...',
+    'No breaking or multi-source stories yet': 'No breaking or multi-source stories yet',
+    'Analysis failed - retrying...': 'Analysis failed - retrying...',
+    'No fire data available': 'No fire data available',
+    'Reset Checklist': 'Reset Checklist',
+    'Retry': 'Retry',
+    'Offline': 'Offline',
+    'Global Situation': 'Global Situation',
+    'Global Tech': 'Global Tech',
+    'Global': 'Global',
+    'Americas': 'Americas',
+    'MENA': 'MENA',
+    'Europe': 'Europe',
+    'Asia': 'Asia',
+    'Oceania': 'Oceania',
+    'Search': 'Search',
+    'Copy Link': 'Copy Link',
+    'PANELS': 'PANELS',
+    'SOURCES': 'SOURCES',
+    'Panel Settings': 'Panel Settings',
+    'English': 'English',
+    'Traditional Chinese': 'Traditional Chinese',
+    'Copied!': 'Copied!',
+    'Copy failed': 'Copy failed',
+    'Generating summary...': 'Generating summary...',
+    'Could not generate summary': 'Could not generate summary',
+    'Summary failed': 'Summary failed',
+    'No news available': 'No news available',
+    'Failed to cluster news': 'Failed to cluster news',
+    'Search news, pipelines, bases, markets...': 'Search news, pipelines, bases, markets...',
+    'News • Pipelines • Bases • Cables • Datacenters • Markets': 'News • Pipelines • Bases • Cables • Datacenters • Markets',
+    'Recent Searches': 'Recent Searches',
+    'Search across all data sources': 'Search across all data sources',
+    'No results found': 'No results found',
+    'navigate': 'navigate',
+    'select': 'select',
+    'close': 'close'
+  },
+  'zh-TW': {
+    'Global Map': '全球地圖',
+    'Live News': '即時新聞',
+    'AI Insights': 'AI 洞察',
+    'AI Strategic Posture': 'AI 戰略態勢',
+    'Country Instability': '國家不穩定性',
+    'Strategic Risk Overview': '戰略風險概覽',
+    'Intel Feed': '情報摘要',
+    'Live Intelligence': '即時情報',
+    'Infrastructure Cascade': '基礎設施連鎖反應',
+    'World News': '國際新聞',
+    'Middle East': '中東地區',
+    'Africa': '非洲地區',
+    'Latin America': '拉丁美洲',
+    'Asia-Pacific': '亞太地區',
+    'Energy & Resources': '能源與資源',
+    'Government': '政府事務',
+    'Think Tanks': '智庫',
+    'Predictions': '預測市場',
+    'Commodities': '大宗商品',
+    'Markets': '市場行情',
+    'Economic Indicators': '經濟指標',
+    'Financial': '金融財經',
+    'Technology': '科技',
+    'Crypto': '加密貨幣',
+    'Sector Heatmap': '板塊熱度圖',
+    'AI/ML': '人工智慧/機器學習',
+    'Layoffs Tracker': '裁員追蹤',
+    'My Monitors': '我的監控',
+    'Fires': '火災監測',
+    'Global Tech Map': '全球科技地圖',
+    'Tech Headlines': '科技頭條',
+    'AI/ML News': 'AI/ML 新聞',
+    'Startups & VC': '新創與創投',
+    'VC Insights & Essays': '創投洞察與文章',
+    'Global Startup News': '全球新創新聞',
+    'Unicorn Tracker': '獨角獸追蹤',
+    'Accelerators & Demo Days': '加速器與發表日',
+    'Cybersecurity': '網路安全',
+    'AI Policy & Regulation': 'AI 政策與監管',
+    'AI Regulation Dashboard': 'AI 監管儀表板',
+    'Tech Stocks': '科技股',
+    'Financial News': '財經新聞',
+    'Semiconductors & Hardware': '半導體與硬體',
+    'Cloud & Infrastructure': '雲端與基礎設施',
+    'Developer Community': '開發者社群',
+    'GitHub Trending': 'GitHub 熱門項目',
+    'IPO & SPAC': 'IPO 與 SPAC',
+    'Tech Predictions': '科技預測',
+    'Funding & VC': '融資與創投',
+    'Product Hunt': 'Product Hunt',
+    'Tech Events': '科技活動',
+    'Service Status': '服務狀態',
+    'Tech Readiness Index': '科技就緒指數',
+    'Loading': '載入中',
+    'Failed to load data': '資料載入失敗',
+    'Search...': '搜尋...',
+    'Settings': '設定',
+    'Snapshot': '快照',
+    'Export': '匯出',
+    'UTC': 'UTC',
+    'New': '新',
+    'Close': '關閉',
+    'Methodology': '方法論',
+    'Select infrastructure to analyze cascade impact': '選擇基礎設施以分析連鎖反應影響',
+    'Waiting for news data...': '等待新聞資料中...',
+    'No breaking or multi-source stories yet': '尚無重大或多方來源故事',
+    'Analysis failed - retrying...': '分析失敗 - 正在重試...',
+    'No fire data available': '無火災資料',
+    'Reset Checklist': '重設檢查清單',
+    'Retry': '重試',
+    'Offline': '離線',
+    'Global Situation': '全球局勢',
+    'Global Tech': '全球科技',
+    'Global': '全球',
+    'Americas': '美洲',
+    'MENA': '中東與北非',
+    'Europe': '歐洲',
+    'Asia': '亞洲',
+    'Oceania': '大洋洲',
+    'Search': '搜尋',
+    'Copy Link': '複製連結',
+    'PANELS': '面板',
+    'SOURCES': '來源',
+    'Panel Settings': '面板設定',
+    'English': '英文',
+    'Traditional Chinese': '繁體中文',
+    'Copied!': '已複製！',
+    'Copy failed': '複製失敗',
+    'Generating summary...': '正在生成摘要...',
+    'Could not generate summary': '無法生成摘要',
+    'Summary failed': '摘要生成失敗',
+    'No news available': '無新聞可用',
+    'Failed to cluster news': '新聞聚類失敗',
+    'Search news, pipelines, bases, markets...': '搜尋新聞、管道、基地、市場...',
+    'News • Pipelines • Bases • Cables • Datacenters • Markets': '新聞 • 管道 • 基地 • 海纜 • 資料中心 • 市場',
+    'Recent Searches': '最近搜尋',
+    'Search across all data sources': '在所有資料源中搜尋',
+    'No results found': '未找到結果',
+    'navigate': '瀏覽',
+    'select': '選擇',
+    'close': '關閉'
+  }
+};
+
+class I18n {
+  private locale: string = 'en';
+
+  constructor() {
+    this.init();
+  }
+
+  private init() {
+    const savedLocale = localStorage.getItem('worldmonitor-locale');
+    if (savedLocale) {
+      this.locale = savedLocale;
+    } else {
+      const browserLang = navigator.language;
+      if (browserLang.toLowerCase().includes('zh-tw') || browserLang.toLowerCase().includes('zh-hk')) {
+        this.locale = 'zh-TW';
+      } else {
+        this.locale = 'en';
+      }
+    }
+  }
+
+  public setLocale(locale: string) {
+    this.locale = locale;
+    localStorage.setItem('worldmonitor-locale', locale);
+    window.location.reload();
+  }
+
+  public getLocale() {
+    return this.locale;
+  }
+
+  public t(key: string): string {
+    const dict = translations[this.locale] || translations['en'];
+    if (!dict) return key;
+    return dict[key] || key;
+  }
+}
+
+export const i18n = new I18n();
+export const t = (key: string) => i18n.t(key);

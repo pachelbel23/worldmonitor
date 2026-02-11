@@ -94,6 +94,7 @@ export function chunkArray<T>(items: T[], size: number): T[][] {
   return chunks;
 }
 
+export { i18n, t } from './i18n';
 export { proxyUrl, fetchWithProxy } from './proxy';
 export { exportToJSON, exportToCSV, ExportPanel } from './export';
 export { buildMapUrl, parseMapUrlState } from './urlState';

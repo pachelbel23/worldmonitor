@@ -1,4 +1,5 @@
 import { escapeHtml } from '@/utils/sanitize';
+import { t } from '@/utils';
 
 export type SearchResultType = 'news' | 'hotspot' | 'market' | 'prediction' | 'conflict' | 'base' | 'pipeline' | 'cable' | 'datacenter' | 'earthquake' | 'outage' | 'nuclear' | 'irradiator' | 'techcompany' | 'ailab' | 'startup' | 'techevent' | 'techhq' | 'accelerator';
 
@@ -39,8 +40,8 @@ export class SearchModal {
 
   constructor(container: HTMLElement, options?: SearchModalOptions) {
     this.container = container;
-    this.placeholder = options?.placeholder || 'Search news, pipelines, bases, markets...';
-    this.hint = options?.hint || 'News • Pipelines • Bases • Cables • Datacenters • Markets';
+    this.placeholder = options?.placeholder || t('Search news, pipelines, bases, markets...');
+    this.hint = options?.hint || t('News • Pipelines • Bases • Cables • Datacenters • Markets');
     this.loadRecentSearches();
   }
 
@@ -91,9 +92,9 @@ export class SearchModal {
         </div>
         <div class="search-results"></div>
         <div class="search-footer">
-          <span><kbd>↑↓</kbd> navigate</span>
-          <span><kbd>↵</kbd> select</span>
-          <span><kbd>esc</kbd> close</span>
+          <span><kbd>↑↓</kbd> ${t('navigate')}</span>
+          <span><kbd>↵</kbd> ${t('select')}</span>
+          <span><kbd>esc</kbd> ${t('close')}</span>
         </div>
       </div>
     `;
@@ -180,7 +181,7 @@ export class SearchModal {
   private renderRecent(): void {
     if (!this.resultsList) return;
 
-    this.resultsList.innerHTML = '<div class="search-section-header">Recent Searches</div>';
+        this.resultsList.innerHTML = `<div class="search-section-header">${t('Recent Searches')}</div>`;
 
     this.recentSearches.forEach((term, i) => {
       const item = document.createElement('div');
@@ -213,7 +214,7 @@ export class SearchModal {
     this.resultsList.innerHTML = `
       <div class="search-empty">
         <div class="search-empty-icon">🔍</div>
-        <div>Search across all data sources</div>
+        <div>${t('Search across all data sources')}</div>
         <div class="search-empty-hint">${this.hint}</div>
       </div>
     `;
@@ -226,7 +227,7 @@ export class SearchModal {
       this.resultsList.innerHTML = `
         <div class="search-empty">
           <div class="search-empty-icon">∅</div>
-          <div>No results found</div>
+                    <div>${t('No results found')}</div>
         </div>
       `;
       return;
