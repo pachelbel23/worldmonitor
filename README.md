@@ -11,7 +11,8 @@
 <p align="center">
   <a href="https://worldmonitor.app"><strong>Live Demo</strong></a> &nbsp;·&nbsp;
   <a href="https://tech.worldmonitor.app"><strong>Tech Variant</strong></a> &nbsp;·&nbsp;
-  <a href="./docs/DOCUMENTATION.md"><strong>Full Documentation</strong></a>
+  <a href="./docs/DOCUMENTATION.md"><strong>Full Documentation</strong></a> &nbsp;·&nbsp;
+  <a href="https://pachelbel23.github.io/worldmonitor/"><strong>Chinese Version</strong></a>
 </p>
 
 ![World Monitor Dashboard](new-world-monitor.png)
@@ -382,9 +383,19 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 **Elie Habib** — [GitHub](https://github.com/koala73)
 
+### Localization Contributors
+
+**Chinese Localization & Deployment** (2026-02-11):
+- Complete Chinese translation (167 keys, 100% UI coverage)
+- GitHub Pages deployment configuration
+- i18n system enhancement
+- Military and infrastructure terminology localization
+- [View on GitHub Pages](https://pachelbel23.github.io/worldmonitor/)
+
 ---
 
 <p align="center">
   <a href="https://worldmonitor.app">worldmonitor.app</a> &nbsp;·&nbsp;
-  <a href="https://tech.worldmonitor.app">tech.worldmonitor.app</a>
+  <a href="https://tech.worldmonitor.app">tech.worldmonitor.app</a> &nbsp;·&nbsp;
+  <a href="https://pachelbel23.github.io/worldmonitor/">Chinese Version</a>
 </p>

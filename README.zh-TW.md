@@ -1,6 +1,13 @@
-# World Monitor 中文化版本
+# World Monitor - 繁體中文版本
 
-這是 [World Monitor](https://github.com/koala73/worldmonitor) 的繁體中文（Traditional Chinese）版本。
+<p align="center">
+  <a href="https://worldmonitor.app"><strong>線上示範</strong></a> &nbsp;·&nbsp;
+  <a href="https://tech.worldmonitor.app"><strong>科技變體</strong></a> &nbsp;·&nbsp;
+  <a href="./docs/DOCUMENTATION.md"><strong>完整文檔</strong></a> &nbsp;·&nbsp;
+  <a href="https://pachelbel23.github.io/worldmonitor/"><strong>GitHub Pages 中文版</strong></a>
+</p>
+
+---
 
 ## 🌍 關於 World Monitor
 
@@ -135,5 +142,152 @@ const label = t('Global Map');  // 自動返回中文或英文
 
 ---
 
-**最後更新**：2026年2月11日
+**最後更新**：2026年2月12日
 **構建狀態**：查看 [GitHub Actions](https://github.com/pachelbel23/worldmonitor/actions)
+
+---
+
+# World Monitor - English Version
+
+<p align="center">
+  <a href="https://worldmonitor.app"><strong>Live Demo</strong></a> &nbsp;·&nbsp;
+  <a href="https://tech.worldmonitor.app"><strong>Tech Variant</strong></a> &nbsp;·&nbsp;
+  <a href="./docs/DOCUMENTATION.md"><strong>Full Documentation</strong></a> &nbsp;·&nbsp;
+  <a href="https://pachelbel23.github.io/worldmonitor/"><strong>Chinese Version</strong></a>
+</p>
+
+## 🌍 About World Monitor
+
+World Monitor is a real-time global intelligence dashboard that integrates 50+ data sources, providing:
+- 🗞️ **Real-time News Aggregation** - From 100+ curated information sources
+- 🗺️ **Geospatial Visualization** - Interactive maps with 25 toggleable data layers
+- 🤖 **AI-powered Summaries** - Automated hotspot detection and summarization
+- 📊 **Multi-dimensional Monitoring** - Geopolitical, economic, technical, and military data
+- 🔄 **Real-time Updates** - WebSocket-based data streaming
+
+## 🚀 Features
+
+- ✅ **Complete English/Chinese UI** - 200+ translation strings
+- ✅ **Dual Language Support** - Seamless switching between Chinese and English
+- ✅ **Region Localization** - Optimized for Traditional Chinese (zh-TW) users
+- ✅ **Responsive Design** - Supports various screen sizes
+
+## 📋 Quick Start
+
+### Prerequisites
+- Node.js 18+ or 20+
+- npm or yarn
+
+### Development
+
+```bash
+# Install dependencies
+npm install
+
+# Development server (default port 5173)
+npm run dev
+
+# Development tech variant
+npm run dev:tech
+```
+
+### Production Build
+
+```bash
+# Build geopolitical version
+npm run build
+
+# Build tech version
+npm run build:tech
+
+# Type check
+npm run typecheck
+
+# Preview build
+npm run preview
+```
+
+## 🏗️ Project Structure
+
+```
+src/
+├── App.ts              # Main application logic
+├── components/         # UI components
+│   ├── Panel.ts       # Base panel component
+│   ├── NewsPanel.ts   # News panel
+│   └── SearchModal.ts # Search modal
+├── config/            # Configuration files
+│   └── panels.ts      # Panel configuration
+├── services/          # Data service layer
+├── utils/             # Utility functions
+│   └── i18n.ts        # Internationalization (i18n) system
+└── styles/            # Stylesheets
+```
+
+## 🌐 Internationalization (i18n)
+
+All user interface text is centrally managed through `i18n.ts`:
+
+```typescript
+// Using the translation function
+import { t } from '@/utils';
+
+const label = t('Global Map');  // Automatically returns Chinese or English
+```
+
+Supported languages:
+- `en` - English
+- `zh-TW` - Traditional Chinese
+
+## 🔧 Build Variants
+
+The project supports two build variants (controlled via `VITE_VARIANT` environment variable):
+
+- **full** - Geopolitical version (all data sources)
+- **tech** - Tech variant (focused on startups, AI, tech companies)
+
+## 📊 CI/CD Workflow
+
+All pushes and pull requests trigger automated testing:
+
+- ✅ TypeScript type checking
+- ✅ Multi-variant build testing
+- ✅ ESLint code quality checks
+- ✅ npm dependency security scanning
+- ✅ Secret detection (Gitleaks)
+- ✅ GitHub Pages automatic deployment
+
+## 🚢 Deployment
+
+This version is configured for automatic deployment to GitHub Pages:
+
+**Access**: `https://pachelbel23.github.io/worldmonitor/`
+
+The deployment workflow runs automatically when new commits are pushed to the main branch.
+
+## 🔒 Security
+
+- **Dependabot** - Automated dependency updates check every Monday
+- **npm audit** - Regular security scanning (daily at 2:00 UTC)
+- **Gitleaks** - Prevention of hardcoded sensitive information
+- **TypeScript Strict Mode** - Type safety
+
+## 📝 License
+
+This project is based on [World Monitor](https://github.com/koala73/worldmonitor) under the **MIT License**.
+
+The Chinese localization is contributed by pachelbel23 under the same MIT License.
+
+## 👏 Acknowledgments
+
+- Original project: [koala73/worldmonitor](https://github.com/koala73/worldmonitor)
+- Chinese localization: pachelbel23
+
+## 📧 Feedback and Contributions
+
+Feel free to open an Issue or submit a Pull Request for any suggestions or questions!
+
+---
+
+**Last Updated**: February 12, 2026
+**Build Status**: Check [GitHub Actions](https://github.com/pachelbel23/worldmonitor/actions)
