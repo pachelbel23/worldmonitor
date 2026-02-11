@@ -1,0 +1,355 @@
+---
+name: github-pages-deployment-localization
+description: 完整的 GitHub Pages 部署与中文化流程。包含部署配置、工作流设置、中文 UI 翻译和故障排除的完整指南。
+tags: [github-pages, deployment, ci-cd, localization, chinese-i18n, vite]
+---
+
+# GitHub Pages 部署与中文化完整技能指南
+
+## 问题场景
+
+- 部署应用到 GitHub Pages，但显示 404 错误
+- 应用 UI 中有大量未翻译的英文菜单项和 tooltip
+- 需要完整的 CI/CD 工作流自动部署
+- 需要完善国际化（i18n）系统的中文翻译覆盖
+
+---
+
+## ✅ 完整解决方案
+
+### 步骤 1：配置 GitHub Pages 部署工作流
+
+**文件**: `.github/workflows/deploy.yml`
+
+```yaml
+name: Build & Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build
+      env:
+        GITHUB_PAGES: 'true'
+    - uses: actions/upload-pages-artifact@v3
+      with:
+        path: 'dist'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - uses: actions/deploy-pages@v4
+      id: deployment
+```
+
+**关键点**:
+- ✅ 设置权限 `pages: write` - 允许 GitHub Actions 部署到 Pages
+- ✅ 环境变量 `GITHUB_PAGES: 'true'` - 告诉构建脚本配置正确的基础路径
+- ✅ 使用 `actions/upload-pages-artifact@v3` - 上传构建产物
+- ✅ 使用 `actions/deploy-pages@v4` - 执行实际部署
+
+### 步骤 2：配置 Vite 基础路径
+
+**文件**: `vite.config.ts`
+
+```typescript
+export default defineConfig({
+  // ... 其他配置
+  base: process.env.GITHUB_PAGES === 'true' ? '/worldmonitor/' : '/',
+  // ...
+});
+```
+
+**关键点**:
+- ✅ 检查 `GITHUB_PAGES` 环境变量
+- ✅ GitHub Pages 上设置基础路径为仓库名称 `/worldmonitor/`
+- ✅ 本地开发时保持为 `/`
+
+### 步骤 3：添加 .nojekyll 文件
+
+**文件**: `.nojekyll` (项目根目录)
+
+```bash
+touch .nojekyll
+```
+
+**作用**: 告诉 GitHub 不要将此仓库作为 Jekyll 项目处理，直接发布静态文件。
+
+### 步骤 4：在 GitHub 设置中配置 Pages
+
+1. 访问: `https://github.com/<username>/<repo>/settings/pages`
+2. **Build and deployment** → **Source** → 选择 **GitHub Actions**
+3. 点击 **Save**
+
+---
+
+## 🌍 完善中文化（i18n）
+
+### 问题诊断
+
+某些 UI 元素仍显示英文的原因：
+
+1. **HTML title/tooltip 属性** - 直接在模板中硬编码
+2. **Placeholder 和 aria-label** - 未通过翻译函数
+3. **组件内硬编码的文本** - 没有使用 `t()` 函数
+
+### 解决方案 A：扩展翻译词典
+
+**文件**: `src/utils/i18n.ts`
+
+添加新的翻译 key（英文和中文都需要）：
+
+```typescript
+const translations: Record<string, TranslationDict> = {
+  'en': {
+    // ... 已有的翻译
+    'Share story': 'Share story',
+    'Unrest': 'Unrest',
+    'Conflict': 'Conflict',
+    'Security': 'Security',
+    'Information': 'Information',
+    'Export Data': 'Export Data',
+    'Zoom In': 'Zoom In',
+    'Zoom Out': 'Zoom Out',
+    // ... 更多项目
+  },
+  'zh-TW': {
+    // ... 已有的翻译
+    'Share story': '分享故事',
+    'Unrest': '不安定',
+    'Conflict': '衝突',
+    'Security': '安全',
+    'Information': '信息',
+    'Export Data': '匯出資料',
+    'Zoom In': '放大',
+    'Zoom Out': '縮小',
+    // ... 更多项目
+  }
+};
+```
+
+### 解决方案 B：在组件中使用 t() 函数
+
+**步骤 1**: 导入翻译函数
+
+```typescript
+import { t } from '@/utils';
+```
+
+**步骤 2**: 替换硬编码的 title 属性
+
+```typescript
+// ❌ 错误 - 硬编码英文
+<button title="Share story">Share</button>
+
+// ✅ 正确 - 使用翻译函数
+<button title="${t('Share story')}">Share</button>
+```
+
+**示例** - CIIPanel.ts:
+
+```typescript
+import { t } from '@/utils';
+
+// 在 render 方法中
+const html = `
+  <button title="${t('Share story')}">
+    <svg>...</svg>
+  </button>
+  <span title="${t('Unrest')}">U:${value}</span>
+  <span title="${t('Conflict')}">C:${value}</span>
+  <span title="${t('Security')}">S:${value}</span>
+  <span title="${t('Information')}">I:${value}</span>
+`;
+```
+
+### 解决方案 C：处理 Placeholder 和 Aria-Label
+
+```typescript
+// Placeholder
+<input placeholder="${t('Filter sources...')}" />
+
+// Aria-label
+<button aria-label="${t('Close')}">×</button>
+```
+
+---
+
+## 🔍 故障排除
+
+### 问题 1: 部署后仍显示 404
+
+**症状**: `Error 404: File not found`
+
+**原因分析**:
+1. GitHub Pages 未配置为使用 GitHub Actions
+2. 基础路径配置错误
+3. 构建没有生成正确的 `dist/index.html`
+
+**解决方案**:
+```bash
+# 1. 检查本地构建
+GITHUB_PAGES=true npm run build
+
+# 2. 验证 dist/index.html 存在
+ls -lah dist/index.html
+
+# 3. 检查 Settings → Pages 中是否选择 GitHub Actions
+# 4. 查看 GitHub Actions 工作流是否成功运行
+# Repo → Actions → 点击最新运行 → 检查日志
+```
+
+### 问题 2: 中文翻译显示英文
+
+**症状**: 鼠标停留在按钮上显示英文 tooltip
+
+**原因分析**:
+1. 翻译 key 未添加到 i18n.ts
+2. 组件未导入 `t` 函数
+3. 使用了硬编码 title 而非 `${t(...)}`
+
+**解决方案**:
+```bash
+# 1. 验证翻译存在
+grep "Share story" src/utils/i18n.ts
+
+# 2. 检查组件是否使用了 t()
+grep "title=\"\${t(" src/components/*.ts
+
+# 3. 运行类型检查确保没有错误
+npm run typecheck
+```
+
+### 问题 3: "无新聞可用" 提示
+
+**症状**: 某些看板显示 `無新聞可用`
+
+**原因分析** ✅ 这是正确的中文翻译！
+- RSS 源暂时不可用（进入 5 分钟冷却期）
+- 数据被安全过滤器过滤掉
+- API 代理返回 404/500
+
+**解决方案**:
+```bash
+# 1. 检查浏览器控制台
+# 应该看到 [RSS] <source> on cooldown... 的警告
+
+# 2. 等待 5 分钟后刷新
+
+# 3. 检查网络选项卡
+# 确认 API 请求是否返回 200 而非 404/500
+
+# 4. 如果使用自定义 API，验证代理配置
+# /api/gdelt, /api/hackernews 等是否正确映射
+```
+
+---
+
+## 📋 部署检查清单
+
+部署前验证以下项目：
+
+- [ ] `.github/workflows/deploy.yml` 已创建且配置正确
+- [ ] `vite.config.ts` 中设置了 `base` 路径逻辑
+- [ ] `.nojekyll` 文件存在于项目根目录
+- [ ] GitHub 仓库 Settings → Pages 中选择 GitHub Actions
+- [ ] `npm run typecheck` 通过无错误
+- [ ] `npm run build` 成功生成 `dist/` 文件夹
+- [ ] `dist/index.html` 存在且包含正确的 base 路径
+- [ ] 所有新的翻译 key 都在 i18n.ts 中同时定义了英文和中文
+- [ ] 所有 title/placeholder/aria-label 都使用 `${t(...)}` 格式
+- [ ] 提交信息清晰描述了所做的更改
+
+---
+
+## 🚀 快速部署流程
+
+### 第一次部署
+
+```bash
+# 1. 创建或修改工作流文件
+# .github/workflows/deploy.yml
+
+# 2. 配置 vite.config.ts
+# base: process.env.GITHUB_PAGES === 'true' ? '/worldmonitor/' : '/'
+
+# 3. 添加 .nojekyll
+touch .nojekyll
+
+# 4. 本地验证
+npm run typecheck
+npm run build
+
+# 5. 提交和推送
+git add .
+git commit -m "chore: setup GitHub Pages deployment"
+git push origin main
+
+# 6. 在 GitHub Settings → Pages 选择 GitHub Actions
+# https://github.com/<username>/<repo>/settings/pages
+```
+
+### 更新中文化
+
+```bash
+# 1. 添加新的翻译到 i18n.ts
+# 同时添加英文和中文 key-value
+
+# 2. 在组件中使用 t() 函数
+# import { t } from '@/utils';
+# <button title="${t('new-key')}">
+
+# 3. 验证类型
+npm run typecheck
+
+# 4. 构建和部署
+npm run build
+git add .
+git commit -m "feat: add Chinese translation for UI elements"
+git push origin main
+```
+
+---
+
+## 📊 本次成果统计 (2026-02-11)
+
+- ✅ GitHub Pages 部署工作流完整配置
+- ✅ 404 错误诊断和修复
+- ✅ 添加 60+ 个新翻译 key
+- ✅ 完整的中文 tooltip 覆盖
+- ✅ 军事和基础设施术语中文化
+- ✅ 地图控制和分享功能完全中文化
+- ✅ 部署地址: https://pachelbel23.github.io/worldmonitor/
+
+---
+
+## 参考资源
+
+- [GitHub Pages 官方文档](https://docs.github.com/en/pages)
+- [GitHub Actions 工作流语法](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
+- [Vite 部署指南](https://vitejs.dev/guide/static-deploy.html#github-pages)
+
