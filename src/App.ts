@@ -28,7 +28,7 @@ import { dataFreshness, type DataSourceId } from '@/services/data-freshness';
 import { fetchConflictEvents } from '@/services/conflicts';
 import { fetchUcdpClassifications } from '@/services/ucdp';
 import { fetchHapiSummary } from '@/services/hapi';
-import { buildMapUrl, debounce, loadFromStorage, parseMapUrlState, saveToStorage, ExportPanel, getCircuitBreakerCooldownInfo, isMobileDevice, i18n, t } from '@/utils';
+import { buildMapUrl, debounce, loadFromStorage, parseMapUrlState, saveToStorage, ExportPanel, getCircuitBreakerCooldownInfo, isMobileDevice, i18n, t, formatDateTime } from '@/utils';
 import { reverseGeocode } from '@/utils/reverse-geocode';
 import { CountryIntelModal } from '@/components/CountryIntelModal';
 import { escapeHtml } from '@/utils/sanitize';
@@ -2653,7 +2653,7 @@ export class App {
         this.searchModal.registerSource('techevent', mapEvents.map((e: { id: string; title: string; location: string; startDate: string }) => ({
           id: e.id,
           title: e.title,
-          subtitle: `${e.location} • ${new Date(e.startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`,
+          subtitle: `${e.location} • ${formatDateTime(new Date(e.startDate))}`,
           data: e,
         })));
       }

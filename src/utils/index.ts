@@ -102,3 +102,6 @@ export type { ParsedMapUrlState } from './urlState';
 export { CircuitBreaker, createCircuitBreaker, getCircuitBreakerStatus, getCircuitBreakerCooldownInfo } from './circuit-breaker';
 export type { CircuitBreakerOptions } from './circuit-breaker';
 export * from './analysis-constants';
+export { pluralize, PLURAL_FORMS } from './pluralize';
+export type { PluralForm } from './pluralize';
+export { formatDateTime, formatDate, formatMonthYear, formatFullDate, formatTime as formatTimeLocale } from './date-formatter';

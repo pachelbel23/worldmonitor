@@ -1,4 +1,5 @@
 import { getSnapshotTimestamps, getSnapshotAt, type DashboardSnapshot } from '@/services/storage';
+import { formatDateTime } from '@/utils/date-formatter';
 
 export class PlaybackControl {
   private element: HTMLElement;
@@ -152,12 +153,7 @@ export class PlaybackControl {
     const timestamp = this.timestamps[this.currentIndex];
     if (timestamp) {
       const date = new Date(timestamp);
-      display.textContent = date.toLocaleString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-      });
+      display.textContent = formatDateTime(date);
       display.classList.add('historical');
     }
   }

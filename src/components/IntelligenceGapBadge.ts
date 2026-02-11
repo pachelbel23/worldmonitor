@@ -2,6 +2,7 @@ import { getRecentSignals, type CorrelationSignal } from '@/services/correlation
 import { getRecentAlerts, type UnifiedAlert } from '@/services/cross-module-integration';
 import { getSignalContext } from '@/utils/analysis-constants';
 import { escapeHtml } from '@/utils/sanitize';
+import { pluralize } from '@/utils/pluralize';
 
 const LOW_COUNT_THRESHOLD = 3;
 const MAX_VISIBLE_FINDINGS = 10;
@@ -148,7 +149,11 @@ export class IntelligenceFindingsBadge {
       this.badge.title = `${count} intelligence findings - review recommended`;
     } else if (count <= LOW_COUNT_THRESHOLD) {
       this.badge.classList.add('status-low');
-      this.badge.title = `${count} intelligence finding${count > 1 ? 's' : ''}`;
+      this.badge.title = pluralize(count, {
+        one: `${count} intelligence finding`,
+        other: `${count} intelligence findings`,
+        zh_tw: `${count} 個智能發現`
+      });
     } else {
       this.badge.classList.add('status-high');
       this.badge.title = `${count} intelligence findings - review recommended`;
