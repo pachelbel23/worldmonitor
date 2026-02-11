@@ -33,15 +33,9 @@ jobs:
     - name: List dist directory
       run: ls -lah dist/
 
-    - name: Copy dist to docs
-      run: rm -rf docs && cp -r dist docs
-
-    - name: Commit and push to main
-      run: |
-        git config user.email "action@github.com"
-        git config user.name "GitHub Action"
-        git add docs/
-        git commit -m "build: deploy dist to docs [skip ci]" || true
-        git push origin main
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
+        force_orphan: true
