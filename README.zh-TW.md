@@ -4,7 +4,8 @@
   <a href="https://worldmonitor.app"><strong>線上示範</strong></a> &nbsp;·&nbsp;
   <a href="https://tech.worldmonitor.app"><strong>科技變體</strong></a> &nbsp;·&nbsp;
   <a href="./docs/DOCUMENTATION.md"><strong>完整文檔</strong></a> &nbsp;·&nbsp;
-  <a href="https://pachelbel23.github.io/worldmonitor/"><strong>GitHub Pages 中文版</strong></a>
+  <a href="https://worldmonitor-six.vercel.app"><strong>Vercel 部署版</strong></a> &nbsp;·&nbsp;
+  <a href="https://pachelbel23.github.io/worldmonitor/"><strong>GitHub Pages</strong></a>
 </p>
 
 ---
@@ -110,13 +111,23 @@ const label = t('Global Map');  // 自動返回中文或英文
 - ✅ 密鑰檢測（Gitleaks）
 - ✅ GitHub Pages 自動部署
 
-## 🚢 部署
+## 🚢 部署選項
 
-此版本配置為自動部署到 GitHub Pages：
+### GitHub Pages（靜態部署）
+- **訪問地址**：https://pachelbel23.github.io/worldmonitor/
+- **特點**：完全免費，自動部署，純靜態站點
+- **部署方式**：GitHub Actions 工作流
 
-**訪問地址**：`https://pachelbel23.github.io/worldmonitor/`
+### Vercel（推薦）
+- **訪問地址**：https://worldmonitor-six.vercel.app
+- **特點**：使用 rss2json.com RSS 代理，新聞源正常顯示
+- **部署方式**：GitHub 自動部署（連接到 Vercel）
+- **費用**：免費 Personal 方案
 
-部署工作流在 `main` 分支有新 commit 時自動運行。
+### 原始網站
+- **訪問地址**：https://worldmonitor.app
+- **特點**：完整功能，所有數據源可用
+- **部署方式**：Vercel 原始部署
 
 ## 🔒 安全性
 
@@ -153,7 +164,8 @@ const label = t('Global Map');  // 自動返回中文或英文
   <a href="https://worldmonitor.app"><strong>Live Demo</strong></a> &nbsp;·&nbsp;
   <a href="https://tech.worldmonitor.app"><strong>Tech Variant</strong></a> &nbsp;·&nbsp;
   <a href="./docs/DOCUMENTATION.md"><strong>Full Documentation</strong></a> &nbsp;·&nbsp;
-  <a href="https://pachelbel23.github.io/worldmonitor/"><strong>Chinese Version</strong></a>
+  <a href="https://worldmonitor-six.vercel.app"><strong>Vercel Deployment</strong></a> &nbsp;·&nbsp;
+  <a href="https://pachelbel23.github.io/worldmonitor/"><strong>GitHub Pages</strong></a>
 </p>
 
 ## 🌍 About World Monitor
@@ -257,13 +269,23 @@ All pushes and pull requests trigger automated testing:
 - ✅ Secret detection (Gitleaks)
 - ✅ GitHub Pages automatic deployment
 
-## 🚢 Deployment
+## 🚢 Deployment Options
 
-This version is configured for automatic deployment to GitHub Pages:
+### GitHub Pages (Static Deployment)
+- **URL**: https://pachelbel23.github.io/worldmonitor/
+- **Features**: Completely free, auto-deployed, pure static site
+- **Method**: GitHub Actions workflow
 
-**Access**: `https://pachelbel23.github.io/worldmonitor/`
+### Vercel (Recommended)
+- **URL**: https://worldmonitor-six.vercel.app
+- **Features**: Uses rss2json.com RSS proxy for working news sources
+- **Method**: Auto-deployed from GitHub
+- **Cost**: Free Personal plan
 
-The deployment workflow runs automatically when new commits are pushed to the main branch.
+### Original Site
+- **URL**: https://worldmonitor.app
+- **Features**: Full functionality, all data sources available
+- **Method**: Original Vercel deployment
 
 ## 🔒 Security
 

@@ -35,8 +35,10 @@
 
 | Variant | URL | Focus |
 |---------|-----|-------|
-| **World Monitor** | [worldmonitor.app](https://worldmonitor.app) | Geopolitics, military, conflicts, infrastructure |
+| **World Monitor (Official)** | [worldmonitor.app](https://worldmonitor.app) | Geopolitics, military, conflicts, infrastructure |
+| **World Monitor (Vercel)** | [worldmonitor-six.vercel.app](https://worldmonitor-six.vercel.app) | Fork with rss2json.com RSS proxy |
 | **Tech Monitor** | [tech.worldmonitor.app](https://tech.worldmonitor.app) | Startups, AI/ML, cloud, cybersecurity |
+| **GitHub Pages (CN)** | [pachelbel23.github.io/worldmonitor](https://pachelbel23.github.io/worldmonitor/) | Traditional Chinese (zh-TW) |
 
 Both variants run from a single codebase — switch between them with one click.
 
@@ -256,15 +258,17 @@ Feeds also carry a **propaganda risk rating** and **state affiliation flag**. St
 
 ## Edge Function Architecture
 
-World Monitor uses 30+ Vercel Edge Functions as a lightweight API layer. Each edge function handles a single data source concern — proxying, caching, or transforming external APIs. This architecture avoids a monolithic backend while keeping API keys server-side:
+World Monitor uses Vercel Edge Functions as a lightweight API layer. Each edge function handles a single data source concern — proxying, caching, or transforming external APIs. This architecture avoids a monolithic backend while keeping API keys server-side:
 
-- **RSS Proxy** — domain-allowlisted proxy for 100+ feeds, preventing CORS issues and hiding origin servers
+- **RSS Proxy** — Uses [rss2json.com](https://rss2json.com) free API for CORS-safe access to 100+ feeds, preventing domain-allowlist overhead
 - **AI Pipeline** — Groq and OpenRouter edge functions with Redis deduplication, so identical headlines across concurrent users only trigger one LLM call
 - **Data Adapters** — GDELT, ACLED, OpenSky, USGS, NASA FIRMS, FRED, and others each have dedicated edge functions that normalize responses into consistent schemas
 - **Temporal Baseline** — Welford's algorithm state is persisted in Redis across requests, building statistical baselines without a traditional database
 - **Custom Scrapers** — sources without RSS feeds (FwdStart, GitHub Trending, tech events) are scraped and transformed into RSS-compatible formats
 
 All edge functions include circuit breaker logic and return cached stale data when upstream APIs are unavailable, ensuring the dashboard never shows blank panels.
+
+**Note**: The Vercel deployment (worldmonitor-six.vercel.app) uses [rss2json.com](https://rss2json.com) for RSS feeds. The original [worldmonitor.app](https://worldmonitor.app) uses its own Vercel Edge Function proxy.
 
 ---
 
