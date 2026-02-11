@@ -152,7 +152,37 @@ const translations: Record<string, TranslationDict> = {
     'View on GitHub': 'View on GitHub',
     'Toggle Fullscreen': 'Toggle Fullscreen',
     'Pin map to top': 'Pin map to top',
-    'System Status': 'System Status'
+    'System Status': 'System Status',
+    // Phase 1: Accessibility
+    'Show methodology info': 'Show methodology info',
+    'Methodology info': 'Methodology info',
+    'Drag to resize (double-click to reset)': 'Drag to resize (double-click to reset)',
+    // Phase 1: Trust indicators
+    'Wire Service - Highest reliability': 'Wire Service - Highest reliability',
+    'Major News Outlet': 'Major News Outlet',
+    'Specialty Media': 'Specialty Media',
+    'Blog or Aggregator': 'Blog or Aggregator',
+    'Official Government Source': 'Official Government Source',
+    'State-affiliated media source': 'State-affiliated media source',
+    'Verified News Outlet': 'Verified News Outlet',
+    // Phase 2: Flight status
+    'Airborne': 'Airborne',
+    'Ground delay': 'Ground delay',
+    'Ground stop': 'Ground stop',
+    'Landing': 'Landing',
+    'Diverted': 'Diverted',
+    'Cancelled': 'Cancelled',
+    'Delayed': 'Delayed',
+    // Phase 2: Map interactions
+    'Show on map': 'Show on map',
+    'More info': 'More info',
+    'AIS Signal Lost': 'AIS Signal Lost',
+    'Zoom in': 'Zoom in',
+    'Zoom out': 'Zoom out',
+    'Reset view': 'Reset view',
+    'Layer guide': 'Layer guide',
+    'Click to select': 'Click to select',
+    'Double-click to zoom': 'Double-click to zoom'
   },
   'zh-TW': {
     'Global Map': '全球地圖',
@@ -304,7 +334,37 @@ const translations: Record<string, TranslationDict> = {
     'View on GitHub': '在 GitHub 上檢視',
     'Toggle Fullscreen': '切換全螢幕',
     'Pin map to top': '將地圖釘到頂部',
-    'System Status': '系統狀態'
+    'System Status': '系統狀態',
+    // Phase 1: Accessibility
+    'Show methodology info': '顯示方法論信息',
+    'Methodology info': '方法論信息',
+    'Drag to resize (double-click to reset)': '拖曳以調整大小（雙擊重設）',
+    // Phase 1: Trust indicators
+    'Wire Service - Highest reliability': '通訊社 - 最高可靠性',
+    'Major News Outlet': '主要新聞媒體',
+    'Specialty Media': '專業媒體',
+    'Blog or Aggregator': '部落格或聚合器',
+    'Official Government Source': '官方政府來源',
+    'State-affiliated media source': '官方媒體來源',
+    'Verified News Outlet': '認證新聞媒體',
+    // Phase 2: Flight status
+    'Airborne': '飛行中',
+    'Ground delay': '地面延誤',
+    'Ground stop': '地面停止',
+    'Landing': '著陸',
+    'Diverted': '改航',
+    'Cancelled': '已取消',
+    'Delayed': '延誤',
+    // Phase 2: Map interactions
+    'Show on map': '在地圖上顯示',
+    'More info': '更多信息',
+    'AIS Signal Lost': 'AIS 信號丟失',
+    'Zoom in': '放大',
+    'Zoom out': '縮小',
+    'Reset view': '重設檢視',
+    'Layer guide': '圖層指南',
+    'Click to select': '按一下選擇',
+    'Double-click to zoom': '雙擊縮放'
   }
 };
 
