@@ -277,15 +277,15 @@ export class PizzIntIndicator {
     const listEl = this.element.querySelector('.pizzint-tensions-list') as HTMLElement;
     if (!listEl) return;
 
-    listEl.innerHTML = this.tensions.map(t => {
-      const trendIcon = t.trend === 'rising' ? '↑' : t.trend === 'falling' ? '↓' : '→';
-      const changeText = t.changePercent > 0 ? `+${t.changePercent}%` : `${t.changePercent}%`;
-      const trendClass = escapeHtml(t.trend);
+    listEl.innerHTML = this.tensions.map(tension => {
+      const trendIcon = tension.trend === 'rising' ? '↑' : tension.trend === 'falling' ? '↓' : '→';
+      const changeText = tension.changePercent > 0 ? `+${tension.changePercent}%` : `${tension.changePercent}%`;
+      const trendClass = escapeHtml(tension.trend);
       return `
         <div class="pizzint-tension-row">
-          <span class="pizzint-tension-label">${escapeHtml(t.label)}</span>
+          <span class="pizzint-tension-label">${escapeHtml(tension.label)}</span>
           <span class="pizzint-tension-score">
-            <span class="pizzint-tension-value">${t.score.toFixed(1)}</span>
+            <span class="pizzint-tension-value">${tension.score.toFixed(1)}</span>
             <span class="pizzint-tension-trend ${trendClass}">${trendIcon} ${changeText}</span>
           </span>
         </div>
@@ -313,9 +313,9 @@ export class PizzIntIndicator {
 
   private formatTimeAgo(date: Date): string {
     const diff = Date.now() - date.getTime();
-    if (diff < 60000) return 'just now';
-    if (diff < 3600000) return `${Math.floor(diff / 60000)}m ago`;
-    return `${Math.floor(diff / 3600000)}h ago`;
+    if (diff < 60000) return t('just now');
+    if (diff < 3600000) return `${Math.floor(diff / 60000)}${t('m ago')}`;
+    return `${Math.floor(diff / 3600000)}${t('h ago')}`;
   }
 
   public getElement(): HTMLElement {

@@ -108,14 +108,14 @@ export class CountryIntelModal {
     this.currentCode = '__loading__';
     this.headerEl.innerHTML = `
       <span class="country-flag">🌍</span>
-      <span class="country-name">Identifying country...</span>
+      <span class="country-name">${t('Identifying country...')}</span>
     `;
     this.contentEl.innerHTML = `
       <div class="intel-brief-section">
         <div class="intel-brief-loading">
           <div class="intel-skeleton"></div>
           <div class="intel-skeleton short"></div>
-          <span class="intel-loading-text">Locating region...</span>
+          <span class="intel-loading-text">${t('Locating region...')}</span>
         </div>
       </div>
     `;

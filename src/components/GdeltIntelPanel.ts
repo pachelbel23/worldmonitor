@@ -19,15 +19,15 @@ export class GdeltIntelPanel extends Panel {
   constructor() {
     super({
       id: 'gdelt-intel',
-      title: 'Live Intelligence',
+      title: t('Live Intelligence'),
       showCount: true,
       trackActivity: true,
-      infoTooltip: `<strong>GDELT Intelligence</strong>
-        Real-time global news monitoring:
+      infoTooltip: `<strong>${t('GDELT Intelligence')}</strong>
+        ${t('Real-time global news monitoring')}:
         <ul>
-          <li>Curated topic categories (conflicts, cyber, etc.)</li>
-          <li>Articles from 100+ languages translated</li>
-          <li>Updates every 15 minutes</li>
+          <li>${t('Curated topic categories (conflicts, cyber, etc.)')}</li>
+          <li>${t('Articles from 100+ languages translated')}</li>
+          <li>${t('Updates every 15 minutes')}</li>
         </ul>
         Source: GDELT Project (gdeltproject.org)`,
     });
@@ -80,7 +80,7 @@ export class GdeltIntelPanel extends Panel {
       this.setCount(data.articles.length);
     } catch (error) {
       console.error('[GdeltIntelPanel] Load error:', error);
-      this.showError('Failed to load intelligence feed');
+      this.showError(t('Failed to load intelligence feed'));
     }
   }
 

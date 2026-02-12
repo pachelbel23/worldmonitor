@@ -120,7 +120,7 @@ export class NewsPanel extends Panel {
     this.summaryBtn = document.createElement('button');
     this.summaryBtn.className = 'panel-summarize-btn';
     this.summaryBtn.innerHTML = '✨';
-    this.summaryBtn.title = 'Summarize this panel';
+    this.summaryBtn.title = t('Summarize this panel');
     this.summaryBtn.addEventListener('click', () => this.handleSummarize());
 
     // Insert before count element (use inherited this.header directly)
@@ -264,7 +264,7 @@ export class NewsPanel extends Panel {
       <div class="item ${item.isAlert ? 'alert' : ''}" ${item.monitorColor ? `style="border-left-color: ${escapeHtml(item.monitorColor)}"` : ''}>
         <div class="item-source">
           ${escapeHtml(item.source)}
-          ${item.isAlert ? '<span class="alert-tag">ALERT</span>' : ''}
+          ${item.isAlert ? `<span class="alert-tag">${t('ALERT')}</span>` : ''}
         </div>
         <a class="item-title" href="${sanitizeUrl(item.link)}" target="_blank" rel="noopener">${escapeHtml(item.title)}</a>
         <div class="item-time">${formatTime(item.pubDate)}</div>
@@ -376,7 +376,7 @@ export class NewsPanel extends Panel {
     // Build "Also reported by" section for multi-source confirmation
     const otherSources = cluster.topSources.filter(s => s.name !== cluster.primarySource);
     const topSourcesHtml = otherSources.length > 0
-      ? `<span class="also-reported">Also:</span>` + otherSources
+      ? `<span class="also-reported">${t('Also reported by')}:</span>` + otherSources
           .map(s => {
             const propRisk = getSourcePropagandaRisk(s.name);
             const propBadge = propRisk.risk !== 'low'
@@ -396,7 +396,7 @@ export class NewsPanel extends Panel {
       ? `
         <div class="related-assets" data-cluster-id="${escapeHtml(cluster.id)}">
           <div class="related-assets-header">
-            Related assets near ${escapeHtml(assetContext.origin.label)}
+            ${t('Related assets near')} ${escapeHtml(assetContext.origin.label)}
             <span class="related-assets-range">(${MAX_DISTANCE_KM}km)</span>
           </div>
           <div class="related-assets-list">
@@ -439,7 +439,7 @@ export class NewsPanel extends Panel {
           ${sourceBadge}
           ${velocityBadge}
           ${sentimentBadge}
-          ${cluster.isAlert ? '<span class="alert-tag">ALERT</span>' : ''}
+          ${cluster.isAlert ? `<span class="alert-tag">${t('ALERT')}</span>` : ''}
           ${categoryBadge}
         </div>
         <a class="item-title" href="${sanitizeUrl(cluster.primaryLink)}" target="_blank" rel="noopener">${escapeHtml(cluster.primaryTitle)}</a>

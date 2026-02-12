@@ -4,6 +4,7 @@ import { inject } from '@vercel/analytics';
 import { App } from './App';
 import { debugInjectTestEvents, debugGetCells, getCellCount } from '@/services/geo-convergence';
 import { initMetaTags } from '@/services/meta-tags';
+import { i18n } from '@/utils';
 
 // Initialize Vercel Analytics
 inject();
@@ -19,4 +20,10 @@ app.init().catch(console.error);
   inject: debugInjectTestEvents,
   cells: debugGetCells,
   count: getCellCount,
+};
+
+// Debug helpers for i18n
+(window as unknown as Record<string, unknown>).i18nDebug = {
+  getDebugInfo: () => i18n.getDebugInfo(),
+  setLocale: (locale: string) => i18n.setLocale(locale),
 };

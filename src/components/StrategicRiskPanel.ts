@@ -1,5 +1,6 @@
 import { Panel } from './Panel';
 import { escapeHtml } from '@/utils/sanitize';
+import { t } from '@/utils';
 import {
   calculateStrategicRiskOverview,
   getRecentAlerts,
@@ -32,17 +33,17 @@ export class StrategicRiskPanel extends Panel {
   constructor() {
     super({
       id: 'strategic-risk',
-      title: 'Strategic Risk Overview',
+      title: t('Strategic Risk Overview'),
       showCount: false,
       trackActivity: true,
-      infoTooltip: `<strong>Methodology</strong>
-        Composite score (0-100) blending:
+      infoTooltip: `<strong>${t('Methodology')}</strong>
+        ${t('Composite score (0-100) blending:')}
         <ul>
-          <li>50% Country Instability (top 5 weighted)</li>
-          <li>30% Geographic convergence zones</li>
-          <li>20% Infrastructure incidents</li>
+          <li>50% ${t('Country Instability')} (top 5 weighted)</li>
+          <li>30% ${t('Geographic convergence zones')}</li>
+          <li>20% ${t('Infrastructure incidents')}</li>
         </ul>
-        Auto-refreshes every 5 minutes.`,
+        ${t('Auto-refreshes every 5 minutes')}.`,
     });
     this.init();
   }
@@ -63,7 +64,7 @@ export class StrategicRiskPanel extends Panel {
       this.startAutoRefresh();
     } catch (error) {
       console.error('[StrategicRiskPanel] Init error:', error);
-      this.showError('Failed to calculate risk overview');
+      this.showError(t('Failed to calculate risk overview'));
     }
   }
 
@@ -98,10 +99,10 @@ export class StrategicRiskPanel extends Panel {
   }
 
   private getScoreLevel(score: number): string {
-    if (score >= 70) return 'Critical';
-    if (score >= 50) return 'Elevated';
-    if (score >= 30) return 'Moderate';
-    return 'Low';
+    if (score >= 70) return t('Critical');
+    if (score >= 50) return t('Elevated');
+    if (score >= 30) return t('Moderate');
+    return t('Low');
   }
 
   private getTrendEmoji(trend: string): string {
@@ -160,22 +161,22 @@ export class StrategicRiskPanel extends Panel {
       <div class="strategic-risk-panel">
         <div class="risk-no-data">
           <div class="risk-no-data-icon">⚠️</div>
-          <div class="risk-no-data-title">Insufficient Data</div>
+          <div class="risk-no-data-title">${t('Insufficient Data')}</div>
           <div class="risk-no-data-desc">
-            Unable to assess risk level.<br>
-            Enable data sources to begin monitoring.
+            ${t('Unable to assess risk level.')}<br>
+            ${t('Enable data sources to begin monitoring.')}
           </div>
         </div>
 
         <div class="risk-section">
-          <div class="risk-section-title">Required Data Sources</div>
+          <div class="risk-section-title">${t('Required Data Sources')}</div>
           <div class="risk-sources">
             ${riskSources.map(source => this.renderSourceRow(source)).join('')}
           </div>
         </div>
 
         <div class="risk-section">
-          <div class="risk-section-title">Optional Sources</div>
+          <div class="risk-section-title">${t('Optional Sources')}</div>
           <div class="risk-sources">
             ${sources.filter(s => !s.requiredForRisk).slice(0, 4).map(source => this.renderSourceRow(source)).join('')}
           </div>
@@ -183,13 +184,13 @@ export class StrategicRiskPanel extends Panel {
 
         <div class="risk-actions">
           <button class="risk-action-btn risk-action-primary" data-action="enable-core">
-            Enable Core Feeds
+            ${t('Enable Core Feeds')}
           </button>
         </div>
 
         <div class="risk-footer">
-          <span class="risk-updated">Waiting for data...</span>
-          <button class="risk-refresh-btn">Refresh</button>
+          <span class="risk-updated">${t('Waiting for data...')}</span>
+          <button class="risk-refresh-btn">${t('Refresh')}</button>
         </div>
       </div>
     `;
@@ -214,7 +215,7 @@ export class StrategicRiskPanel extends Panel {
     const statusBanner = showLearning
       ? `<div class="risk-status-banner risk-status-learning">
           <span class="risk-status-icon">📊</span>
-          <span class="risk-status-text">Learning Mode - ${remainingMinutes}m until reliable</span>
+          <span class="risk-status-text">${t('Learning Mode')} - ${remainingMinutes}m ${t('until reliable')}</span>
           <div class="learning-progress-mini">
             <div class="learning-bar" style="width: ${progress}%"></div>
           </div>
@@ -235,7 +236,7 @@ export class StrategicRiskPanel extends Panel {
             </div>
           </div>
           <div class="risk-trend-container">
-            <span class="risk-trend-label">Trend</span>
+            <span class="risk-trend-label">${t('Trend')}</span>
             <div class="risk-trend" style="color: ${this.getTrendColor(this.overview.trend)}">
               ${this.getTrendEmoji(this.overview.trend)} ${this.overview.trend.charAt(0).toUpperCase() + this.overview.trend.slice(1)}
             </div>
@@ -247,8 +248,8 @@ export class StrategicRiskPanel extends Panel {
         ${this.renderRecentAlerts()}
 
         <div class="risk-footer">
-          <span class="risk-updated">Updated: ${this.overview.timestamp.toLocaleTimeString()}</span>
-          <button class="risk-refresh-btn">Refresh</button>
+          <span class="risk-updated">${t('Updated')}: ${this.overview.timestamp.toLocaleTimeString()}</span>
+          <button class="risk-refresh-btn">${t('Refresh')}</button>
         </div>
       </div>
     `;
@@ -301,7 +302,7 @@ export class StrategicRiskPanel extends Panel {
 
   private renderTopRisks(): string {
     if (!this.overview || this.overview.topRisks.length === 0) {
-      return '<div class="risk-empty">No significant risks detected</div>';
+      return `<div class="risk-empty">${t('No significant risks detected')}</div>`;
     }
 
     // Get convergence zone for first risk if available
@@ -309,7 +310,7 @@ export class StrategicRiskPanel extends Panel {
 
     return `
       <div class="risk-section">
-        <div class="risk-section-title">Top Risks</div>
+        <div class="risk-section-title">${t('Top Risks')}</div>
         <div class="risk-list">
           ${this.overview.topRisks.map((risk, i) => {
             // First risk is convergence - make it clickable if we have location
@@ -344,7 +345,7 @@ export class StrategicRiskPanel extends Panel {
 
     return `
       <div class="risk-section">
-        <div class="risk-section-title">Recent Alerts (${this.alerts.length})</div>
+        <div class="risk-section-title">${t('Recent Alerts')} (${this.alerts.length})</div>
         <div class="risk-alerts">
           ${displayAlerts.map(alert => {
             const hasLocation = alert.location && alert.location.lat && alert.location.lon;
@@ -377,9 +378,9 @@ export class StrategicRiskPanel extends Panel {
     const minutes = Math.floor(diff / 60000);
     const hours = Math.floor(minutes / 60);
 
-    if (minutes < 1) return 'just now';
-    if (minutes < 60) return `${minutes}m ago`;
-    if (hours < 24) return `${hours}h ago`;
+    if (minutes < 1) return t('just now');
+    if (minutes < 60) return `${minutes}${t('m ago')}`;
+    if (hours < 24) return `${hours}${t('h ago')}`;
     return date.toLocaleDateString();
   }
 

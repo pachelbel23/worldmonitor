@@ -40,7 +40,7 @@ export class TechEventsPanel extends Panel {
   private error: string | null = null;
 
   constructor(id: string) {
-    super({ id, title: 'Tech Events', showCount: true });
+    super({ id, title: t('Tech Events'), showCount: true });
     this.element.classList.add('panel-tall');
     void this.fetchEvents();
   }
@@ -73,7 +73,7 @@ export class TechEventsPanel extends Panel {
       this.content.innerHTML = `
         <div class="tech-events-loading">
           <div class="loading-spinner"></div>
-          <span>Loading tech events...</span>
+          <span>${t('Loading tech events...')}</span>
         </div>
       `;
       return;
@@ -84,7 +84,7 @@ export class TechEventsPanel extends Panel {
         <div class="tech-events-error">
           <span class="error-icon">⚠️</span>
           <span class="error-text">${escapeHtml(this.error)}</span>
-          <button class="retry-btn" onclick="this.closest('.panel').querySelector('.panel-content').__panel?.refresh()">Retry</button>
+          <button class="retry-btn" onclick="this.closest('.panel').querySelector('.panel-content').__panel?.refresh()">${t('Retry')}</button>
         </div>
       `;
       return;
@@ -97,15 +97,15 @@ export class TechEventsPanel extends Panel {
     this.content.innerHTML = `
       <div class="tech-events-panel">
         <div class="tech-events-tabs">
-          <button class="tab ${this.viewMode === 'upcoming' ? 'active' : ''}" data-view="upcoming">Upcoming</button>
-          <button class="tab ${this.viewMode === 'conferences' ? 'active' : ''}" data-view="conferences">Conferences</button>
-          <button class="tab ${this.viewMode === 'earnings' ? 'active' : ''}" data-view="earnings">Earnings</button>
-          <button class="tab ${this.viewMode === 'all' ? 'active' : ''}" data-view="all">All</button>
+          <button class="tab ${this.viewMode === 'upcoming' ? 'active' : ''}" data-view="upcoming">${t('Upcoming')}</button>
+          <button class="tab ${this.viewMode === 'conferences' ? 'active' : ''}" data-view="conferences">${t('Conferences')}</button>
+          <button class="tab ${this.viewMode === 'earnings' ? 'active' : ''}" data-view="earnings">${t('Earnings')}</button>
+          <button class="tab ${this.viewMode === 'all' ? 'active' : ''}" data-view="all">${t('All')}</button>
         </div>
         <div class="tech-events-stats">
-          <span class="stat">📅 ${upcomingConferences.length} conferences</span>
-          <span class="stat">📍 ${mappableCount} on map</span>
-          <a href="https://www.techmeme.com/events" target="_blank" rel="noopener" class="source-link">Techmeme Events ↗</a>
+          <span class="stat">📅 ${upcomingConferences.length} ${t('conferences')}</span>
+          <span class="stat">📍 ${mappableCount} ${t('on map')}</span>
+          <a href="https://www.techmeme.com/events" target="_blank" rel="noopener" class="source-link">${t('Techmeme Events ↗')}</a>
         </div>
         <div class="tech-events-list">
           ${filteredEvents.length > 0
@@ -192,7 +192,7 @@ export class TechEventsPanel extends Panel {
     };
 
     const mapLink = event.coords && !event.coords.virtual
-      ? `<button class="event-map-link" data-lat="${event.coords.lat}" data-lng="${event.coords.lng}" title="Show on map">📍</button>`
+      ? `<button class="event-map-link" data-lat="${event.coords.lat}" data-lng="${event.coords.lng}" title="${t('Show on map')}">📍</button>`
       : '';
 
     const locationText = event.location
@@ -200,7 +200,7 @@ export class TechEventsPanel extends Panel {
       : '';
 
     const urlLink = event.url
-      ? `<a href="${event.url}" target="_blank" rel="noopener" class="event-url" title="More info">↗</a>`
+      ? `<a href="${event.url}" target="_blank" rel="noopener" class="event-url" title="${t('More info')}">↗</a>`
       : '';
 
     return `
@@ -208,8 +208,8 @@ export class TechEventsPanel extends Panel {
         <div class="event-date">
           <span class="event-month">${startDate.toLocaleDateString('en-US', { month: 'short' }).toUpperCase()}</span>
           <span class="event-day">${startDate.getDate()}</span>
-          ${isToday ? '<span class="today-badge">TODAY</span>' : ''}
-          ${isSoon ? '<span class="soon-badge">SOON</span>' : ''}
+          ${isToday ? `<span class="today-badge">${t('TODAY')}</span>` : ''}
+          ${isSoon ? `<span class="soon-badge">${t('SOON')}</span>` : ''}
         </div>
         <div class="event-content">
           <div class="event-header">
