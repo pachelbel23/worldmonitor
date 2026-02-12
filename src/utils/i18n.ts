@@ -14,6 +14,10 @@ class I18n {
 
   constructor() {
     this.init();
+    // Debug: Check if translations are loaded correctly
+    console.log('[i18n] Loaded translation keys:', Object.keys(translations));
+    console.log('[i18n] zh-TW entries:', Object.keys(translations['zh-TW'] || {}).length);
+    console.log('[i18n] en entries:', Object.keys(translations['en'] || {}).length);
   }
 
   private init() {
@@ -78,8 +82,20 @@ class I18n {
 
   public t(key: string): string {
     const dict = translations[this.locale] || translations['en'];
-    if (!dict) return key;
-    return dict[key] || key;
+    if (!dict) {
+      console.warn(`[i18n] No dictionary found for locale: ${this.locale}`);
+      return key;
+    }
+    const val = dict[key];
+    if (val === undefined) {
+      // Only warn if we're not in English (since English keys are usually the fallback)
+      if (this.locale !== 'en') {
+        // Uncomment for debugging missing keys
+        // console.debug(`[i18n] Missing translation for key: "${key}" in ${this.locale}`);
+      }
+      return key;
+    }
+    return val;
   }
 }
 
