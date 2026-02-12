@@ -236,20 +236,38 @@ src/
 └── styles/            # Stylesheets
 ```
 
-## 🌐 Internationalization (i18n)
+## 🌐 Internationalization (i18n) - 國際化
 
-All user interface text is centrally managed through `i18n.ts`:
+### 翻譯覆蓋
+
+- **Phase 1-2**: 195+ 核心 UI 字符串完全翻譯
+  - 無障礙標籤和工具提示
+  - 新聞來源可信度指標
+  - 飛行狀態標籤和地圖交互文本
+
+- **Phase 3**: 複雜語言邏輯
+  - `pluralize.ts` - 語言感知複數形式
+    - 英文：支持單/複數形式分別
+    - 中文：統一使用不分複數形式
+  - `date-formatter.ts` - 多語言日期時間格式化
+    - 支持 en-US 和 zh-TW 地區設定
+    - 5 種不同場景的格式化函數
+
+- **Phase 5**: 模組化架構
+  - `src/i18n/{en,zh-TW}/` 目錄結構
+  - TypeScript 類型安全的翻譯鍵
+  - 為未來新語言奠定基礎
+
+### 支持的語言
 
 ```typescript
-// Using the translation function
 import { t } from '@/utils';
 
-const label = t('Global Map');  // Automatically returns Chinese or English
+const label = t('Global Map');  // 自動返回中文或英文
 ```
 
-Supported languages:
-- `en` - English
-- `zh-TW` - Traditional Chinese
+- `en` - English (英文)
+- `zh-TW` - Traditional Chinese (繁體中文)
 
 ## 🔧 Build Variants
 
@@ -312,4 +330,5 @@ Feel free to open an Issue or submit a Pull Request for any suggestions or quest
 ---
 
 **Last Updated**: February 12, 2026
+**Latest**: Phase 3-5 i18n implementation complete - pluralize utilities, date formatting, modular architecture
 **Build Status**: Check [GitHub Actions](https://github.com/pachelbel23/worldmonitor/actions)

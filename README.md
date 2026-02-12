@@ -389,12 +389,31 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 ### Localization Contributors
 
-**Chinese Localization & Deployment** (2026-02-11):
-- Complete Chinese translation (167 keys, 100% UI coverage)
-- GitHub Pages deployment configuration
-- i18n system enhancement
-- Military and infrastructure terminology localization
-- [View on GitHub Pages](https://pachelbel23.github.io/worldmonitor/)
+**Chinese Localization & Internationalization** (2026-02-11 to 2026-02-12):
+
+**Phase 1-2: UI Localization (Complete)**
+- 195+ core UI strings with full English-Chinese translation
+- Accessibility labels and tooltips localization
+- Trust indicators for news source credibility
+- Flight status labels and map interaction text
+
+**Phase 3: Complex Linguistic Logic (Complete)**
+- `pluralize.ts` — Language-aware singular/plural handling
+  - English: "1 finding" vs "2 findings"
+  - Chinese: Unified form (no plural distinction)
+- `date-formatter.ts` — Locale-aware date/time formatting
+  - Supports en-US and zh-TW locales
+  - 5 formatting functions for different use cases
+
+**Phase 5: Modular Architecture (Complete)**
+- Refactored i18n into modular structure: `src/i18n/{en,zh-TW}/`
+- Type-safe translation keys with TypeScript enums
+- Foundation for future languages (ja, ko, de, fr, es)
+
+**Deployment**
+- GitHub Pages (zh-TW): [pachelbel23.github.io/worldmonitor/](https://pachelbel23.github.io/worldmonitor/)
+- Automated CI/CD via GitHub Actions
+- RSS proxy via rss2json.com for cross-platform support
 
 ---
 
