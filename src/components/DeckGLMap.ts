@@ -29,6 +29,7 @@ import type {
 } from '@/types';
 import type { WeatherAlert } from '@/services/weather';
 import { escapeHtml } from '@/utils/sanitize';
+import { t } from '@/utils';
 import {
   INTEL_HOTSPOTS,
   CONFLICT_ZONES,
@@ -1940,44 +1941,44 @@ export class DeckGLMap {
 
     const layerConfig = SITE_VARIANT === 'tech'
       ? [
-          { key: 'startupHubs', label: 'Startup Hubs', icon: '&#128640;' },
-          { key: 'techHQs', label: 'Tech HQs', icon: '&#127970;' },
-          { key: 'accelerators', label: 'Accelerators', icon: '&#9889;' },
-          { key: 'cloudRegions', label: 'Cloud Regions', icon: '&#9729;' },
-          { key: 'datacenters', label: 'AI Data Centers', icon: '&#128421;' },
-          { key: 'cables', label: 'Undersea Cables', icon: '&#128268;' },
-          { key: 'outages', label: 'Internet Outages', icon: '&#128225;' },
-          { key: 'techEvents', label: 'Tech Events', icon: '&#128197;' },
-          { key: 'natural', label: 'Natural Events', icon: '&#127755;' },
-          { key: 'fires', label: 'Fires', icon: '&#128293;' },
+          { key: 'startupHubs', label: t('Startup Hubs'), icon: '&#128640;' },
+          { key: 'techHQs', label: t('Tech HQs'), icon: '&#127970;' },
+          { key: 'accelerators', label: t('Accelerators'), icon: '&#9889;' },
+          { key: 'cloudRegions', label: t('Cloud Regions'), icon: '&#9729;' },
+          { key: 'datacenters', label: t('AI Data Centers'), icon: '&#128421;' },
+          { key: 'cables', label: t('Undersea Cables'), icon: '&#128268;' },
+          { key: 'outages', label: t('Internet Outages'), icon: '&#128225;' },
+          { key: 'techEvents', label: t('Tech Events'), icon: '&#128197;' },
+          { key: 'natural', label: t('Natural Events'), icon: '&#127755;' },
+          { key: 'fires', label: t('Fires'), icon: '&#128293;' },
         ]
       : [
-          { key: 'hotspots', label: 'Intel Hotspots', icon: '&#127919;' },
-          { key: 'conflicts', label: 'Conflict Zones', icon: '&#9876;' },
-          { key: 'bases', label: 'Military Bases', icon: '&#127963;' },
-          { key: 'nuclear', label: 'Nuclear Sites', icon: '&#9762;' },
-          { key: 'irradiators', label: 'Gamma Irradiators', icon: '&#9888;' },
-          { key: 'spaceports', label: 'Spaceports', icon: '&#128640;' },
-          { key: 'cables', label: 'Undersea Cables', icon: '&#128268;' },
-          { key: 'pipelines', label: 'Pipelines', icon: '&#128738;' },
-          { key: 'datacenters', label: 'AI Data Centers', icon: '&#128421;' },
-          { key: 'military', label: 'Military Activity', icon: '&#9992;' },
-          { key: 'ais', label: 'Ship Traffic', icon: '&#128674;' },
-          { key: 'flights', label: 'Flight Delays', icon: '&#9992;' },
-          { key: 'protests', label: 'Protests', icon: '&#128226;' },
-          { key: 'weather', label: 'Weather Alerts', icon: '&#9928;' },
-          { key: 'outages', label: 'Internet Outages', icon: '&#128225;' },
-          { key: 'natural', label: 'Natural Events', icon: '&#127755;' },
-          { key: 'fires', label: 'Fires', icon: '&#128293;' },
-          { key: 'waterways', label: 'Strategic Waterways', icon: '&#9875;' },
-          { key: 'economic', label: 'Economic Centers', icon: '&#128176;' },
-          { key: 'minerals', label: 'Critical Minerals', icon: '&#128142;' },
+          { key: 'hotspots', label: t('Intel Hotspots'), icon: '&#127919;' },
+          { key: 'conflicts', label: t('Conflict Zones'), icon: '&#9876;' },
+          { key: 'bases', label: t('Military Bases'), icon: '&#127963;' },
+          { key: 'nuclear', label: t('Nuclear Sites'), icon: '&#9762;' },
+          { key: 'irradiators', label: t('Gamma Irradiators'), icon: '&#9888;' },
+          { key: 'spaceports', label: t('Spaceports'), icon: '&#128640;' },
+          { key: 'cables', label: t('Undersea Cables'), icon: '&#128268;' },
+          { key: 'pipelines', label: t('Pipelines'), icon: '&#128738;' },
+          { key: 'datacenters', label: t('AI Data Centers'), icon: '&#128421;' },
+          { key: 'military', label: t('Military Activity'), icon: '&#9992;' },
+          { key: 'ais', label: t('Ship Traffic'), icon: '&#128674;' },
+          { key: 'flights', label: t('Flight Delays'), icon: '&#9992;' },
+          { key: 'protests', label: t('Protests'), icon: '&#128226;' },
+          { key: 'weather', label: t('Weather Alerts'), icon: '&#9928;' },
+          { key: 'outages', label: t('Internet Outages'), icon: '&#128225;' },
+          { key: 'natural', label: t('Natural Events'), icon: '&#127755;' },
+          { key: 'fires', label: t('Fires'), icon: '&#128293;' },
+          { key: 'waterways', label: t('Strategic Waterways'), icon: '&#9875;' },
+          { key: 'economic', label: t('Economic Centers'), icon: '&#128176;' },
+          { key: 'minerals', label: t('Critical Minerals'), icon: '&#128142;' },
         ];
 
     toggles.innerHTML = `
       <div class="toggle-header">
-        <span>Layers</span>
-        <button class="layer-help-btn" title="Layer Guide">?</button>
+        <span>${t('Layers')}</span>
+        <button class="layer-help-btn" title="${t('Layer Guide')}">?</button>
         <button class="toggle-collapse">&#9660;</button>
       </div>
       <div class="toggle-list">
@@ -1985,7 +1986,7 @@ export class DeckGLMap {
           <label class="layer-toggle" data-layer="${key}">
             <input type="checkbox" ${this.state.layers[key as keyof MapLayers] ? 'checked' : ''}>
             <span class="toggle-icon">${icon}</span>
-            <span class="toggle-label">${label}</span>
+            <span class="toggle-label">${escapeHtml(label)}</span>
           </label>
         `).join('')}
       </div>

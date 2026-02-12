@@ -263,7 +263,7 @@ export class PizzIntIndicator {
       const statusLabel = this.getStatusLabel(loc);
       return `
         <div class="pizzint-location">
-          <span class="pizzint-location-name">${escapeHtml(loc.name)}</span>
+          <span class="pizzint-location-name">${escapeHtml(t(loc.name as any))}</span>
           <span class="pizzint-location-status ${statusClass}">${statusLabel}</span>
         </div>
       `;
@@ -281,9 +281,10 @@ export class PizzIntIndicator {
       const trendIcon = tension.trend === 'rising' ? '↑' : tension.trend === 'falling' ? '↓' : '→';
       const changeText = tension.changePercent > 0 ? `+${tension.changePercent}%` : `${tension.changePercent}%`;
       const trendClass = escapeHtml(tension.trend);
+      const label = this.translateTensionLabel(tension.label);
       return `
         <div class="pizzint-tension-row">
-          <span class="pizzint-tension-label">${escapeHtml(tension.label)}</span>
+          <span class="pizzint-tension-label">${escapeHtml(label)}</span>
           <span class="pizzint-tension-score">
             <span class="pizzint-tension-value">${tension.score.toFixed(1)}</span>
             <span class="pizzint-tension-trend ${trendClass}">${trendIcon} ${changeText}</span>
@@ -291,6 +292,13 @@ export class PizzIntIndicator {
         </div>
       `;
     }).join('');
+  }
+
+  private translateTensionLabel(label: string): string {
+    if (!label.includes(' ↔ ')) return t(label as any);
+    const parts = label.split(' ↔ ');
+    if (parts.length < 2) return t(label as any);
+    return `${t(parts[0] as any)} ↔ ${t(parts[1] as any)}`;
   }
 
   private getStatusClass(loc: { is_closed_now: boolean; is_spike: boolean; current_popularity: number }): string {

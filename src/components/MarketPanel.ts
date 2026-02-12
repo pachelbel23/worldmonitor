@@ -1,16 +1,16 @@
 import { Panel } from './Panel';
 import type { MarketData, CryptoData } from '@/types';
-import { formatPrice, formatChange, getChangeClass, getHeatmapClass } from '@/utils';
+import { formatPrice, formatChange, getChangeClass, getHeatmapClass, t } from '@/utils';
 import { escapeHtml } from '@/utils/sanitize';
 
 export class MarketPanel extends Panel {
   constructor() {
-    super({ id: 'markets', title: 'Markets' });
+    super({ id: 'markets', title: t('Markets') });
   }
 
   public renderMarkets(data: MarketData[]): void {
     if (data.length === 0) {
-      this.showError('Failed to load market data');
+      this.showError(t('Failed to load market data'));
       return;
     }
 
@@ -37,14 +37,14 @@ export class MarketPanel extends Panel {
 
 export class HeatmapPanel extends Panel {
   constructor() {
-    super({ id: 'heatmap', title: 'Sector Heatmap' });
+    super({ id: 'heatmap', title: t('Sector Heatmap') });
   }
 
   public renderHeatmap(data: Array<{ name: string; change: number | null }>): void {
     const validData = data.filter((d) => d.change !== null);
 
     if (validData.length === 0) {
-      this.showError('Failed to load sector data');
+      this.showError(t('Failed to load sector data'));
       return;
     }
 
@@ -68,14 +68,14 @@ export class HeatmapPanel extends Panel {
 
 export class CommoditiesPanel extends Panel {
   constructor() {
-    super({ id: 'commodities', title: 'Commodities / VIX' });
+    super({ id: 'commodities', title: t('Commodities') });
   }
 
   public renderCommodities(data: Array<{ display: string; price: number | null; change: number | null }>): void {
     const validData = data.filter((d) => d.price !== null);
 
     if (validData.length === 0) {
-      this.showError('Failed to load commodities');
+      this.showError(t('Failed to load commodities'));
       return;
     }
 
@@ -100,12 +100,12 @@ export class CommoditiesPanel extends Panel {
 
 export class CryptoPanel extends Panel {
   constructor() {
-    super({ id: 'crypto', title: 'Crypto' });
+    super({ id: 'crypto', title: t('Crypto') });
   }
 
   public renderCrypto(data: CryptoData[]): void {
     if (data.length === 0) {
-      this.showError('Failed to load crypto data');
+      this.showError(t('Failed to load crypto data'));
       return;
     }
 
