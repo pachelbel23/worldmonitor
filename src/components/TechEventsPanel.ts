@@ -1,5 +1,6 @@
 import { Panel } from './Panel';
 import { escapeHtml } from '@/utils/sanitize';
+import { t } from '@/utils';
 
 interface TechEventCoords {
   lat: number;
@@ -109,7 +110,7 @@ export class TechEventsPanel extends Panel {
         <div class="tech-events-list">
           ${filteredEvents.length > 0
             ? filteredEvents.map(e => this.renderEvent(e)).join('')
-            : '<div class="empty-state">No events to display</div>'
+            : `<div class="empty-state">${t('No events to display')}</div>`
           }
         </div>
       </div>

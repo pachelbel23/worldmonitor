@@ -171,7 +171,25 @@ export const zhTWTranslations = {
   'Reset view': '重設檢視',
   'Layer guide': '圖層指南',
   'Click to select': '按一下選擇',
-  'Double-click to zoom': '雙擊縮放'
+  'Double-click to zoom': '雙擊縮放',
+  'Geopolitical Tensions': '地緣政治緊張局勢',
+  'DEFCON': 'DEFCON',
+  'SPIKE': '尖峰',
+  'Updated': '已更新',
+  'Source': '來源',
+  'Select': '選擇',
+  'capacity': '容量',
+  'No recent regulatory actions': '無最近的監管措施',
+  'No upcoming compliance deadlines': '沒有即將到期的合規期限',
+  'No events to display': '沒有事件可顯示',
+  'STABLE': '穩定',
+  'WATCH': '監視',
+  'CRITICAL': '危急',
+  'ACTIVE': '活躍',
+  'AIS GAP SPIKE': 'AIS 間隙尖峰',
+  'CHOKEPOINT CONGESTION': '卡點擁堵',
+  'HIGH ALERT': '高度警報',
+  'HIGH PRIORITY': '高優先級'
 } as const;
 
 export type ZhTWTranslationKey = keyof typeof zhTWTranslations;

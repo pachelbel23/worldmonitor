@@ -1,6 +1,7 @@
 import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
 import { escapeHtml } from '@/utils/sanitize';
+import { t } from '@/utils';
 import type { Topology, GeometryCollection } from 'topojson-specification';
 import type { Feature, Geometry } from 'geojson';
 import type { MapLayers, Hotspot, NewsItem, Earthquake, InternetOutage, RelatedAsset, AssetType, AisDisruptionEvent, AisDensityZone, CableAdvisory, RepairShip, SocialUnrestEvent, AirportDelayAlert, MilitaryFlight, MilitaryVessel, MilitaryFlightCluster, MilitaryVesselCluster, NaturalEvent } from '@/types';
@@ -510,8 +511,8 @@ export class MapComponent {
     } else {
       // Geopolitical variant legend
       legend.innerHTML = `
-        <div class="map-legend-item"><span class="legend-dot high"></span>HIGH ALERT</div>
-        <div class="map-legend-item"><span class="legend-dot elevated"></span>ELEVATED</div>
+        <div class="map-legend-item"><span class="legend-dot high"></span>${t('HIGH ALERT')}</div>
+        <div class="map-legend-item"><span class="legend-dot elevated"></span>${t('ELEVATED')}</div>
         <div class="map-legend-item"><span class="legend-dot low"></span>MONITORING</div>
         <div class="map-legend-item"><span class="map-legend-icon conflict">⚔</span>CONFLICT</div>
         <div class="map-legend-item"><span class="map-legend-icon earthquake">●</span>EARTHQUAKE</div>

@@ -2,6 +2,7 @@ import type { CorrelationSignal } from '@/services/correlation';
 import type { UnifiedAlert } from '@/services/cross-module-integration';
 import { escapeHtml } from '@/utils/sanitize';
 import { getSignalContext, type SignalType } from '@/utils/analysis-constants';
+import { t } from '@/utils';
 
 export class SignalModal {
   private element: HTMLElement;
@@ -167,7 +168,7 @@ export class SignalModal {
           <span class="context-value">${escapeHtml(cascade.sourceName)} (${cascade.sourceType})</span>
         </div>
         <div class="signal-context-item">
-          <span class="context-label">Countries Affected:</span>
+          <span class="context-label">${t('Countries Affected')}:</span>
           <span class="context-value">${cascade.countriesAffected}</span>
         </div>
         <div class="signal-context-item">

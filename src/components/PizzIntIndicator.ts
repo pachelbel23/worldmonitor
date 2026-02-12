@@ -1,5 +1,6 @@
 import type { PizzIntStatus, GdeltTensionPair } from '@/types';
 import { escapeHtml } from '@/utils/sanitize';
+import { t } from '@/utils';
 
 const DEFCON_COLORS: Record<number, string> = {
   1: '#ff0040',
@@ -19,14 +20,14 @@ export class PizzIntIndicator {
     this.element = document.createElement('div');
     this.element.className = 'pizzint-indicator';
     this.element.innerHTML = `
-      <button class="pizzint-toggle" title="Pentagon Pizza Index">
+      <button class="pizzint-toggle" title="${t('Pentagon Pizza Index')}">
         <span class="pizzint-icon">🍕</span>
         <span class="pizzint-defcon">--</span>
         <span class="pizzint-score">--%</span>
       </button>
       <div class="pizzint-panel hidden">
         <div class="pizzint-header">
-          <span class="pizzint-title">Pentagon Pizza Index</span>
+          <span class="pizzint-title">${t('Pentagon Pizza Index')}</span>
           <button class="pizzint-close">×</button>
         </div>
         <div class="pizzint-status-bar">
@@ -34,11 +35,11 @@ export class PizzIntIndicator {
         </div>
         <div class="pizzint-locations"></div>
         <div class="pizzint-tensions">
-          <div class="pizzint-tensions-title">Geopolitical Tensions</div>
+          <div class="pizzint-tensions-title">${t('Geopolitical Tensions')}</div>
           <div class="pizzint-tensions-list"></div>
         </div>
         <div class="pizzint-footer">
-          <span class="pizzint-source">Source: <a href="https://pizzint.watch" target="_blank" rel="noopener">PizzINT</a></span>
+          <span class="pizzint-source">${t('Source')}: <a href="https://pizzint.watch" target="_blank" rel="noopener">PizzINT</a></span>
           <span class="pizzint-updated"></span>
         </div>
       </div>
@@ -269,7 +270,7 @@ export class PizzIntIndicator {
     }).join('');
 
     const timeAgo = this.formatTimeAgo(this.status.lastUpdate);
-    updatedEl.textContent = `Updated ${timeAgo}`;
+    updatedEl.textContent = `${t('Updated')} ${timeAgo}`;
   }
 
   private renderTensions(): void {
@@ -302,12 +303,12 @@ export class PizzIntIndicator {
   }
 
   private getStatusLabel(loc: { is_closed_now: boolean; is_spike: boolean; current_popularity: number }): string {
-    if (loc.is_closed_now) return 'CLOSED';
-    if (loc.is_spike) return `SPIKE ${loc.current_popularity}%`;
-    if (loc.current_popularity >= 70) return `HIGH ${loc.current_popularity}%`;
-    if (loc.current_popularity >= 40) return `ELEVATED ${loc.current_popularity}%`;
-    if (loc.current_popularity >= 15) return `NOMINAL ${loc.current_popularity}%`;
-    return `QUIET ${loc.current_popularity}%`;
+    if (loc.is_closed_now) return `${t('CLOSED')}`;
+    if (loc.is_spike) return `${t('SPIKE')} ${loc.current_popularity}%`;
+    if (loc.current_popularity >= 70) return `${t('HIGH')} ${loc.current_popularity}%`;
+    if (loc.current_popularity >= 40) return `${t('ELEVATED')} ${loc.current_popularity}%`;
+    if (loc.current_popularity >= 15) return `${t('NOMINAL')} ${loc.current_popularity}%`;
+    return `${t('QUIET')} ${loc.current_popularity}%`;
   }
 
   private formatTimeAgo(date: Date): string {

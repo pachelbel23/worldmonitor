@@ -3,6 +3,7 @@ import { getRecentAlerts, type UnifiedAlert } from '@/services/cross-module-inte
 import { getSignalContext } from '@/utils/analysis-constants';
 import { escapeHtml } from '@/utils/sanitize';
 import { pluralize } from '@/utils/pluralize';
+import { t } from '@/utils';
 
 const LOW_COUNT_THRESHOLD = 3;
 const MAX_VISIBLE_FINDINGS = 10;
@@ -237,7 +238,7 @@ export class IntelligenceFindingsBadge {
       statusText = `${criticalCount} CRITICAL`;
     } else if (highCount > 0) {
       statusClass = 'high';
-      statusText = `${highCount} HIGH PRIORITY`;
+      statusText = `${highCount} ${t('HIGH PRIORITY')}`;
     }
 
     const findingsHtml = this.findings.slice(0, MAX_VISIBLE_FINDINGS).map(finding => {

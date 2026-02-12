@@ -5,7 +5,7 @@ import type { StartupHub, Accelerator, TechHQ, CloudRegion } from '@/config/tech
 import type { TechHubActivity } from '@/services/tech-activity';
 import type { GeoHubActivity } from '@/services/geo-activity';
 import { escapeHtml, sanitizeUrl } from '@/utils/sanitize';
-import { isMobileDevice } from '@/utils';
+import { isMobileDevice, t } from '@/utils';
 import { fetchHotspotContext, formatArticleDate, extractDomain, type GdeltArticle } from '@/services/gdelt-intel';
 import { getNaturalEventIcon } from '@/services/eonet';
 import { getHotspotEscalation, getEscalationChange24h } from '@/services/hotspot-escalation';
@@ -310,7 +310,7 @@ export class MapPopup {
 
     // Escalation score display
     const escalationColors: Record<number, string> = { 1: '#44aa44', 2: '#88aa44', 3: '#ffaa00', 4: '#ff6600', 5: '#ff2222' };
-    const escalationLabels: Record<number, string> = { 1: 'STABLE', 2: 'WATCH', 3: 'ELEVATED', 4: 'HIGH', 5: 'CRITICAL' };
+    const escalationLabels: Record<number, string> = { 1: t('STABLE'), 2: t('WATCH'), 3: t('ELEVATED'), 4: t('HIGH'), 5: t('CRITICAL') };
     const trendIcons: Record<string, string> = { 'escalating': '↑', 'stable': '→', 'de-escalating': '↓' };
     const trendColors: Record<string, string> = { 'escalating': '#ff4444', 'stable': '#ffaa00', 'de-escalating': '#44aa44' };
 
@@ -659,7 +659,7 @@ export class MapPopup {
   private renderAisPopup(event: AisDisruptionEvent): string {
     const severityClass = escapeHtml(event.severity);
     const severityLabel = escapeHtml(event.severity.toUpperCase());
-    const typeLabel = event.type === 'gap_spike' ? 'AIS GAP SPIKE' : 'CHOKEPOINT CONGESTION';
+    const typeLabel = event.type === 'gap_spike' ? t('AIS GAP SPIKE') : t('CHOKEPOINT CONGESTION');
     const changeLabel = event.type === 'gap_spike' ? 'DARKENING' : 'DENSITY';
     const countLabel = event.type === 'gap_spike' ? 'DARK SHIPS' : 'VESSEL COUNT';
     const countValue = event.type === 'gap_spike'
@@ -1588,7 +1588,7 @@ export class MapPopup {
       if (currMins >= openMins && currMins < closeMins) {
         return 'OPEN';
       }
-      return 'CLOSED';
+      return t('CLOSED');
     } catch {
       return 'UNKNOWN';
     }
@@ -1892,7 +1892,7 @@ export class MapPopup {
       <div class="popup-header nat-event ${event.category}">
         <span class="popup-icon">${icon}</span>
         <span class="popup-title">${escapeHtml(event.categoryTitle.toUpperCase())}</span>
-        <span class="popup-badge ${severityClass}">${event.closed ? 'CLOSED' : 'ACTIVE'}</span>
+        <span class="popup-badge ${severityClass}">${event.closed ? t('CLOSED') : t('ACTIVE')}</span>
         <button class="popup-close">×</button>
       </div>
       <div class="popup-body">

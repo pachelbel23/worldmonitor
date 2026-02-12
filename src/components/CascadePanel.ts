@@ -1,5 +1,6 @@
 import { Panel } from './Panel';
 import { escapeHtml } from '@/utils/sanitize';
+import { t } from '@/utils';
 import {
   buildDependencyGraph,
   calculateCascade,
@@ -110,7 +111,7 @@ export class CascadePanel extends Panel {
       <div class="cascade-selector">
         <div class="cascade-filters">${filterButtons}</div>
         <select class="cascade-select" ${nodes.length === 0 ? 'disabled' : ''}>
-          <option value="">Select ${this.filter}...</option>
+          <option value="">${t('Select')} ${this.filter}...</option>
           ${nodeOptions}
         </select>
         <button class="cascade-analyze-btn" ${!this.selectedNode ? 'disabled' : ''}>
@@ -131,15 +132,15 @@ export class CascadePanel extends Panel {
             <span class="cascade-emoji">${this.getImpactEmoji(c.impactLevel)}</span>
             <span class="cascade-country-name">${escapeHtml(c.countryName)}</span>
             <span class="cascade-impact">${c.impactLevel}</span>
-            ${c.affectedCapacity > 0 ? `<span class="cascade-capacity">${Math.round(c.affectedCapacity * 100)}% capacity</span>` : ''}
+            ${c.affectedCapacity > 0 ? `<span class="cascade-capacity">${Math.round(c.affectedCapacity * 100)}% ${t('capacity')}</span>` : ''}
           </div>
         `).join('')
-      : '<div class="empty-state">No country impacts detected</div>';
+      : `<div class="empty-state">${t('No country impacts detected')}</div>`;
 
     const redundanciesHtml = redundancies && redundancies.length > 0
       ? `
         <div class="cascade-section">
-          <div class="cascade-section-title">Alternative Routes</div>
+          <div class="cascade-section-title">${t('Alternative Routes')}</div>
           ${redundancies.map(r => `
             <div class="cascade-redundancy">
               <span class="cascade-redundancy-name">${escapeHtml(r.name)}</span>
@@ -158,7 +159,7 @@ export class CascadePanel extends Panel {
           <span class="cascade-source-type">${source.type}</span>
         </div>
         <div class="cascade-section">
-          <div class="cascade-section-title">Countries Affected (${countriesAffected.length})</div>
+          <div class="cascade-section-title">${t('Countries Affected')} (${countriesAffected.length})</div>
           <div class="cascade-countries">${countriesHtml}</div>
         </div>
         ${redundanciesHtml}

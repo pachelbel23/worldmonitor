@@ -1,5 +1,6 @@
 import { Panel } from './Panel';
 import { escapeHtml, sanitizeUrl } from '@/utils/sanitize';
+import { t } from '@/utils';
 import {
   INTEL_TOPICS,
   fetchTopicIntelligence,
@@ -85,7 +86,7 @@ export class GdeltIntelPanel extends Panel {
 
   private renderArticles(articles: GdeltArticle[]): void {
     if (articles.length === 0) {
-      this.content.innerHTML = '<div class="empty-state">No recent articles for this topic</div>';
+      this.content.innerHTML = `<div class="empty-state">${t('No recent articles for this topic')}</div>`;
       return;
     }
 

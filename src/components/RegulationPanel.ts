@@ -7,6 +7,7 @@ import {
   getRecentActions,
 } from '@/config';
 import { escapeHtml } from '@/utils/sanitize';
+import { t } from '@/utils';
 
 export class RegulationPanel extends Panel {
   private viewMode: 'timeline' | 'deadlines' | 'regulations' | 'countries' = 'timeline';
@@ -66,7 +67,7 @@ export class RegulationPanel extends Panel {
     const recentActions = getRecentActions(12); // Last 12 months
 
     if (recentActions.length === 0) {
-      return '<div class="empty-state">No recent regulatory actions</div>';
+      return `<div class="empty-state">${t('No recent regulatory actions')}</div>`;
     }
 
     return `
@@ -128,7 +129,7 @@ export class RegulationPanel extends Panel {
     const upcomingDeadlines = getUpcomingDeadlines();
 
     if (upcomingDeadlines.length === 0) {
-      return '<div class="empty-state">No upcoming compliance deadlines in the next 12 months</div>';
+      return `<div class="empty-state">${t('No upcoming compliance deadlines')}</div>`;
     }
 
     return `

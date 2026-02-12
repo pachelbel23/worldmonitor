@@ -1,4 +1,5 @@
 import { escapeHtml } from '@/utils/sanitize';
+import { t } from '@/utils';
 import { SITE_VARIANT } from '@/config';
 
 type StatusLevel = 'ok' | 'warning' | 'error' | 'disabled';
@@ -77,7 +78,7 @@ export class StatusPanel {
           </div>
         </div>
         <div class="status-panel-footer">
-          <span class="last-check">Updated just now</span>
+          <span class="last-check">${t('Updated')} just now</span>
         </div>
       </div>
     `;
@@ -201,7 +202,7 @@ export class StatusPanel {
     `).join('');
 
     this.updateStorageInfo(storageInfo);
-    lastCheck.textContent = `Updated ${this.formatTime(new Date())}`;
+    lastCheck.textContent = `${t('Updated')} ${this.formatTime(new Date())}`;
   }
 
   private async updateStorageInfo(container: Element): Promise<void> {
