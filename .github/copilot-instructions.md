@@ -93,14 +93,22 @@ World Monitor is a geopolitical intelligence dashboard that visualizes real-time
 - Panels use CSS Grid layout with responsive span classes: `span-1`, `span-2`, `span-3`, `span-4`
 - Language-specific adjustments needed (text length varies significantly between English and Chinese)
 
+### Security & XSS Prevention
+- **CRITICAL**: ALWAYS use `escapeHtml()` when inserting user-generated content or API data into DOM
+  ```typescript
+  import { escapeHtml } from '@/utils/sanitize';
+  element.innerHTML = `<span>${escapeHtml(data.title)}</span>`;
+  ```
+- Never commit API keys or secrets—use environment variables
+- Validate all external data before processing
+
 ## Deployment Guide
 
 ### Quick Start - Local Testing
 ```bash
-cd cht
 npm install
+npm run typecheck  # Always run this after ANY code change
 npm run dev        # Development server on http://localhost:5173
-npm run typecheck  # Validate TypeScript before deployment
 npm run build      # Production build (default variant)
 ```
 
@@ -142,6 +150,56 @@ If deploying to Vercel instead:
    - `VITE_VARIANT`: Set to `full` or `tech`
 4. Deploy and monitor at https://vercel.com/dashboard
 
+## Critical: RSS Proxy Allowlist
+
+When adding new RSS feeds in `src/config/feeds.ts`, you **MUST** also add the feed domain to the allowlist in `api/rss-proxy.js`:
+
+```javascript
+// In api/rss-proxy.js
+const ALLOWED_DOMAINS = [
+  // ... existing domains
+  'www.ycombinator.com',  // Add new domain here
+];
+```
+
+Feeds from unlisted domains return HTTP 403 "Domain not allowed" errors. Debugging: check browser DevTools → Console for 403 errors.
+
+### Custom Feed Scrapers
+
+Some sources (e.g., Beehiiv newsletters) don't provide RSS feeds. Custom scrapers are in `/api/`:
+
+| Endpoint | Source | Notes |
+|----------|--------|-------|
+| `/api/fwdstart` | FwdStart Newsletter | Scrapes archive, 30min cache |
+
+To add a new scraper:
+1. Create `/api/source-name.js` edge function
+2. Scrape source and return RSS XML format
+3. Add to `src/config/feeds.ts`: `{ name: 'Source', url: '/api/source-name' }`
+4. No need to add to rss-proxy allowlist (direct API)
+
+## AI Summarization & Caching
+
+The AI Insights panel uses server-side Redis to cache summaries (avoid duplicate API calls):
+
+**Required environment variables** (for production):
+```
+GROQ_API_KEY=gsk_xxx                    # Primary (14.4K req/day)
+OPENROUTER_API_KEY=sk-or-xxx            # Fallback (50/day)
+UPSTASH_REDIS_REST_URL=https://xxx      # Redis cache (sign up at upstash.com)
+UPSTASH_REDIS_REST_TOKEN=xxx
+```
+
+**How it works**: Headlines → hash → Redis cache check → Cache hit (return) or miss (call Groq → store 24h → return)
+
+## Git Branch Rules
+
+**CRITICAL**:
+- **NEVER** push to `main` without explicit user request
+- **NEVER** merge branches without explicit permission
+- If on `beta`, push only to `beta`—don't switch and push to `main` without asking
+- Pushing to the CURRENT branch after commits is OK
+
 ## MCP Servers
 
 **Playwright**: Configured for browser automation and testing interactive features:
@@ -156,3 +214,23 @@ If deploying to Vercel instead:
 **Git**: For repository analysis and development workflow:
 - Review commit history and understand code evolution
 - Analyze branches and track changes in the project
+
+## Additional Notes for Copilot Sessions
+
+### Verification Strategy
+- No automated test suite exists (`jest`, `vitest` not configured)
+- **Verification relies on**: `npm run typecheck` (run after every code change) + successful build + manual browser testing
+- Verify no console errors appear in browser DevTools after changes
+
+### Code Style
+- **Indentation**: 2 spaces
+- **Quotes**: Single quotes preferred
+- **Imports**: Use absolute paths with `@/` alias (`import { t } from '@/utils'` not `../../utils`)
+- **File naming**: PascalCase for classes/components (`TechEventsPanel.ts`), camelCase for utilities (`sanitize.ts`)
+- **Strict TypeScript**: Enabled—address all type errors
+
+### Status Checking Patterns
+Use dedicated functions to check feature availability:
+- `isOutagesConfigured()`, `isAisConfigured()`, `isMilitaryVesselTrackingConfigured()`
+- `getAisStatus()`, `getProtestStatus()`, etc.
+- Many features require API keys or external service configuration

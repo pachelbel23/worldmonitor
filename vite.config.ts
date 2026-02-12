@@ -130,6 +130,9 @@ export default defineConfig({
       '@': resolve(__dirname, 'src'),
     },
   },
+  esbuild: {
+    loader: 'tsx',
+  },
   build: {
     rollupOptions: {
       output: {
@@ -139,6 +142,7 @@ export default defineConfig({
         },
       },
     },
+    reportCompressedSize: false,
   },
   server: {
     port: 3000,

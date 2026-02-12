@@ -1887,7 +1887,6 @@ export class MapPopup {
     };
     const icon = getNaturalEventIcon(event.category);
     const severityClass = categoryColors[event.category] || 'low';
-    const timeAgo = this.getTimeAgo(event.date);
 
     return `
       <div class="popup-header nat-event ${event.category}">
@@ -1904,7 +1903,7 @@ export class MapPopup {
           </div>
           <div class="popup-stat">
             <span class="stat-label">${t('SOURCE')}</span>
-            <span class="stat-value">${event.source}</span>
+            <span class="stat-value">${event.sourceName}</span>
           </div>
           <div class="popup-stat">
             <span class="stat-label">${t('COORDINATES')}</span>
@@ -1912,7 +1911,7 @@ export class MapPopup {
           </div>
         </div>
         ${event.description ? `<p class="popup-description">${escapeHtml(event.description)}</p>` : ''}
-        ${event.link ? `<a href="${sanitizeUrl(event.link)}" target="_blank" class="popup-link">${t('More Information →')}</a>` : ''}
+        ${event.sourceUrl ? `<a href="${sanitizeUrl(event.sourceUrl)}" target="_blank" class="popup-link">${t('More Information →')}</a>` : ''}
       </div>
     `;
   }
@@ -2007,7 +2006,7 @@ export class MapPopup {
             <span class="stat-value">${spaceport.lat.toFixed(2)}°, ${spaceport.lon.toFixed(2)}°</span>
           </div>
         </div>
-        <p class="popup-description">${escapeHtml(spaceport.details || '')}</p>
+        <p class="popup-description">${escapeHtml(spaceport.country || '')}</p>
       </div>
     `;
   }
@@ -2047,140 +2046,6 @@ export class MapPopup {
           </div>
           <div class="popup-stat">
             <span class="stat-label">${t('COORDINATES')}</span>
-            <span class="stat-value">${mine.lat.toFixed(2)}°, ${mine.lon.toFixed(2)}°</span>
-          </div>
-        </div>
-        <p class="popup-description">${escapeHtml(mine.significance)}</p>
-      </div>
-    `;
-  }
-
-  private renderPortPopup(port: Port): string {
-    const typeLabels: Record<string, string> = {
-      container: 'CONTAINER',
-      oil: 'OIL TERMINAL',
-      lng: 'LNG TERMINAL',
-      naval: 'NAVAL PORT',
-      mixed: 'MIXED',
-      bulk: 'BULK',
-    };
-    const typeColors: Record<string, string> = {
-      container: 'elevated',
-      oil: 'high',
-      lng: 'high',
-      naval: 'elevated',
-      mixed: 'normal',
-      bulk: 'low',
-    };
-    const typeIcons: Record<string, string> = {
-      container: '🏭',
-      oil: '🛢️',
-      lng: '🔥',
-      naval: '⚓',
-      mixed: '🚢',
-      bulk: '📦',
-    };
-
-    const rankSection = port.rank
-      ? `<div class="popup-stat"><span class="stat-label">WORLD RANK</span><span class="stat-value">#${port.rank}</span></div>`
-      : '';
-
-    return `
-      <div class="popup-header port ${escapeHtml(port.type)}">
-        <span class="popup-icon">${typeIcons[port.type] || '🚢'}</span>
-        <span class="popup-title">${escapeHtml(port.name.toUpperCase())}</span>
-        <span class="popup-badge ${typeColors[port.type] || 'normal'}">${typeLabels[port.type] || port.type.toUpperCase()}</span>
-        <button class="popup-close">×</button>
-      </div>
-      <div class="popup-body">
-        <div class="popup-subtitle">${escapeHtml(port.country)}</div>
-        <div class="popup-stats">
-          ${rankSection}
-          <div class="popup-stat">
-            <span class="stat-label">TYPE</span>
-            <span class="stat-value">${typeLabels[port.type] || port.type.toUpperCase()}</span>
-          </div>
-          <div class="popup-stat">
-            <span class="stat-label">COORDINATES</span>
-            <span class="stat-value">${port.lat.toFixed(2)}°, ${port.lon.toFixed(2)}°</span>
-          </div>
-        </div>
-        <p class="popup-description">${escapeHtml(port.note)}</p>
-      </div>
-    `;
-  }
-
-  private renderSpaceportPopup(port: Spaceport): string {
-    const statusColors: Record<string, string> = {
-      'active': 'elevated',
-      'construction': 'high',
-      'inactive': 'low',
-    };
-    const statusLabels: Record<string, string> = {
-      'active': 'ACTIVE',
-      'construction': 'CONSTRUCTION',
-      'inactive': 'INACTIVE',
-    };
-
-    return `
-      <div class="popup-header spaceport ${port.status}">
-        <span class="popup-icon">🚀</span>
-        <span class="popup-title">${escapeHtml(port.name.toUpperCase())}</span>
-        <span class="popup-badge ${statusColors[port.status] || 'normal'}">${statusLabels[port.status] || port.status.toUpperCase()}</span>
-        <button class="popup-close">×</button>
-      </div>
-      <div class="popup-body">
-        <div class="popup-subtitle">${escapeHtml(port.operator)} • ${escapeHtml(port.country)}</div>
-        <div class="popup-stats">
-          <div class="popup-stat">
-            <span class="stat-label">LAUNCH ACTIVITY</span>
-            <span class="stat-value">${escapeHtml(port.launches.toUpperCase())}</span>
-          </div>
-          <div class="popup-stat">
-            <span class="stat-label">COORDINATES</span>
-            <span class="stat-value">${port.lat.toFixed(2)}°, ${port.lon.toFixed(2)}°</span>
-          </div>
-        </div>
-        <p class="popup-description">Strategic space launch facility. Launch cadence and orbit access capabilities are key geopolitical indicators.</p>
-      </div>
-    `;
-  }
-
-  private renderMineralPopup(mine: CriticalMineralProject): string {
-    const statusColors: Record<string, string> = {
-      'producing': 'elevated',
-      'development': 'high',
-      'exploration': 'low',
-    };
-    const statusLabels: Record<string, string> = {
-      'producing': 'PRODUCING',
-      'development': 'DEVELOPMENT',
-      'exploration': 'EXPLORATION',
-    };
-    
-    // Icon based on mineral type
-    const icon = mine.mineral === 'Lithium' ? '🔋' : mine.mineral === 'Rare Earths' ? '🧲' : '💎';
-
-    return `
-      <div class="popup-header mineral ${mine.status}">
-        <span class="popup-icon">${icon}</span>
-        <span class="popup-title">${escapeHtml(mine.name.toUpperCase())}</span>
-        <span class="popup-badge ${statusColors[mine.status] || 'normal'}">${statusLabels[mine.status] || mine.status.toUpperCase()}</span>
-        <button class="popup-close">×</button>
-      </div>
-      <div class="popup-body">
-        <div class="popup-subtitle">${escapeHtml(mine.mineral.toUpperCase())} PROJECT</div>
-        <div class="popup-stats">
-          <div class="popup-stat">
-            <span class="stat-label">OPERATOR</span>
-            <span class="stat-value">${escapeHtml(mine.operator)}</span>
-          </div>
-          <div class="popup-stat">
-            <span class="stat-label">COUNTRY</span>
-            <span class="stat-value">${escapeHtml(mine.country)}</span>
-          </div>
-          <div class="popup-stat">
-            <span class="stat-label">COORDINATES</span>
             <span class="stat-value">${mine.lat.toFixed(2)}°, ${mine.lon.toFixed(2)}°</span>
           </div>
         </div>
