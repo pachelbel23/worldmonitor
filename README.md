@@ -261,7 +261,7 @@ Feeds also carry a **propaganda risk rating** and **state affiliation flag**. St
 World Monitor uses Vercel Edge Functions as a lightweight API layer. Each edge function handles a single data source concern — proxying, caching, or transforming external APIs. This architecture avoids a monolithic backend while keeping API keys server-side:
 
 - **RSS Proxy** — Uses [rss2json.com](https://rss2json.com) free API for CORS-safe access to 100+ feeds, preventing domain-allowlist overhead
-- **AI Pipeline** — Groq and OpenRouter edge functions with Redis deduplication, so identical headlines across concurrent users only trigger one LLM call
+- **AI Pipeline** — Groq and OpenRouter edge functions with Redis deduplication, so identical headlines across concurrent users only trigger one LLM call. Includes batch title translation for zh-TW locale via `/api/groq-translate`
 - **Data Adapters** — GDELT, ACLED, OpenSky, USGS, NASA FIRMS, FRED, and others each have dedicated edge functions that normalize responses into consistent schemas
 - **Temporal Baseline** — Welford's algorithm state is persisted in Redis across requests, building statistical baselines without a traditional database
 - **Custom Scrapers** — sources without RSS feeds (FwdStart, GitHub Trending, tech events) are scraped and transformed into RSS-compatible formats
@@ -409,6 +409,13 @@ MIT License — see [LICENSE](LICENSE) for details.
 - Refactored i18n into modular structure: `src/i18n/{en,zh-TW}/`
 - Type-safe translation keys with TypeScript enums
 - Foundation for future languages (ja, ko, de, fr, es)
+
+**Phase 6: News Content Localization (Complete)**
+- 160+ RSS source name translations (Reuters → 路透社, AP News → 美聯社, etc.)
+- Chinese RSS feed auto-switching (BBC 中文, UN 中文) when locale is zh-TW
+- Groq-powered batch title translation API (`/api/groq-translate`) with Redis caching (24h TTL)
+- Frontend translation service with memory cache for zero-latency repeat access
+- Source names wrapped with `t()` across NewsPanel, MonitorPanel, MapPopup
 
 **Deployment**
 - GitHub Pages (zh-TW): [pachelbel23.github.io/worldmonitor/](https://pachelbel23.github.io/worldmonitor/)

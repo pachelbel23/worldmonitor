@@ -458,7 +458,7 @@ export class MapPopup {
             <div class="popup-news">
               ${relatedNews.slice(0, 5).map(n => `
                 <div class="popup-news-item">
-                  <span class="news-source">${escapeHtml(n.source)}</span>
+                  <span class="news-source">${escapeHtml(t(n.source))}</span>
                   <a href="${sanitizeUrl(n.link)}" target="_blank" class="news-title">${escapeHtml(n.title)}</a>
                 </div>
               `).join('')}

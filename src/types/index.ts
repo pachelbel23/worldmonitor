@@ -3,6 +3,7 @@ export type PropagandaRisk = 'low' | 'medium' | 'high';
 export interface Feed {
   name: string;
   url: string;
+  zhUrl?: string;  // Chinese RSS URL (if available)
   type?: string;
   region?: string;
   propagandaRisk?: PropagandaRisk;

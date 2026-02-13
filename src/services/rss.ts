@@ -1,8 +1,10 @@
 import type { Feed, NewsItem } from '@/types';
 import { SITE_VARIANT } from '@/config';
 import { chunkArray, fetchWithProxy } from '@/utils';
+import { i18n } from '@/utils/i18n';
 import { classifyByKeyword, classifyWithAI } from './threat-classifier';
 import { inferGeoHubsFromTitle } from './geo-hub-index';
+import { translateTitles } from './translation';
 
 // Per-feed circuit breaker: track failures and cooldowns
 const FEED_COOLDOWN_MS = 5 * 60 * 1000; // 5 minutes after failure
@@ -87,8 +89,13 @@ export async function fetchFeed(feed: Feed): Promise<NewsItem[]> {
     return cached.items;
   }
 
+  // Use Chinese RSS URL if available and locale is zh-TW
+  const isZhLocale = i18n.getLocale() === 'zh-TW';
+  const feedUrl = (isZhLocale && feed.zhUrl) ? feed.zhUrl : feed.url;
+  const usedZhFeed = isZhLocale && !!feed.zhUrl;
+
   try {
-    const response = await fetchWithProxy(feed.url);
+    const response = await fetchWithProxy(feedUrl);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     
     // Handle rss2json.com JSON format
@@ -130,6 +137,17 @@ export async function fetchFeed(feed: Feed): Promise<NewsItem[]> {
             if (aiResult) item.threat = aiResult;
           }).catch(() => {});
         }
+      }
+
+      // Translate titles for zh-TW locale if feed doesn't have a Chinese RSS
+      if (isZhLocale && !usedZhFeed) {
+        const titles = parsed.map((p: { title: string }) => p.title);
+        translateTitles(titles).then(translations => {
+          for (const p of parsed) {
+            const translated = translations.get(p.title);
+            if (translated) p.title = translated;
+          }
+        }).catch(() => {});
       }
 
       return parsed;
@@ -210,6 +228,16 @@ export async function fetchFeed(feed: Feed): Promise<NewsItem[]> {
           }
         }).catch(() => {});
       }
+    }
+
+    // Translate titles for zh-TW locale if feed doesn't have a Chinese RSS
+    if (isZhLocale && !usedZhFeed) {
+      translateTitles(parsed.map(item => item.title)).then(translations => {
+        for (const item of parsed) {
+          const translated = translations.get(item.title);
+          if (translated) item.title = translated;
+        }
+      }).catch(() => {});
     }
 
     return parsed;

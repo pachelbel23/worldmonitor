@@ -5,9 +5,12 @@ on:
     branches: [ main, develop, 'feature/**' ]
     paths:
       - 'src/utils/i18n.ts'
+      - 'src/i18n/**'
       - 'src/App.ts'
       - 'src/components/Panel.ts'
       - 'src/components/NewsPanel.ts'
+      - 'src/services/translation.ts'
+      - 'api/groq-translate.js'
   pull_request:
     branches: [ main, develop ]
 

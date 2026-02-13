@@ -21,10 +21,13 @@ World Monitor 是一個實時全球智能儀表板，整合了 50+ 個數據源�
 
 ## 🚀 中文化功能
 
-- ✅ **完整繁體中文 UI** - 200+ 個翻譯字符串
+- ✅ **完整繁體中文 UI** - 350+ 個翻譯字符串
 - ✅ **雙語支持** - 中文/英文無縫切換
 - ✅ **地區本地化** - 針對繁體中文用戶優化
 - ✅ **響應式設計** - 支持各種屏幕尺寸
+- ✅ **新聞來源中文化** - 160+ 個 RSS 來源名稱翻譯（路透社、美聯社、半島電視台等）
+- ✅ **中文 RSS 自動切換** - BBC 中文、聯合國中文等來源自動切換
+- ✅ **AI 標題翻譯** - Groq 批次翻譯新聞標題，Redis 快取 24 小時
 
 ## 📋 快速開始
 
@@ -87,11 +90,20 @@ src/
 import { t } from '@/utils';
 
 const label = t('Global Map');  // 自動返回中文或英文
+const source = t('Reuters');    // → '路透社'（中文）或 'Reuters'（英文）
 ```
 
 支持的語言：
 - `en` - English
 - `zh-TW` - 繁體中文
+
+### 新聞內容中文化
+
+除了 UI 字串翻譯外，新聞內容也支持中文化：
+
+- **來源名稱翻譯** — 160+ 個 RSS 來源名稱靜態翻譯（如 Reuters → 路透社）
+- **中文 RSS 自動切換** — 有中文版 RSS 的來源（BBC 中文、聯合國中文）在中文語系下自動切換
+- **AI 標題翻譯** — 無中文 RSS 的來源，透過 Groq API 批次翻譯標題，Redis 快取 24 小時
 
 ## 🔧 構建變體
 
@@ -153,7 +165,7 @@ const label = t('Global Map');  // 自動返回中文或英文
 
 ---
 
-**最後更新**：2026年2月12日
+**最後更新**：2026年2月14日
 **構建狀態**：查看 [GitHub Actions](https://github.com/pachelbel23/worldmonitor/actions)
 
 ---
@@ -179,7 +191,7 @@ World Monitor is a real-time global intelligence dashboard that integrates 50+ d
 
 ## 🚀 Features
 
-- ✅ **Complete English/Chinese UI** - 200+ translation strings
+- ✅ **Complete English/Chinese UI** - 350+ translation strings
 - ✅ **Dual Language Support** - Seamless switching between Chinese and English
 - ✅ **Region Localization** - Optimized for Traditional Chinese (zh-TW) users
 - ✅ **Responsive Design** - Supports various screen sizes
@@ -258,6 +270,12 @@ src/
   - TypeScript 類型安全的翻譯鍵
   - 為未來新語言奠定基礎
 
+- **Phase 6**: 新聞內容中文化
+  - 160+ 個 RSS 來源名稱翻譯
+  - 中文 RSS 自動切換（BBC 中文、聯合國中文）
+  - Groq AI 批次標題翻譯 + Redis 快取
+  - 前端翻譯服務（記憶體快取）
+
 ### 支持的語言
 
 ```typescript
@@ -329,6 +347,6 @@ Feel free to open an Issue or submit a Pull Request for any suggestions or quest
 
 ---
 
-**Last Updated**: February 12, 2026
-**Latest**: Phase 3-5 i18n implementation complete - pluralize utilities, date formatting, modular architecture
+**Last Updated**: February 14, 2026
+**Latest**: Phase 6 news content localization - 160+ source name translations, Chinese RSS auto-switching, Groq batch title translation with Redis cache
 **Build Status**: Check [GitHub Actions](https://github.com/pachelbel23/worldmonitor/actions)

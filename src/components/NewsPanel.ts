@@ -176,7 +176,7 @@ export class NewsPanel extends Panel {
     this.summaryContainer.innerHTML = `
       <div class="panel-summary-content">
         <span class="panel-summary-text">${escapeHtml(summary)}</span>
-        <button class="panel-summary-close" title="Close">×</button>
+        <button class="panel-summary-close" title="${t('Close')}">×</button>
       </div>
     `;
     this.summaryContainer.querySelector('.panel-summary-close')?.addEventListener('click', () => this.hideSummary());
@@ -224,7 +224,7 @@ export class NewsPanel extends Panel {
     const sign = percentChange > 0 ? '+' : '';
     this.deviationEl.textContent = `${arrow}${sign}${percentChange}%`;
     this.deviationEl.className = `deviation-indicator ${level}`;
-    this.deviationEl.title = `z-score: ${zScore} (vs 7-day avg)`;
+    this.deviationEl.title = `z-score: ${zScore} (${t('vs 7-day avg')})`;
   }
 
   public renderNews(items: NewsItem[]): void {
@@ -263,7 +263,7 @@ export class NewsPanel extends Panel {
         (item) => `
       <div class="item ${item.isAlert ? 'alert' : ''}" ${item.monitorColor ? `style="border-left-color: ${escapeHtml(item.monitorColor)}"` : ''}>
         <div class="item-source">
-          ${escapeHtml(item.source)}
+          ${escapeHtml(t(item.source))}
           ${item.isAlert ? `<span class="alert-tag">${t('ALERT')}</span>` : ''}
         </div>
         <a class="item-title" href="${sanitizeUrl(item.link)}" target="_blank" rel="noopener">${escapeHtml(item.title)}</a>
@@ -382,7 +382,7 @@ export class NewsPanel extends Panel {
             const propBadge = propRisk.risk !== 'low'
               ? `<span class="propaganda-badge ${propRisk.risk}" title="${escapeHtml(propRisk.note || `State-affiliated: ${propRisk.stateAffiliated || 'Unknown'}`)}">${propRisk.risk === 'high' ? '⚠' : '!'}</span>`
               : '';
-            return `<span class="top-source tier-${s.tier}">${escapeHtml(s.name)}${propBadge}</span>`;
+            return `<span class="top-source tier-${s.tier}">${escapeHtml(t(s.name))}${propBadge}</span>`;
           })
           .join('')
       : '';
@@ -433,7 +433,7 @@ export class NewsPanel extends Panel {
       <div class="${itemClasses}" ${cluster.monitorColor ? `style="border-left-color: ${escapeHtml(cluster.monitorColor)}"` : ''} data-cluster-id="${escapeHtml(cluster.id)}" data-news-id="${escapeHtml(cluster.primaryLink)}">
         <div class="item-source">
           ${tierBadge}
-          ${escapeHtml(cluster.primarySource)}
+          ${escapeHtml(t(cluster.primarySource))}
           ${primaryPropBadge}
           ${newTag}
           ${sourceBadge}
