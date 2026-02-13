@@ -7,6 +7,7 @@
  */
 
 import { Redis } from '@upstash/redis';
+import { getCorsHeaders, handleCorsPreflightIf } from './_shared/cors.js';
 
 export const config = {
   runtime: 'edge',
@@ -85,11 +86,24 @@ function deduplicateHeadlines(headlines) {
 }
 
 export default async function handler(request) {
+  const preflight = handleCorsPreflightIf(request);
+  if (preflight) return preflight;
+
+  const cors = getCorsHeaders(request);
+
   // Only allow POST
   if (request.method !== 'POST') {
     return new Response(JSON.stringify({ error: 'Method not allowed' }), {
       status: 405,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...cors },
+    });
+  }
+
+  const contentType = request.headers.get('content-type') || '';
+  if (!contentType.includes('application/json')) {
+    return new Response(JSON.stringify({ error: 'Content-Type must be application/json' }), {
+      status: 415,
+      headers: { 'Content-Type': 'application/json', ...cors },
     });
   }
 
@@ -97,7 +111,7 @@ export default async function handler(request) {
   if (!apiKey) {
     return new Response(JSON.stringify({ error: 'OpenRouter API key not configured', fallback: true }), {
       status: 503,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...cors },
     });
   }
 
@@ -107,7 +121,7 @@ export default async function handler(request) {
     if (!headlines || !Array.isArray(headlines) || headlines.length === 0) {
       return new Response(JSON.stringify({ error: 'Headlines array required' }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...cors },
       });
     }
 
@@ -127,7 +141,7 @@ export default async function handler(request) {
             cached: true,
           }), {
             status: 200,
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', ...cors },
           });
         }
       } catch (cacheError) {
@@ -234,13 +248,13 @@ Rules:
       if (response.status === 429) {
         return new Response(JSON.stringify({ error: 'Rate limited', fallback: true }), {
           status: 429,
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', ...cors },
         });
       }
 
       return new Response(JSON.stringify({ error: 'OpenRouter API error', fallback: true }), {
         status: response.status,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...cors },
       });
     }
 
@@ -250,7 +264,7 @@ Rules:
     if (!summary) {
       return new Response(JSON.stringify({ error: 'Empty response', fallback: true }), {
         status: 500,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...cors },
       });
     }
 
@@ -279,6 +293,7 @@ Rules:
       headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'public, max-age=1800',
+        ...cors,
       },
     });
 
@@ -286,7 +301,7 @@ Rules:
     console.error('[OpenRouter] Error:', error);
     return new Response(JSON.stringify({ error: error.message, fallback: true }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...cors },
     });
   }
 }

@@ -5,6 +5,7 @@
  */
 
 import { Redis } from '@upstash/redis';
+import { getCorsHeaders, handleCorsPreflightIf } from './_shared/cors.js';
 
 export const config = {
   runtime: 'edge',
@@ -43,10 +44,23 @@ function hashString(str) {
 }
 
 export default async function handler(request) {
+  const preflight = handleCorsPreflightIf(request);
+  if (preflight) return preflight;
+
+  const cors = getCorsHeaders(request);
+
   if (request.method !== 'POST') {
     return new Response(JSON.stringify({ error: 'Method not allowed' }), {
       status: 405,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...cors },
+    });
+  }
+
+  const contentType = request.headers.get('content-type') || '';
+  if (!contentType.includes('application/json')) {
+    return new Response(JSON.stringify({ error: 'Content-Type must be application/json' }), {
+      status: 415,
+      headers: { 'Content-Type': 'application/json', ...cors },
     });
   }
 
@@ -54,7 +68,7 @@ export default async function handler(request) {
   if (!apiKey) {
     return new Response(JSON.stringify({ error: 'Groq API key not configured', fallback: true }), {
       status: 503,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...cors },
     });
   }
 
@@ -64,7 +78,7 @@ export default async function handler(request) {
     if (!country || !code) {
       return new Response(JSON.stringify({ error: 'country and code required' }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...cors },
       });
     }
 
@@ -80,7 +94,7 @@ export default async function handler(request) {
           console.log('[CountryIntel] Cache hit:', code);
           return new Response(JSON.stringify({ ...cached, cached: true }), {
             status: 200,
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', ...cors },
           });
         }
       } catch (e) {
@@ -169,7 +183,7 @@ Rules:
       console.error('[CountryIntel] Groq error:', groqRes.status, errText);
       return new Response(JSON.stringify({ error: 'AI service error', fallback: true }), {
         status: 502,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...cors },
       });
     }
 
@@ -196,13 +210,13 @@ Rules:
 
     return new Response(JSON.stringify(result), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...cors },
     });
   } catch (err) {
     console.error('[CountryIntel] Error:', err);
     return new Response(JSON.stringify({ error: 'Internal error' }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...cors },
     });
   }
 }

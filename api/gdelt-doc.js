@@ -28,7 +28,9 @@ export default async function handler(req) {
     gdeltUrl.searchParams.set('sort', 'date');
     gdeltUrl.searchParams.set('timespan', timespan);
 
-    const response = await fetch(gdeltUrl.toString());
+    const response = await fetch(gdeltUrl.toString(), {
+      signal: AbortSignal.timeout(15000),
+    });
 
     if (!response.ok) {
       throw new Error(`GDELT returned ${response.status}`);

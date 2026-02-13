@@ -1,4 +1,5 @@
 import { t } from '@/utils/i18n';
+import { escapeHtml } from '@/utils/sanitize';
 
 export interface PanelOptions {
   id: string;
@@ -81,7 +82,7 @@ export class Panel {
       const infoBtn = document.createElement('button');
       infoBtn.className = 'panel-info-btn';
       infoBtn.innerHTML = '?';
-      infoBtn.setAttribute('aria-label', 'Show methodology info');
+      infoBtn.setAttribute('aria-label', t('Show methodology info'));
 
       const tooltip = document.createElement('div');
       tooltip.className = 'panel-info-tooltip';
@@ -129,7 +130,7 @@ export class Panel {
     // Add resize handle
     this.resizeHandle = document.createElement('div');
     this.resizeHandle.className = 'panel-resize-handle';
-    this.resizeHandle.title = 'Drag to resize (double-click to reset)';
+    this.resizeHandle.title = t('Drag to resize (double-click to reset)');
     this.resizeHandle.draggable = false; // Prevent parent's drag from capturing
     this.element.appendChild(this.resizeHandle);
     this.setupResizeHandlers();
@@ -272,7 +273,7 @@ export class Panel {
   }
 
   public showError(message = t('Failed to load data')): void {
-    this.content.innerHTML = `<div class="error-message">${message}</div>`;
+    this.content.innerHTML = `<div class="error-message">${escapeHtml(message)}</div>`;
   }
 
   public setCount(count: number): void {

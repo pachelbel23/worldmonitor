@@ -3,6 +3,7 @@ export const config = { runtime: 'edge' };
 export default async function handler() {
   try {
     const response = await fetch('https://www.pizzint.watch/api/dashboard-data', {
+      signal: AbortSignal.timeout(15000),
       headers: {
         'Accept': 'application/json',
         'User-Agent': 'WorldMonitor/1.0',

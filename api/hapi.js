@@ -20,6 +20,7 @@ export default async function handler(req) {
     const response = await fetch(
       `https://hapi.humdata.org/api/v2/coordination-context/conflict-events?output_format=json&limit=1000&offset=0&app_identifier=${appId}`,
       {
+        signal: AbortSignal.timeout(15000),
         headers: {
           'Accept': 'application/json',
         },

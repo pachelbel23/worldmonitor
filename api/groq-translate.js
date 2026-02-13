@@ -5,6 +5,7 @@
  */
 
 import { Redis } from '@upstash/redis';
+import { getCorsHeaders, handleCorsPreflightIf } from './_shared/cors.js';
 
 export const config = {
   runtime: 'edge',
@@ -49,10 +50,23 @@ function getCacheKey(title) {
 }
 
 export default async function handler(request) {
+  const preflight = handleCorsPreflightIf(request);
+  if (preflight) return preflight;
+
+  const cors = getCorsHeaders(request);
+
   if (request.method !== 'POST') {
     return new Response(JSON.stringify({ error: 'Method not allowed' }), {
       status: 405,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...cors },
+    });
+  }
+
+  const contentType = request.headers.get('content-type') || '';
+  if (!contentType.includes('application/json')) {
+    return new Response(JSON.stringify({ error: 'Content-Type must be application/json' }), {
+      status: 415,
+      headers: { 'Content-Type': 'application/json', ...cors },
     });
   }
 
@@ -60,7 +74,7 @@ export default async function handler(request) {
   if (!apiKey) {
     return new Response(JSON.stringify({ error: 'Groq API key not configured', translations: [] }), {
       status: 503,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...cors },
     });
   }
 
@@ -70,7 +84,7 @@ export default async function handler(request) {
     if (!titles || !Array.isArray(titles) || titles.length === 0) {
       return new Response(JSON.stringify({ error: 'Titles array required', translations: [] }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...cors },
       });
     }
 
@@ -107,7 +121,7 @@ export default async function handler(request) {
     if (uncachedIndices.length === 0) {
       return new Response(JSON.stringify({ translations: results, cached: true }), {
         status: 200,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...cors },
       });
     }
 
@@ -145,12 +159,12 @@ export default async function handler(request) {
       if (response.status === 429) {
         return new Response(JSON.stringify({ error: 'Rate limited', translations: results }), {
           status: 429,
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', ...cors },
         });
       }
       return new Response(JSON.stringify({ error: 'Groq API error', translations: results }), {
         status: response.status,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...cors },
       });
     }
 
@@ -160,7 +174,7 @@ export default async function handler(request) {
     if (!content) {
       return new Response(JSON.stringify({ error: 'Empty response', translations: results }), {
         status: 500,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...cors },
       });
     }
 
@@ -200,6 +214,7 @@ export default async function handler(request) {
       headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'public, max-age=1800',
+        ...cors,
       },
     });
 
@@ -210,7 +225,7 @@ export default async function handler(request) {
       translations: [],
     }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...cors },
     });
   }
 }

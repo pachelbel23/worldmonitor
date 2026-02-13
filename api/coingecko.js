@@ -53,6 +53,7 @@ export default async function handler(req) {
   try {
     const geckoUrl = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=${vsCurrencies}&include_24hr_change=${include24hrChange}`;
     const response = await fetch(geckoUrl, {
+      signal: AbortSignal.timeout(15000),
       headers: {
         'Accept': 'application/json',
       },

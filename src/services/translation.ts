@@ -34,7 +34,7 @@ async function fetchTranslations(titles: string[]): Promise<void> {
       if (data.translations && Array.isArray(data.translations)) {
         for (let i = 0; i < batch.length; i++) {
           const translated = data.translations[i];
-          if (translated && translated !== batch[i]) {
+          if (typeof translated === 'string' && translated && translated !== batch[i]) {
             titleCache.set(batch[i]!, translated);
           }
         }

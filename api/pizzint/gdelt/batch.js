@@ -13,6 +13,7 @@ export default async function handler(req) {
 
   try {
     const response = await fetch(targetUrl, {
+      signal: AbortSignal.timeout(15000),
       headers: {
         'Accept': 'application/json',
         'User-Agent': 'WorldMonitor/1.0',

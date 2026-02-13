@@ -66,6 +66,12 @@ export default async function handler(request) {
     if (request.method === 'GET') {
       return await handleGet(r, request);
     } else if (request.method === 'POST') {
+      const ct = request.headers.get('content-type') || '';
+      if (!ct.includes('application/json')) {
+        return new Response(JSON.stringify({ error: 'Content-Type must be application/json' }), {
+          status: 415, headers: { 'Content-Type': 'application/json' },
+        });
+      }
       return await handlePost(r, request);
     }
     return new Response(JSON.stringify({ error: 'Method not allowed' }), {

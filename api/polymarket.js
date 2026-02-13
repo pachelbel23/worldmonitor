@@ -51,6 +51,7 @@ export default async function handler(req) {
     }
 
     const response = await fetch(polyUrl, {
+      signal: AbortSignal.timeout(15000),
       headers: { 'Accept': 'application/json' },
     });
 

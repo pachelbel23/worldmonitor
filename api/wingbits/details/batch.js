@@ -25,6 +25,11 @@ export default async function handler(req) {
     return Response.json({ error: 'Method not allowed' }, { status: 405, headers: corsHeaders });
   }
 
+  const ct = req.headers.get('content-type') || '';
+  if (!ct.includes('application/json')) {
+    return Response.json({ error: 'Content-Type must be application/json' }, { status: 415, headers: corsHeaders });
+  }
+
   try {
     const body = await req.json();
     const icao24List = body.icao24s || [];

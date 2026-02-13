@@ -29,6 +29,7 @@ export default async function handler(req) {
 
     const fredUrl = `https://api.stlouisfed.org/fred/series/observations?${params}`;
     const response = await fetch(fredUrl, {
+      signal: AbortSignal.timeout(15000),
       headers: { 'Accept': 'application/json' },
     });
 
