@@ -240,7 +240,7 @@ function getRedis() {
 async function fetchMilitaryFlights() {
   // Use Railway relay to avoid OpenSky rate limits
   // VITE_* vars aren't available server-side, so check WS_RELAY_URL or use known production URL
-  const relayUrl = process.env.WS_RELAY_URL || 'https://worldmonitor-production-ws.up.railway.app';
+  const relayUrl = process.env.WS_RELAY_URL || 'https://worldtrade-production-ws.up.railway.app';
   const baseUrl = relayUrl + '/opensky';
 
   // Fetch global data with 20s timeout (Edge has 25s limit)
@@ -252,7 +252,7 @@ async function fetchMilitaryFlights() {
     const response = await fetch(baseUrl, {
       headers: {
         'Accept': 'application/json',
-        'User-Agent': 'Mozilla/5.0 WorldMonitor/1.0',
+        'User-Agent': 'Mozilla/5.0 WorldTrade/1.0',
       },
       signal: controller.signal,
     });

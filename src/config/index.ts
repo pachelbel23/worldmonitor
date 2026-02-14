@@ -1,7 +1,7 @@
 // Configuration exports
 // For variant-specific builds, set VITE_VARIANT environment variable
-// VITE_VARIANT=tech → startups.worldmonitor.app (tech-focused)
-// VITE_VARIANT=full → worldmonitor.app (geopolitical)
+// VITE_VARIANT=tech → startups.worldtrade.app (tech-focused)
+// VITE_VARIANT=full → worldtrade.app (geopolitical)
 
 export const SITE_VARIANT = import.meta.env.VITE_VARIANT || 'full';
 

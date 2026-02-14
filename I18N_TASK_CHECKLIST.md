@@ -1,4 +1,4 @@
-# World Monitor UI 中文化完整任務清單
+# World Trade UI 中文化完整任務清單
 
 ## 📋 總體進度追蹤
 
@@ -297,7 +297,7 @@
           forms: PluralForm,
           locale?: string
         ): string {
-          const lang = locale || localStorage.getItem('worldmonitor-locale') || 'en';
+          const lang = locale || localStorage.getItem('worldtrade-locale') || 'en';
           
           if (lang === 'zh-TW') {
             return forms.zh_tw || forms.other;
@@ -339,7 +339,7 @@
 ```
 □ 3.2.1 創建 src/utils/date-formatter.ts:
         export function formatDateTime(date: Date, locale?: string): string {
-          const lang = locale || localStorage.getItem('worldmonitor-locale') || 'en';
+          const lang = locale || localStorage.getItem('worldtrade-locale') || 'en';
           
           const localeMap: Record<string, string> = {
             'en': 'en-US',
@@ -356,7 +356,7 @@
         }
 
         export function formatDate(date: Date, locale?: string): string {
-          const lang = locale || localStorage.getItem('worldmonitor-locale') || 'en';
+          const lang = locale || localStorage.getItem('worldtrade-locale') || 'en';
           const localeMap: Record<string, string> = {
             'en': 'en-US',
             'zh-TW': 'zh-TW'
@@ -428,7 +428,7 @@
           feed: Feed,
           locale?: string
         ): Promise<NewsItem[]> {
-          const lang = locale || localStorage.getItem('worldmonitor-locale') || 'en';
+          const lang = locale || localStorage.getItem('worldtrade-locale') || 'en';
           
           let feedUrl = feed.url;
           if (feed.alternatives?.[lang as keyof typeof feed.alternatives]) {

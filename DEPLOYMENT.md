@@ -29,7 +29,7 @@ This project uses Vercel for production deployment and GitHub Actions for CI/CD 
 3. Click **Add New...** button, select **Project**
 4. In **Import Git Repository** area, search and select your repository:
    ```
-   pachelbel23/worldmonitor
+   pachelbel23/worldtrade
    ```
 5. Ensure **Framework Preset** is automatically set to **Vite** (if not, select manually)
 6. **Build & Output Settings** should be:
@@ -39,7 +39,7 @@ This project uses Vercel for production deployment and GitHub Actions for CI/CD 
 
 Vercel will automatically build and deploy your project! After deployment completes, you'll see a URL like:
 ```
-https://worldmonitor-[random-id].vercel.app
+https://worldtrade-[random-id].vercel.app
 ```
 
 ### Step 2: Configure Custom Domain (Optional)
@@ -48,7 +48,7 @@ If you want to use a custom domain:
 
 1. In Vercel project settings, go to **Domains**
 2. Click **Add Custom Domain**
-3. Enter your desired domain (e.g., `worldmonitor.yourdomain.com`)
+3. Enter your desired domain (e.g., `worldtrade.yourdomain.com`)
 4. Follow Vercel's DNS configuration instructions
 
 ## GitHub Secrets Configuration
@@ -61,17 +61,17 @@ To enable automatic deployment, configure three secrets in GitHub.
 1. Visit [Vercel Account Settings](https://vercel.com/account)
 2. Go to **Tokens** section
 3. Click **Create Token**
-4. Enter token name (e.g., `worldmonitor-github-ci`)
+4. Enter token name (e.g., `worldtrade-github-ci`)
 5. Set expiration time (optional)
 6. Click **Create** and copy the generated token
 
 #### Get `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID`:
 1. Go to [Vercel Projects](https://vercel.com/projects)
-2. Select **worldmonitor** project
+2. Select **worldtrade** project
 3. Go to **Settings** tab
 4. Scroll down to find **Project ID** - copy this as `VERCEL_PROJECT_ID`
 5. Your **VERCEL_ORG_ID** is your Vercel username or organization name
-   - You can see it in the page URL: `https://vercel.com/[ORG_ID]/worldmonitor/settings`
+   - You can see it in the page URL: `https://vercel.com/[ORG_ID]/worldtrade/settings`
 
 ### Step 2: Add Secrets to GitHub
 
@@ -195,7 +195,7 @@ npm test
 
 ### Monitor Deployments
 1. Visit [Vercel Dashboard](https://vercel.com/dashboard)
-2. Select **worldmonitor** project
+2. Select **worldtrade** project
 3. View **Deployments** tab for deployment history
 4. Check deployment logs to troubleshoot issues
 
@@ -245,11 +245,11 @@ A: See [Step 2: Configure Custom Domain](#step-2-configure-custom-domain-optiona
 
 - 📚 [Vercel Documentation](https://vercel.com/docs)
 - 📚 [GitHub Actions Documentation](https://docs.github.com/en/actions)
-- 💬 [Original Project GitHub Issues](https://github.com/koala73/worldmonitor/issues)
-- 🐛 [This Fork's Issues](https://github.com/pachelbel23/worldmonitor/issues)
+- 💬 [Original Project GitHub Issues](https://github.com/koala73/worldtrade/issues)
+- 🐛 [This Fork's Issues](https://github.com/pachelbel23/worldtrade/issues)
 
 ---
 
 **Last Updated:** February 11, 2025
 **Maintainer:** pachelbel23
-**Base Project:** koala73/worldmonitor
+**Base Project:** koala73/worldtrade

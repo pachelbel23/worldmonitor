@@ -4,15 +4,15 @@ export const config = { runtime: 'edge' };
 
 function getCorsOrigin(req) {
   const origin = req.headers.get('origin') || '';
-  // Allow *.worldmonitor.app and localhost
+  // Allow *.worldtrade.app and localhost
   if (
-    origin.endsWith('.worldmonitor.app') ||
-    origin === 'https://worldmonitor.app' ||
+    origin.endsWith('.worldtrade.app') ||
+    origin === 'https://worldtrade.app' ||
     origin.startsWith('http://localhost:')
   ) {
     return origin;
   }
-  return 'https://worldmonitor.app';
+  return 'https://worldtrade.app';
 }
 
 export default async function handler(req) {

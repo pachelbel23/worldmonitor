@@ -27,14 +27,14 @@
 
 ### 方案 1: 等待 Vercel 自動部署（推薦）
 - Vercel 的 webhook 通常在 5-10 分鐘內觸發
-- 查看 https://vercel.com/dashboard → worldmonitor → Deployments
+- 查看 https://vercel.com/dashboard → worldtrade → Deployments
 - 檢查是否有新的構建任務
 
 ### 方案 2: 手動觸發 Vercel 重新部署
 
 **通過 Vercel Dashboard:**
 1. 訪問 https://vercel.com/dashboard
-2. 選擇 worldmonitor 項目
+2. 選擇 worldtrade 項目
 3. 進入 **Deployments** 標籤
 4. 找到最新部署（應該是 main 分支）
 5. 點擊 **三點菜單** → **Redeploy**
@@ -74,7 +74,7 @@ fetch('/').then(r => r.text()).then(html => {
 ```
 
 或直接查看最新的 JavaScript 檔案名稱:
-1. 打開 https://worldmonitor-six.vercel.app/
+1. 打開 https://worldtrade-six.vercel.app/
 2. DevTools → Network 標籤
 3. 尋找 `index-*.js` 檔案
 

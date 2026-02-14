@@ -112,7 +112,7 @@ const finding = pluralize(count, {
 date.toLocaleString('en-US', { ... })
 
 // After (locale-aware)
-formatDateTime(date)  // Uses localStorage.getItem('worldmonitor-locale')
+formatDateTime(date)  // Uses localStorage.getItem('worldtrade-locale')
 ```
 
 **Locales Supported**:

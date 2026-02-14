@@ -16,7 +16,7 @@
 - 打開瀏覽器開發者工具 (`F12` 或 `Cmd+Option+I`)
 - 進入 **Application** 標籤
 - 找到 **Local Storage** → 點擊該網址
-- 搜尋並刪除 `worldmonitor-locale` 鍵
+- 搜尋並刪除 `worldtrade-locale` 鍵
 - 刷新頁面 (Ctrl+R 或 Cmd+R)
 - 如果瀏覽器語言是中文，頁面應該自動顯示中文
 
@@ -41,7 +41,7 @@ window.i18nDebug.getDebugInfo()
 
 **如果 `browserLanguage` 不是中文**:
 - 在瀏覽器設置中將語言改為中文 (Traditional Chinese / 繁體中文)
-- 然後清除 localStorage 中的 `worldmonitor-locale`
+- 然後清除 localStorage 中的 `worldtrade-locale`
 - 刷新頁面
 
 ### 3. **使用語言選擇器手動切換**
@@ -164,7 +164,7 @@ console.save = function(data, filename){
     downloadAnchorNode.remove();
 }
 
-console.save(window.i18nDebug.getDebugInfo(), 'worldmonitor-i18n-debug.json')
+console.save(window.i18nDebug.getDebugInfo(), 'worldtrade-i18n-debug.json')
 ```
 
 在 GitHub Issue 中分享此 JSON 文件以獲得幫助。

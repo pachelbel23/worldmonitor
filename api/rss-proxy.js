@@ -156,20 +156,20 @@ const ALLOWED_DOMAINS = [
   'news.ycombinator.com',
 ];
 
-// CORS helper - allow worldmonitor.app and Vercel preview domains
+// CORS helper - allow worldtrade.app and Vercel preview domains
 function getCorsHeaders(req) {
   const origin = req.headers.get('origin') || '*';
   const allowedPatterns = [
-    /^https:\/\/(.*\.)?worldmonitor\.app$/, // Matches worldmonitor.app and *.worldmonitor.app
+    /^https:\/\/(.*\.)?worldtrade\.app$/, // Matches worldtrade.app and *.worldtrade.app
     /^https:\/\/.*-elie-habib-projects\.vercel\.app$/,
-    /^https:\/\/worldmonitor.*\.vercel\.app$/,
+    /^https:\/\/worldtrade.*\.vercel\.app$/,
     /^http:\/\/localhost(:\d+)?$/,
   ];
 
   const isAllowed = origin === '*' || allowedPatterns.some(p => p.test(origin));
 
   return {
-    'Access-Control-Allow-Origin': isAllowed ? origin : 'https://worldmonitor.app',
+    'Access-Control-Allow-Origin': isAllowed ? origin : 'https://worldtrade.app',
     'Access-Control-Allow-Methods': 'GET, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Max-Age': '86400',

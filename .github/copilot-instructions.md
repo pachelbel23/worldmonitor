@@ -1,4 +1,4 @@
-# Copilot Instructions for World Monitor
+# Copilot Instructions for World Trade
 
 ## Build, Test & Development
 
@@ -13,7 +13,7 @@
 
 ## Architecture Overview
 
-World Monitor is a geopolitical intelligence dashboard that visualizes real-time data from 50+ sources on an interactive map. The application has a modular component-based architecture with a core data pipeline architecture:
+World Trade is a geopolitical intelligence dashboard that visualizes real-time data from 50+ sources on an interactive map. The application has a modular component-based architecture with a core data pipeline architecture:
 
 ### High-Level Flow
 1. **Config System** (`index.ts`, `variants/`) - Variant-specific data (feeds, geo locations, markets) loaded at build time
@@ -116,11 +116,11 @@ npm run build      # Production build (default variant)
 This project uses GitHub Actions to automatically deploy to GitHub Pages when code is merged to `main`.
 
 **Setup Steps:**
-1. Fork the repository: https://github.com/koala73/worldmonitor
+1. Fork the repository: https://github.com/koala73/worldtrade
 2. Create a feature branch and push changes
 3. Create a Pull Request (GitHub Actions will run all checks)
 4. Once PR checks pass, merge to `main`
-5. Deployment automatically triggers - visit `https://<username>.github.io/worldmonitor/`
+5. Deployment automatically triggers - visit `https://<username>.github.io/worldtrade/`
 
 **GitHub Pages Configuration:**
 - Source: GitHub Actions
@@ -145,7 +145,7 @@ npm run build:tech
 ### Vercel Deployment (Alternative)
 If deploying to Vercel instead:
 1. Connect GitHub account to Vercel
-2. Import `pachelbel23/worldmonitor` repository
+2. Import `pachelbel23/worldtrade` repository
 3. Configure environment variables:
    - `VITE_VARIANT`: Set to `full` or `tech`
 4. Deploy and monitor at https://vercel.com/dashboard

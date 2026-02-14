@@ -10,7 +10,7 @@
  * @returns Formatted date-time string
  */
 export function formatDateTime(date: Date, locale?: string): string {
-  const lang = locale || localStorage.getItem('worldmonitor-locale') || 'en';
+  const lang = locale || localStorage.getItem('worldtrade-locale') || 'en';
 
   const localeMap: Record<string, string> = {
     'en': 'en-US',
@@ -35,7 +35,7 @@ export function formatDateTime(date: Date, locale?: string): string {
  * @returns Formatted date string
  */
 export function formatDate(date: Date, locale?: string): string {
-  const lang = locale || localStorage.getItem('worldmonitor-locale') || 'en';
+  const lang = locale || localStorage.getItem('worldtrade-locale') || 'en';
 
   const localeMap: Record<string, string> = {
     'en': 'en-US',
@@ -58,7 +58,7 @@ export function formatDate(date: Date, locale?: string): string {
  * @returns Formatted month-year string
  */
 export function formatMonthYear(date: Date, locale?: string): string {
-  const lang = locale || localStorage.getItem('worldmonitor-locale') || 'en';
+  const lang = locale || localStorage.getItem('worldtrade-locale') || 'en';
 
   const localeMap: Record<string, string> = {
     'en': 'en-US',
@@ -80,7 +80,7 @@ export function formatMonthYear(date: Date, locale?: string): string {
  * @returns Formatted date string with full options
  */
 export function formatFullDate(date: Date, locale?: string): string {
-  const lang = locale || localStorage.getItem('worldmonitor-locale') || 'en';
+  const lang = locale || localStorage.getItem('worldtrade-locale') || 'en';
 
   const localeMap: Record<string, string> = {
     'en': 'en-US',
@@ -104,7 +104,7 @@ export function formatFullDate(date: Date, locale?: string): string {
  * @returns Formatted time string
  */
 export function formatTime(date: Date, locale?: string): string {
-  const lang = locale || localStorage.getItem('worldmonitor-locale') || 'en';
+  const lang = locale || localStorage.getItem('worldtrade-locale') || 'en';
 
   const localeMap: Record<string, string> = {
     'en': 'en-US',

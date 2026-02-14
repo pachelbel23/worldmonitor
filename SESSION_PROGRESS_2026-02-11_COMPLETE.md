@@ -1,4 +1,4 @@
-# World Monitor 項目進度記錄 - 2026年2月11日（完整版）
+# World Trade 項目進度記錄 - 2026年2月11日（完整版）
 
 ## 📊 本次會話成果總覽
 
@@ -16,11 +16,11 @@
 
 **工作內容**:
 - 創建 `.github/workflows/deploy.yml` - GitHub Actions 工作流
-- 配置 `vite.config.ts` - 設置正確的基礎路徑 `/worldmonitor/`
+- 配置 `vite.config.ts` - 設置正確的基礎路徑 `/worldtrade/`
 - 添加 `.nojekyll` - 禁用 Jekyll 處理
 - 修復 404 錯誤
 
-**部署 URL**: https://pachelbel23.github.io/worldmonitor/
+**部署 URL**: https://pachelbel23.github.io/worldtrade/
 
 **驗證**:
 - ✅ 構建成功
@@ -73,7 +73,7 @@
 - 首次部署到 Vercel（手動）
 - 後續通過 GitHub 自動部署
 
-**部署 URL**: https://worldmonitor-six.vercel.app
+**部署 URL**: https://worldtrade-six.vercel.app
 
 **驗證**:
 - ✅ 構建成功（2.8GB main chunk）
@@ -164,9 +164,9 @@ f75052e - docs: update README with Vercel deployment and rss2json.com integratio
 
 | 部署方式 | URL | 特點 | 更新日期 |
 |---------|-----|------|---------|
-| **Vercel (推薦)** | https://worldmonitor-six.vercel.app | ✅ 新聞源正常<br/>✅ rss2json.com 代理<br/>✅ 自動部署 | 2026-02-11 |
-| **GitHub Pages** | https://pachelbel23.github.io/worldmonitor/ | ✅ 免費<br/>✅ 靜態部署<br/>✅ 中文完整 | 2026-02-11 |
-| **原始網站** | https://worldmonitor.app | ✅ 完整功能<br/>✅ 所有數據源 | - |
+| **Vercel (推薦)** | https://worldtrade-six.vercel.app | ✅ 新聞源正常<br/>✅ rss2json.com 代理<br/>✅ 自動部署 | 2026-02-11 |
+| **GitHub Pages** | https://pachelbel23.github.io/worldtrade/ | ✅ 免費<br/>✅ 靜態部署<br/>✅ 中文完整 | 2026-02-11 |
+| **原始網站** | https://worldtrade.app | ✅ 完整功能<br/>✅ 所有數據源 | - |
 
 ---
 
@@ -297,7 +297,7 @@ import { t } from '@/utils';
 
 ✅ **Vercel 部署**
 ```
-Production: https://worldmonitor-six.vercel.app
+Production: https://worldtrade-six.vercel.app
 ✓ 構建成功（12.73s）
 ✓ 1321 modules transformed
 ✓ 頁面可訪問
@@ -305,7 +305,7 @@ Production: https://worldmonitor-six.vercel.app
 
 ✅ **GitHub Pages 部署**
 ```
-https://pachelbel23.github.io/worldmonitor/
+https://pachelbel23.github.io/worldtrade/
 ✓ 構建成功
 ✓ 工作流完成
 ✓ 頁面可訪問
@@ -367,9 +367,9 @@ README.zh-TW.md (繁體中文) - 已更新
 - 🟢 用戶可訪問多個部署版本
 
 **訪問方式**:
-1. **推薦**：https://worldmonitor-six.vercel.app（Vercel，包含 RSS）
-2. **免費**：https://pachelbel23.github.io/worldmonitor/（GitHub Pages）
-3. **原始**：https://worldmonitor.app（完整功能）
+1. **推薦**：https://worldtrade-six.vercel.app（Vercel，包含 RSS）
+2. **免費**：https://pachelbel23.github.io/worldtrade/（GitHub Pages）
+3. **原始**：https://worldtrade.app（完整功能）
 
 ---
 

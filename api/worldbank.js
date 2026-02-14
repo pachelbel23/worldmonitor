@@ -80,7 +80,7 @@ export default async function handler(req, res) {
     const response = await fetch(wbUrl, {
       headers: {
         'Accept': 'application/json',
-        'User-Agent': 'Mozilla/5.0 (compatible; WorldMonitor/1.0; +https://worldmonitor.app)',
+        'User-Agent': 'Mozilla/5.0 (compatible; WorldTrade/1.0; +https://worldtrade.app)',
       },
     });
 

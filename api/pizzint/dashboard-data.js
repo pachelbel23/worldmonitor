@@ -6,7 +6,7 @@ export default async function handler() {
       signal: AbortSignal.timeout(15000),
       headers: {
         'Accept': 'application/json',
-        'User-Agent': 'WorldMonitor/1.0',
+        'User-Agent': 'WorldTrade/1.0',
       },
     });
 

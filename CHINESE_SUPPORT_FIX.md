@@ -2,7 +2,7 @@
 
 ## 問題診斷
 
-用戶報告在 https://worldmonitor-six.vercel.app/ 看不到中文。經過調查，發現根本原因是 **構建失敗**（TypeScript 錯誤），而不是i18n系統有問題。
+用戶報告在 https://worldtrade-six.vercel.app/ 看不到中文。經過調查，發現根本原因是 **構建失敗**（TypeScript 錯誤），而不是i18n系統有問題。
 
 ## 修復內容
 
@@ -72,7 +72,7 @@ esbuild: {
 ## 🧪 測試中文功能
 
 ### 自動語言檢測
-1. 訪問 https://worldmonitor-six.vercel.app/
+1. 訪問 https://worldtrade-six.vercel.app/
 2. 打開開發者工具 (F12) → Console
 3. 執行: `window.i18nDebug.getDebugInfo()`
 4. 檢查 `currentLocale` - 如果瀏覽器語言是中文應為 `'zh-TW'`
@@ -83,7 +83,7 @@ esbuild: {
 3. 頁面應立即刷新並顯示中文
 
 ### localStorage 驗證
-1. 執行: `localStorage.getItem('worldmonitor-locale')`
+1. 執行: `localStorage.getItem('worldtrade-locale')`
 2. 應該返回 `'zh-TW'` (如果選擇了中文)
 
 ## 🐛 常見問題

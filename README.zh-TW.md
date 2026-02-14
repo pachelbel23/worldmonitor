@@ -1,18 +1,18 @@
-# World Monitor - 繁體中文版本
+# World Trade - 繁體中文版本
 
 <p align="center">
-  <a href="https://worldmonitor.app"><strong>線上示範</strong></a> &nbsp;·&nbsp;
-  <a href="https://tech.worldmonitor.app"><strong>科技變體</strong></a> &nbsp;·&nbsp;
+  <a href="https://worldtrade.app"><strong>線上示範</strong></a> &nbsp;·&nbsp;
+  <a href="https://tech.worldtrade.app"><strong>科技變體</strong></a> &nbsp;·&nbsp;
   <a href="./docs/DOCUMENTATION.md"><strong>完整文檔</strong></a> &nbsp;·&nbsp;
-  <a href="https://worldmonitor-six.vercel.app"><strong>Vercel 部署版</strong></a> &nbsp;·&nbsp;
-  <a href="https://pachelbel23.github.io/worldmonitor/"><strong>GitHub Pages</strong></a>
+  <a href="https://worldtrade-six.vercel.app"><strong>Vercel 部署版</strong></a> &nbsp;·&nbsp;
+  <a href="https://pachelbel23.github.io/worldtrade/"><strong>GitHub Pages</strong></a>
 </p>
 
 ---
 
-## 🌍 關於 World Monitor
+## 🌍 關於 World Trade
 
-World Monitor 是一個實時全球智能儀表板，整合了 50+ 個數據源，提供：
+World Trade 是一個實時全球智能儀表板，整合了 50+ 個數據源，提供：
 - 🗞️ **即時新聞聚合** - 來自 100+ 個精選信息源
 - 🗺️ **地理空間可視化** - 交互式地圖，25 層可切換數據
 - 🤖 **AI 摘要生成** - 自動化焦點檢測和摘要
@@ -126,18 +126,18 @@ const source = t('Reuters');    // → '路透社'（中文）或 'Reuters'（�
 ## 🚢 部署選項
 
 ### GitHub Pages（靜態部署）
-- **訪問地址**：https://pachelbel23.github.io/worldmonitor/
+- **訪問地址**：https://pachelbel23.github.io/worldtrade/
 - **特點**：完全免費，自動部署，純靜態站點
 - **部署方式**：GitHub Actions 工作流
 
 ### Vercel（推薦）
-- **訪問地址**：https://worldmonitor-six.vercel.app
+- **訪問地址**：https://worldtrade-six.vercel.app
 - **特點**：使用 rss2json.com RSS 代理，新聞源正常顯示
 - **部署方式**：GitHub 自動部署（連接到 Vercel）
 - **費用**：免費 Personal 方案
 
 ### 原始網站
-- **訪問地址**：https://worldmonitor.app
+- **訪問地址**：https://worldtrade.app
 - **特點**：完整功能，所有數據源可用
 - **部署方式**：Vercel 原始部署
 
@@ -150,13 +150,13 @@ const source = t('Reuters');    // → '路透社'（中文）或 'Reuters'（�
 
 ## 📝 許可證
 
-本項目基於 [World Monitor](https://github.com/koala73/worldmonitor) 的 **MIT License**。
+本項目基於 [World Trade](https://github.com/koala73/worldtrade) 的 **MIT License**。
 
 中文化部分由 pachelbel23 貢獻，遵循相同的 MIT License。
 
 ## 👏 致謝
 
-- 原始項目：[koala73/worldmonitor](https://github.com/koala73/worldmonitor)
+- 原始項目：[koala73/worldtrade](https://github.com/koala73/worldtrade)
 - 中文化：pachelbel23
 
 ## 📧 反饋與貢獻
@@ -166,23 +166,23 @@ const source = t('Reuters');    // → '路透社'（中文）或 'Reuters'（�
 ---
 
 **最後更新**：2026年2月14日
-**構建狀態**：查看 [GitHub Actions](https://github.com/pachelbel23/worldmonitor/actions)
+**構建狀態**：查看 [GitHub Actions](https://github.com/pachelbel23/worldtrade/actions)
 
 ---
 
-# World Monitor - English Version
+# World Trade - English Version
 
 <p align="center">
-  <a href="https://worldmonitor.app"><strong>Live Demo</strong></a> &nbsp;·&nbsp;
-  <a href="https://tech.worldmonitor.app"><strong>Tech Variant</strong></a> &nbsp;·&nbsp;
+  <a href="https://worldtrade.app"><strong>Live Demo</strong></a> &nbsp;·&nbsp;
+  <a href="https://tech.worldtrade.app"><strong>Tech Variant</strong></a> &nbsp;·&nbsp;
   <a href="./docs/DOCUMENTATION.md"><strong>Full Documentation</strong></a> &nbsp;·&nbsp;
-  <a href="https://worldmonitor-six.vercel.app"><strong>Vercel Deployment</strong></a> &nbsp;·&nbsp;
-  <a href="https://pachelbel23.github.io/worldmonitor/"><strong>GitHub Pages</strong></a>
+  <a href="https://worldtrade-six.vercel.app"><strong>Vercel Deployment</strong></a> &nbsp;·&nbsp;
+  <a href="https://pachelbel23.github.io/worldtrade/"><strong>GitHub Pages</strong></a>
 </p>
 
-## 🌍 About World Monitor
+## 🌍 About World Trade
 
-World Monitor is a real-time global intelligence dashboard that integrates 50+ data sources, providing:
+World Trade is a real-time global intelligence dashboard that integrates 50+ data sources, providing:
 - 🗞️ **Real-time News Aggregation** - From 100+ curated information sources
 - 🗺️ **Geospatial Visualization** - Interactive maps with 25 toggleable data layers
 - 🤖 **AI-powered Summaries** - Automated hotspot detection and summarization
@@ -308,18 +308,18 @@ All pushes and pull requests trigger automated testing:
 ## 🚢 Deployment Options
 
 ### GitHub Pages (Static Deployment)
-- **URL**: https://pachelbel23.github.io/worldmonitor/
+- **URL**: https://pachelbel23.github.io/worldtrade/
 - **Features**: Completely free, auto-deployed, pure static site
 - **Method**: GitHub Actions workflow
 
 ### Vercel (Recommended)
-- **URL**: https://worldmonitor-six.vercel.app
+- **URL**: https://worldtrade-six.vercel.app
 - **Features**: Uses rss2json.com RSS proxy for working news sources
 - **Method**: Auto-deployed from GitHub
 - **Cost**: Free Personal plan
 
 ### Original Site
-- **URL**: https://worldmonitor.app
+- **URL**: https://worldtrade.app
 - **Features**: Full functionality, all data sources available
 - **Method**: Original Vercel deployment
 
@@ -332,13 +332,13 @@ All pushes and pull requests trigger automated testing:
 
 ## 📝 License
 
-This project is based on [World Monitor](https://github.com/koala73/worldmonitor) under the **MIT License**.
+This project is based on [World Trade](https://github.com/koala73/worldtrade) under the **MIT License**.
 
 The Chinese localization is contributed by pachelbel23 under the same MIT License.
 
 ## 👏 Acknowledgments
 
-- Original project: [koala73/worldmonitor](https://github.com/koala73/worldmonitor)
+- Original project: [koala73/worldtrade](https://github.com/koala73/worldtrade)
 - Chinese localization: pachelbel23
 
 ## 📧 Feedback and Contributions
@@ -349,4 +349,4 @@ Feel free to open an Issue or submit a Pull Request for any suggestions or quest
 
 **Last Updated**: February 14, 2026
 **Latest**: Phase 6 news content localization - 160+ source name translations, Chinese RSS auto-switching, Groq batch title translation with Redis cache
-**Build Status**: Check [GitHub Actions](https://github.com/pachelbel23/worldmonitor/actions)
+**Build Status**: Check [GitHub Actions](https://github.com/pachelbel23/worldtrade/actions)

@@ -29,7 +29,7 @@
 3. 點擊 **Add New...** 按鈕，選擇 **Project**
 4. 在 **Import Git Repository** 區域，搜尋並選擇你的倉庫：
    ```
-   pachelbel23/worldmonitor
+   pachelbel23/worldtrade
    ```
 5. 確保 **Framework Preset** 已自動設置為 **Vite**（如果沒有，手動選擇）
 6. **Build & Output Settings** 應該是：
@@ -39,7 +39,7 @@
 
 Vercel 會自動構建並部署你的項目！部署完成後，你會看到一個 URL，類似於：
 ```
-https://worldmonitor-[random-id].vercel.app
+https://worldtrade-[random-id].vercel.app
 ```
 
 ### 第 2 步：配置自定義域名（可選）
@@ -48,7 +48,7 @@ https://worldmonitor-[random-id].vercel.app
 
 1. 在 Vercel 項目設置中，進入 **Domains**
 2. 點擊 **Add Custom Domain**
-3. 輸入你想使用的域名（例如 `worldmonitor.yourdomain.com`）
+3. 輸入你想使用的域名（例如 `worldtrade.yourdomain.com`）
 4. 按照 Vercel 提供的 DNS 配置說明進行設置
 
 ## GitHub Secrets 配置
@@ -61,17 +61,17 @@ https://worldmonitor-[random-id].vercel.app
 1. 訪問 [Vercel Account Settings](https://vercel.com/account)
 2. 進入 **Tokens** 部分
 3. 點擊 **Create Token**
-4. 輸入令牌名稱（例如 `worldmonitor-github-ci`）
+4. 輸入令牌名稱（例如 `worldtrade-github-ci`）
 5. 設置過期時間（可選）
 6. 點擊 **Create** 並複製生成的令牌
 
 #### 獲取 `VERCEL_ORG_ID` 和 `VERCEL_PROJECT_ID`：
 1. 進入 [Vercel 項目設置](https://vercel.com/projects)
-2. 選擇 **worldmonitor** 項目
+2. 選擇 **worldtrade** 項目
 3. 進入 **Settings** 標籤
 4. 向下滾動找到 **Project ID** - 複製此值作為 `VERCEL_PROJECT_ID`
 5. 你的 **VERCEL_ORG_ID** 是你的 Vercel 用戶名或組織名稱
-   - 你可以在頁面頂部的 URL 中看到：`https://vercel.com/[ORG_ID]/worldmonitor/settings`
+   - 你可以在頁面頂部的 URL 中看到：`https://vercel.com/[ORG_ID]/worldtrade/settings`
 
 ### 第 2 步：在 GitHub 中添加 Secrets
 
@@ -195,7 +195,7 @@ npm test
 
 ### 監控部署
 1. 訪問 [Vercel Dashboard](https://vercel.com/dashboard)
-2. 選擇 **worldmonitor** 項目
+2. 選擇 **worldtrade** 項目
 3. 查看 **Deployments** 標籤獲取歷史部署記錄
 4. 檢查部署日誌排除問題
 
@@ -245,11 +245,11 @@ A: 參見上方 [第 2 步：配置自定義域名](#第-2-步配置自定義域
 
 - 📚 [Vercel 文檔](https://vercel.com/docs)
 - 📚 [GitHub Actions 文檔](https://docs.github.com/en/actions)
-- 💬 [原始項目 GitHub Issues](https://github.com/koala73/worldmonitor/issues)
-- 🐛 [這個 Fork 的 Issues](https://github.com/pachelbel23/worldmonitor/issues)
+- 💬 [原始項目 GitHub Issues](https://github.com/koala73/worldtrade/issues)
+- 🐛 [這個 Fork 的 Issues](https://github.com/pachelbel23/worldtrade/issues)
 
 ---
 
 **最後更新:** 2025 年 2 月 11 日
 **維護者:** pachelbel23
-**基礎項目:** koala73/worldmonitor
+**基礎項目:** koala73/worldtrade

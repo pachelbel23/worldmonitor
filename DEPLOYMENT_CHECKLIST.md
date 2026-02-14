@@ -1,4 +1,4 @@
-# 🚀 World Monitor 部署檢查清單
+# 🚀 World Trade 部署檢查清單
 
 ## 每次部署後的標準流程
 
@@ -98,9 +98,9 @@ npm run preview
 
 | 部署方式 | URL | 更新頻率 |
 |---------|-----|---------|
-| **Vercel** | https://worldmonitor-six.vercel.app | 自動（推送後 1-3 分鐘） |
-| **GitHub Pages** | https://pachelbel23.github.io/worldmonitor/ | 自動（Actions 完成後） |
-| **原始網站** | https://worldmonitor.app | 原始開發者維護 |
+| **Vercel** | https://worldtrade-six.vercel.app | 自動（推送後 1-3 分鐘） |
+| **GitHub Pages** | https://pachelbel23.github.io/worldtrade/ | 自動（Actions 完成後） |
+| **原始網站** | https://worldtrade.app | 原始開發者維護 |
 
 ---
 
@@ -147,15 +147,15 @@ vercel deploy --prod --yes
 
 | 部署方式 | URL | 特點 | 更新日期 |
 |---------|-----|------|---------|
-| **Vercel** | https://worldmonitor-six.vercel.app | RSS 代理已集成 | 2026-02-11 |
-| **GitHub Pages** | https://pachelbel23.github.io/worldmonitor/ | 靜態部署，中文完整 | 2026-02-11 |
-| **原始** | https://worldmonitor.app | 完全功能 | - |
+| **Vercel** | https://worldtrade-six.vercel.app | RSS 代理已集成 | 2026-02-11 |
+| **GitHub Pages** | https://pachelbel23.github.io/worldtrade/ | 靜態部署，中文完整 | 2026-02-11 |
+| **原始** | https://worldtrade.app | 完全功能 | - |
 ```
 
 ### SESSION_PROGRESS 記錄範例
 
 ```markdown
-# World Monitor 項目進度 - 2026年2月11日
+# World Trade 項目進度 - 2026年2月11日
 
 ## 📊 本次成果
 - ✅ Vercel 部署完成
@@ -171,8 +171,8 @@ vercel deploy --prod --yes
 - f75052e - docs: update README with Vercel deployment
 
 ## 🌐 部署 URL
-- Vercel: https://worldmonitor-six.vercel.app
-- GitHub Pages: https://pachelbel23.github.io/worldmonitor/
+- Vercel: https://worldtrade-six.vercel.app
+- GitHub Pages: https://pachelbel23.github.io/worldtrade/
 ```
 
 ---

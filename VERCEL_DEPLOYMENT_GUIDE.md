@@ -4,11 +4,11 @@
 
 ```
 ✅ GitHub Pages (中文已可用)
-   https://pachelbel23.github.io/worldmonitor/
+   https://pachelbel23.github.io/worldtrade/
    JS: index-*.js (最新代碼)
    
 ❌ Vercel (仍需更新)
-   https://worldmonitor-six.vercel.app/
+   https://worldtrade-six.vercel.app/
    JS: index-CJ_dBFUW.js (舊版本)
    需要重新部署以獲取最新代碼
 ```
@@ -30,7 +30,7 @@ GitHub Pages 部署已成功，新代碼包含中文翻譯。但 Vercel 仍在�
 
 1. 訪問 https://vercel.com/dashboard
 2. 登錄您的 Vercel 帳戶
-3. 選擇 **worldmonitor** 項目
+3. 選擇 **worldtrade** 項目
 4. 進入 **Deployments** 標籤
 5. 找到最新的部署（應該是 main 分支，可能顯示為灰色/進行中/已完成）
 6. 點擊 **三點菜單** (⋯) → **Redeploy**
@@ -44,7 +44,7 @@ GitHub Pages 部署已成功，新代碼包含中文翻譯。但 Vercel 仍在�
 npm install -g vercel
 
 # 步驟 2: 進入項目目錄
-cd /home/shawc/worldmonitor
+cd /home/shawc/worldtrade
 
 # 步驟 3: 部署到生產環境
 vercel deploy --prod
@@ -65,7 +65,7 @@ git push origin main
 
 ### 1️⃣ 檢查是否已部署新版本
 
-訪問 https://worldmonitor-six.vercel.app/ 並開啟開發者工具 (F12)
+訪問 https://worldtrade-six.vercel.app/ 並開啟開發者工具 (F12)
 
 在 **Console** 執行:
 ```javascript
@@ -103,14 +103,14 @@ window.i18nDebug.setLocale('zh-TW')
 | ✅ 已完成 | GitHub Pages 自動部署完成 |
 | ⏳ 進行中 | Vercel 等待重新部署 |
 | 🎯 目標 | 手動觸發或等待自動部署 (5-30 分鐘) |
-| 📱 完成 | 中文在 worldmonitor-six.vercel.app 上可用 |
+| 📱 完成 | 中文在 worldtrade-six.vercel.app 上可用 |
 
 ## 📋 推薦步驟
 
 ### 立即執行 (推薦方案 1 - 最快)
 
 1. 打開 https://vercel.com/dashboard
-2. 進入 worldmonitor 項目
+2. 進入 worldtrade 項目
 3. 點擊最新部署旁的 ⋯ → Redeploy
 4. 等待 2 分鐘
 
@@ -140,7 +140,7 @@ window.i18nDebug.setLocale('zh-TW')
 
 2. **檢查是否是瀏覽器緩存**
    - 打開隱私瀏覽窗口再試一次
-   - 或手動清除 LocalStorage: `localStorage.removeItem('worldmonitor-locale')`
+   - 或手動清除 LocalStorage: `localStorage.removeItem('worldtrade-locale')`
 
 3. **驗證 Vercel 環境配置**
    - 確保 Vercel 項目的環境變數設置正確
