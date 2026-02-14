@@ -10,7 +10,7 @@ const translations: Record<string, TranslationDict> = {
 
 class I18n {
   private locale: string = 'en';
-  private readonly LOCALE_KEY = 'worldtrade-locale';
+  private readonly LOCALE_KEY = 'worldmonitor-locale';
 
   constructor() {
     this.init();

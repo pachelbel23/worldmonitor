@@ -1,4 +1,4 @@
-# World Trade UI 多語系完整化方案
+# World Monitor UI 多語系完整化方案
 
 ## 📋 執行摘要
 
@@ -246,7 +246,7 @@ export interface PluralForm {
 }
 
 export function pluralize(count: number, forms: PluralForm, locale?: string): string {
-  const lang = locale || localStorage.getItem('worldtrade-locale') || 'en';
+  const lang = locale || localStorage.getItem('worldmonitor-locale') || 'en';
   
   if (lang === 'zh-TW') {
     // 中文：直接返回統一形式
@@ -298,7 +298,7 @@ date.toLocaleString('en-US', {
 ```typescript
 // src/utils/date-formatter.ts
 export function formatDateTime(date: Date, locale?: string): string {
-  const lang = locale || localStorage.getItem('worldtrade-locale') || 'en';
+  const lang = locale || localStorage.getItem('worldmonitor-locale') || 'en';
   
   const localeMap: Record<string, string> = {
     'en': 'en-US',
@@ -368,7 +368,7 @@ export const FEEDS: Feed[] = [
 ```typescript
 // src/services/rss.ts - 修改 fetchFeed 函數
 export async function fetchFeed(feed: Feed, locale?: string): Promise<NewsItem[]> {
-  const lang = locale || localStorage.getItem('worldtrade-locale') || 'en';
+  const lang = locale || localStorage.getItem('worldmonitor-locale') || 'en';
   
   // 選擇適當的 URL
   let feedUrl = feed.url;

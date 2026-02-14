@@ -1,11 +1,11 @@
-# World Trade 项目进度记录 - 2026年2月11日
+# World Monitor 项目进度记录 - 2026年2月11日
 
 ## 📊 本次会话成果总览
 
 **日期**: 2026年2月11日 15:00 - 15:57 UTC
 **主要成就**: GitHub Pages 部署 + 完整中文化
 **提交数**: 3 个关键提交
-**部署URL**: https://pachelbel23.github.io/worldtrade/
+**部署URL**: https://pachelbel23.github.io/worldmonitor/
 
 ---
 
@@ -15,7 +15,7 @@
 - **状态**: ✅ 成功部署
 - **工作内容**:
   - 创建 `.github/workflows/deploy.yml` - GitHub Actions 工作流
-  - 配置 `vite.config.ts` - 设置正确的基础路径 `/worldtrade/`
+  - 配置 `vite.config.ts` - 设置正确的基础路径 `/worldmonitor/`
   - 添加 `.nojekyll` - 禁用 Jekyll 处理
   - 修复 404 错误 - 工作流运行成功，部署完成
 
@@ -32,7 +32,7 @@
   - ✅ 本地构建成功: `npm run build` 7.84 秒
   - ✅ 生成 dist/index.html 5.34 KB
   - ✅ 工作流成功: Build ✅ Deploy ✅
-  - ✅ 部署URL确认: https://pachelbel23.github.io/worldtrade/
+  - ✅ 部署URL确认: https://pachelbel23.github.io/worldmonitor/
 
 ### 2. 完整中文化实施 ✅
 - **状态**: ✅ 100% 完成
@@ -150,7 +150,7 @@ f8540a0 - docs: add comprehensive copilot instructions with deployment guide
 
 ```typescript
 // vite.config.ts
-base: process.env.GITHUB_PAGES === 'true' ? '/worldtrade/' : '/',
+base: process.env.GITHUB_PAGES === 'true' ? '/worldmonitor/' : '/',
 
 // .github/workflows/deploy.yml 关键配置
 permissions:
@@ -287,7 +287,7 @@ Ctrl+Shift+R (或 Cmd+Shift+R on Mac)
 - 🟢 所有工作流运行成功
 - 🟢 用户可访问
 
-**访问地址**: https://pachelbel23.github.io/worldtrade/
+**访问地址**: https://pachelbel23.github.io/worldmonitor/
 
 ---
 

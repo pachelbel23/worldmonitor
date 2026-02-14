@@ -19,7 +19,7 @@ export interface PluralForm {
  * @returns Localized string
  */
 export function pluralize(count: number, forms: PluralForm, locale?: string): string {
-  const lang = locale || localStorage.getItem('worldtrade-locale') || 'en';
+  const lang = locale || localStorage.getItem('worldmonitor-locale') || 'en';
 
   if (lang === 'zh-TW') {
     // Chinese: unified form (no plural distinction)

@@ -1,25 +1,25 @@
-# World Trade
+# World Monitor
 
 **Real-time global intelligence dashboard** — AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface.
 
-[![GitHub stars](https://img.shields.io/github/stars/koala73/worldtrade?style=social)](https://github.com/koala73/worldtrade/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/koala73/worldtrade?style=social)](https://github.com/koala73/worldtrade/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/koala73/worldmonitor?style=social)](https://github.com/koala73/worldmonitor/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/koala73/worldmonitor?style=social)](https://github.com/koala73/worldmonitor/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Last commit](https://img.shields.io/github/last-commit/koala73/worldtrade)](https://github.com/koala73/worldtrade/commits/main)
+[![Last commit](https://img.shields.io/github/last-commit/koala73/worldmonitor)](https://github.com/koala73/worldmonitor/commits/main)
 
 <p align="center">
-  <a href="https://worldtrade.app"><strong>Live Demo</strong></a> &nbsp;·&nbsp;
-  <a href="https://tech.worldtrade.app"><strong>Tech Variant</strong></a> &nbsp;·&nbsp;
+  <a href="https://worldmonitor.app"><strong>Live Demo</strong></a> &nbsp;·&nbsp;
+  <a href="https://tech.worldmonitor.app"><strong>Tech Variant</strong></a> &nbsp;·&nbsp;
   <a href="./docs/DOCUMENTATION.md"><strong>Full Documentation</strong></a> &nbsp;·&nbsp;
-  <a href="https://pachelbel23.github.io/worldtrade/"><strong>Chinese Version</strong></a>
+  <a href="https://pachelbel23.github.io/worldmonitor/"><strong>Chinese Version</strong></a>
 </p>
 
-![World Trade Dashboard](new-world-monitor.png)
+![World Monitor Dashboard](new-world-monitor.png)
 
 ---
 
-## Why World Trade?
+## Why World Monitor?
 
 | Problem | Solution |
 |---------|----------|
@@ -35,10 +35,10 @@
 
 | Variant | URL | Focus |
 |---------|-----|-------|
-| **World Trade (Official)** | [worldtrade.app](https://worldtrade.app) | Geopolitics, military, conflicts, infrastructure |
-| **World Trade (Vercel)** | [worldtrade-six.vercel.app](https://worldtrade-six.vercel.app) | Fork with rss2json.com RSS proxy |
-| **Tech Monitor** | [tech.worldtrade.app](https://tech.worldtrade.app) | Startups, AI/ML, cloud, cybersecurity |
-| **GitHub Pages (CN)** | [pachelbel23.github.io/worldtrade](https://pachelbel23.github.io/worldtrade/) | Traditional Chinese (zh-TW) |
+| **World Monitor (Official)** | [worldmonitor.app](https://worldmonitor.app) | Geopolitics, military, conflicts, infrastructure |
+| **World Monitor (Vercel)** | [worldmonitor-six.vercel.app](https://worldmonitor-six.vercel.app) | Fork with rss2json.com RSS proxy |
+| **Tech Monitor** | [tech.worldmonitor.app](https://tech.worldmonitor.app) | Startups, AI/ML, cloud, cybersecurity |
+| **GitHub Pages (CN)** | [pachelbel23.github.io/worldmonitor](https://pachelbel23.github.io/worldmonitor/) | Traditional Chinese (zh-TW) |
 
 Both variants run from a single codebase — switch between them with one click.
 
@@ -258,7 +258,7 @@ Feeds also carry a **propaganda risk rating** and **state affiliation flag**. St
 
 ## Edge Function Architecture
 
-World Trade uses Vercel Edge Functions as a lightweight API layer. Each edge function handles a single data source concern — proxying, caching, or transforming external APIs. This architecture avoids a monolithic backend while keeping API keys server-side:
+World Monitor uses Vercel Edge Functions as a lightweight API layer. Each edge function handles a single data source concern — proxying, caching, or transforming external APIs. This architecture avoids a monolithic backend while keeping API keys server-side:
 
 - **RSS Proxy** — Uses [rss2json.com](https://rss2json.com) free API for CORS-safe access to 100+ feeds, preventing domain-allowlist overhead
 - **AI Pipeline** — Groq and OpenRouter edge functions with Redis deduplication, so identical headlines across concurrent users only trigger one LLM call. Includes batch title translation for zh-TW locale via `/api/groq-translate`
@@ -268,7 +268,7 @@ World Trade uses Vercel Edge Functions as a lightweight API layer. Each edge fun
 
 All edge functions include circuit breaker logic and return cached stale data when upstream APIs are unavailable, ensuring the dashboard never shows blank panels.
 
-**Note**: The Vercel deployment (worldtrade-six.vercel.app) uses [rss2json.com](https://rss2json.com) for RSS feeds. The original [worldtrade.app](https://worldtrade.app) uses its own Vercel Edge Function proxy.
+**Note**: The Vercel deployment (worldmonitor-six.vercel.app) uses [rss2json.com](https://rss2json.com) for RSS feeds. The original [worldmonitor.app](https://worldmonitor.app) uses its own Vercel Edge Function proxy.
 
 ---
 
@@ -276,8 +276,8 @@ All edge functions include circuit breaker logic and return cached stale data wh
 
 ```bash
 # Clone and run
-git clone https://github.com/koala73/worldtrade.git
-cd worldtrade
+git clone https://github.com/koala73/worldmonitor.git
+cd worldmonitor
 npm install
 npm run dev
 ```
@@ -368,7 +368,7 @@ See [full roadmap](./docs/DOCUMENTATION.md#roadmap).
 
 ## Support the Project
 
-If you find World Trade useful:
+If you find World Monitor useful:
 
 - **Star this repo** to help others discover it
 - **Share** with colleagues interested in OSINT
@@ -418,14 +418,14 @@ MIT License — see [LICENSE](LICENSE) for details.
 - Source names wrapped with `t()` across NewsPanel, MonitorPanel, MapPopup
 
 **Deployment**
-- GitHub Pages (zh-TW): [pachelbel23.github.io/worldtrade/](https://pachelbel23.github.io/worldtrade/)
+- GitHub Pages (zh-TW): [pachelbel23.github.io/worldmonitor/](https://pachelbel23.github.io/worldmonitor/)
 - Automated CI/CD via GitHub Actions
 - RSS proxy via rss2json.com for cross-platform support
 
 ---
 
 <p align="center">
-  <a href="https://worldtrade.app">worldtrade.app</a> &nbsp;·&nbsp;
-  <a href="https://tech.worldtrade.app">tech.worldtrade.app</a> &nbsp;·&nbsp;
-  <a href="https://pachelbel23.github.io/worldtrade/">Chinese Version</a>
+  <a href="https://worldmonitor.app">worldmonitor.app</a> &nbsp;·&nbsp;
+  <a href="https://tech.worldmonitor.app">tech.worldmonitor.app</a> &nbsp;·&nbsp;
+  <a href="https://pachelbel23.github.io/worldmonitor/">Chinese Version</a>
 </p>

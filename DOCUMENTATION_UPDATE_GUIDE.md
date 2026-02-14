@@ -35,7 +35,7 @@ git push origin main
 ### README 中新增部署版本時
 
 ```markdown
-| **World Trade (Vercel)** | https://worldtrade-six.vercel.app | ✅ RSS 代理 | 2026-02-11 |
+| **World Monitor (Vercel)** | https://worldmonitor-six.vercel.app | ✅ RSS 代理 | 2026-02-11 |
 ```
 
 ### 部署選項說明範例
@@ -44,24 +44,24 @@ git push origin main
 ## 🚢 部署選項
 
 ### Vercel（推薦）
-- **URL**: https://worldtrade-six.vercel.app
+- **URL**: https://worldmonitor-six.vercel.app
 - **特點**: 新聞源正常，rss2json.com 代理，自動部署
 - **更新日期**: 2026-02-11
 
 ### GitHub Pages
-- **URL**: https://pachelbel23.github.io/worldtrade/
+- **URL**: https://pachelbel23.github.io/worldmonitor/
 - **特點**: 免費，靜態部署，中文完整
 - **更新日期**: 2026-02-11
 
 ### 原始網站
-- **URL**: https://worldtrade.app
+- **URL**: https://worldmonitor.app
 - **特點**: 完整功能，所有數據源
 ```
 
 ### SESSION_PROGRESS 記錄範例
 
 ```markdown
-# World Trade 項目進度 - YYYY年MM月DD日
+# World Monitor 項目進度 - YYYY年MM月DD日
 
 ## 📊 本次成果
 - ✅ [功能或修復描述]
@@ -72,8 +72,8 @@ git push origin main
 - src/path/file.ts - 修改說明
 
 ## 🌐 部署信息
-- **Vercel**: https://worldtrade-six.vercel.app
-- **GitHub Pages**: https://pachelbel23.github.io/worldtrade/
+- **Vercel**: https://worldmonitor-six.vercel.app
+- **GitHub Pages**: https://pachelbel23.github.io/worldmonitor/
 
 ## 📋 Git 提交
 - COMMIT_SHA - commit message

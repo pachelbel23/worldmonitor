@@ -72,7 +72,7 @@ GitHub 提交 (0124f21)
 ### 方案 1: 通過 Vercel CLI 手動部署 (最直接)
 
 ```bash
-cd /home/shawc/worldtrade
+cd /home/shawc/worldmonitor
 
 # 確保已登錄
 vercel login
@@ -86,7 +86,7 @@ vercel deploy --prod
 ### 方案 2: 重新配置 GitHub 集成
 
 1. 進入 Vercel Dashboard: https://vercel.com/dashboard
-2. 選擇 worldtrade 項目
+2. 選擇 worldmonitor 項目
 3. Settings → Git → Vercel for GitHub
 4. 點擊 "Disconnect" 後重新連接
 5. 重新授權 GitHub 應用
@@ -119,13 +119,13 @@ npm run build
 
 # 2. 使用 Vercel CLI 部署
 npm install -g vercel  # 如果還沒安裝
-cd /home/shawc/worldtrade
+cd /home/shawc/worldmonitor
 vercel deploy --prod   # 直接部署到生產環境
 ```
 
 ### 完成後驗證
 
-1. 部署完成後，訪問 https://worldtrade-six.vercel.app/
+1. 部署完成後，訪問 https://worldmonitor-six.vercel.app/
 2. 打開無痕視窗確保沒有緩存
 3. 在控制台執行: `window.i18nDebug.setLocale('zh-TW')`
 4. 頁面應立即以中文顯示
@@ -159,4 +159,4 @@ vercel deploy --prod   # 直接部署到生產環境
 
 **建議**: 現在使用 Vercel CLI 進行手動部署，預計 5-10 分鐘內完成。
 
-**預期結果**: Vercel 部署完成後，中文支持將在 worldtrade-six.vercel.app 上可用。
+**預期結果**: Vercel 部署完成後，中文支持將在 worldmonitor-six.vercel.app 上可用。

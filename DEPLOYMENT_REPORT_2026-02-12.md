@@ -1,22 +1,22 @@
 # 📦 DEPLOYMENT_REPORT_2026-02-12.md
 
 **Deployment Date**: February 12, 2026 02:16 UTC
-**Repository**: https://github.com/pachelbel23/worldtrade
-**Live URL**: https://pachelbel23.github.io/worldtrade/
+**Repository**: https://github.com/pachelbel23/worldmonitor
+**Live URL**: https://pachelbel23.github.io/worldmonitor/
 
 ---
 
 ## ✅ Deployment Summary
 
-Successfully deployed World Trade with complete Phase 1-2-3-5 i18n implementation to GitHub Pages.
+Successfully deployed World Monitor with complete Phase 1-2-3-5 i18n implementation to GitHub Pages.
 
 ### Deployment Channels
 
 | Channel | URL | Status | Last Deployment |
 |---------|-----|--------|-----------------|
-| **GitHub Pages** | https://pachelbel23.github.io/worldtrade/ | ✅ Live | 2026-02-12 |
-| **Vercel (Backup)** | https://worldtrade-six.vercel.app | ✅ Live | 2026-02-11 |
-| **Original** | https://worldtrade.app | ✅ Active | (maintained separately) |
+| **GitHub Pages** | https://pachelbel23.github.io/worldmonitor/ | ✅ Live | 2026-02-12 |
+| **Vercel (Backup)** | https://worldmonitor-six.vercel.app | ✅ Live | 2026-02-11 |
+| **Original** | https://worldmonitor.app | ✅ Active | (maintained separately) |
 
 ---
 
@@ -69,7 +69,7 @@ fd812c2 i18n: Complete Phase 1-2 translations - add accessibility, trust indicat
 ### Build Configuration
 - **Vite Config**: Dynamic base path
   ```javascript
-  base: process.env.GITHUB_PAGES === 'true' ? '/worldtrade/' : '/',
+  base: process.env.GITHUB_PAGES === 'true' ? '/worldmonitor/' : '/',
   ```
 
 - **GitHub Actions Workflow**: `.github/workflows/deploy.yml`
@@ -158,7 +158,7 @@ Total gzipped: ~820 KB
 
 ### Language Switching
 - Detection: `navigator.language` (browser default)
-- Override: localStorage `worldtrade-locale` key
+- Override: localStorage `worldmonitor-locale` key
 - Persistence: Survives page reload
 - Implementation: `src/utils/i18n.ts` → `I18n` class
 
@@ -251,15 +251,15 @@ Total gzipped: ~820 KB
 ## 📞 Support
 
 **For Issues or Questions**:
-1. Check [GitHub Issues](https://github.com/pachelbel23/worldtrade/issues)
+1. Check [GitHub Issues](https://github.com/pachelbel23/worldmonitor/issues)
 2. Review [DOCUMENTATION.md](./docs/DOCUMENTATION.md)
 3. Check [Phase 3-5 Progress](./SESSION_PROGRESS_PHASE3-5_COMPLETE.md)
 
-**Deployment Status**: Check [GitHub Actions](https://github.com/pachelbel23/worldtrade/actions)
+**Deployment Status**: Check [GitHub Actions](https://github.com/pachelbel23/worldmonitor/actions)
 
 ---
 
 **Deployment Status**: ✅ **COMPLETE AND LIVE**
 
-**GitHub Pages URL**: https://pachelbel23.github.io/worldtrade/
-**Repository**: https://github.com/pachelbel23/worldtrade
+**GitHub Pages URL**: https://pachelbel23.github.io/worldmonitor/
+**Repository**: https://github.com/pachelbel23/worldmonitor

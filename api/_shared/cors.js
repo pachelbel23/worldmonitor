@@ -4,8 +4,8 @@
  */
 
 const ALLOWED_ORIGINS = [
-  /^https:\/\/(.*\.)?worldtrade\.app$/,
-  /^https:\/\/worldtrade-[a-z0-9]+-[a-z0-9-]+\.vercel\.app$/,
+  /^https:\/\/(.*\.)?worldmonitor\.app$/,
+  /^https:\/\/worldmonitor-[a-z0-9]+-[a-z0-9-]+\.vercel\.app$/,
   /^https:\/\/pachelbel23\.github\.io$/,
   /^http:\/\/localhost(:\d+)?$/,
   /^http:\/\/127\.0\.0\.1(:\d+)?$/,

@@ -1,4 +1,4 @@
-# World Trade Roadmap: Intelligence Correlation Enhancements
+# World Monitor Roadmap: Intelligence Correlation Enhancements
 
 This document outlines the top 5 features a geopolitical intelligence analyst would want, focusing on **correlation between existing data points** and leveraging **free APIs/RSS feeds only**.
 

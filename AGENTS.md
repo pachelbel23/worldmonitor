@@ -1,6 +1,6 @@
-# WorldTrade Agent Guidelines
+# WorldMonitor Agent Guidelines
 
-This document provides essential information for AI agents operating in the WorldTrade codebase.
+This document provides essential information for AI agents operating in the WorldMonitor codebase.
 
 ## 🛠️ Build & Verification
 

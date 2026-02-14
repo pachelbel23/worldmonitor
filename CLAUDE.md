@@ -1,8 +1,8 @@
-# WorldTrade Development Notes
+# WorldMonitor Development Notes
 
 ## 🤖 Model Preferences (Jan 30, 2026)
 
-**For ALL coding tasks in WorldTrade, ALWAYS use:**
+**For ALL coding tasks in WorldMonitor, ALWAYS use:**
 
 | Task | Model | Alias |
 |------|-------|-------|
@@ -67,8 +67,8 @@ If a panel shows "No news available":
 
 Two variants controlled by `VITE_VARIANT` environment variable:
 
-- `full` (default): Geopolitical focus - worldtrade.app
-- `tech`: Tech/startup focus - startups.worldtrade.app
+- `full` (default): Geopolitical focus - worldmonitor.app
+- `tech`: Tech/startup focus - startups.worldmonitor.app
 
 ### Running Locally
 ```bash
@@ -78,8 +78,8 @@ npm run dev:tech   # Tech variant
 
 ### Building
 ```bash
-npm run build:full  # Production build for worldtrade.app
-npm run build:tech  # Production build for startups.worldtrade.app
+npm run build:full  # Production build for worldmonitor.app
+npm run build:tech  # Production build for startups.worldmonitor.app
 ```
 
 ## Custom Feed Scrapers

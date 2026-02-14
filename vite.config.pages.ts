@@ -4,7 +4,7 @@ import path from 'path'
 
 // GitHub Pages configuration
 const isGithubPages = process.env.GITHUB_PAGES === 'true'
-const basePath = isGithubPages ? '/worldtrade/' : '/'
+const basePath = isGithubPages ? '/worldmonitor/' : '/'
 
 export default defineConfig({
   plugins: [react()],

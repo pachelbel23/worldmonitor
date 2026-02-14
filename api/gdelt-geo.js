@@ -8,15 +8,15 @@ const ALLOWED_TIMESPANS = ['1d', '7d', '14d', '30d', '60d', '90d'];
 
 function getCorsOrigin(req) {
   const origin = req.headers.get('origin') || '';
-  // Allow *.worldtrade.app and localhost
+  // Allow *.worldmonitor.app and localhost
   if (
-    origin.endsWith('.worldtrade.app') ||
-    origin === 'https://worldtrade.app' ||
+    origin.endsWith('.worldmonitor.app') ||
+    origin === 'https://worldmonitor.app' ||
     origin.startsWith('http://localhost:')
   ) {
     return origin;
   }
-  return 'https://worldtrade.app';
+  return 'https://worldmonitor.app';
 }
 
 function validateMaxRecords(val) {

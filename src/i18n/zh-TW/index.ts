@@ -1,6 +1,6 @@
 /**
  * Traditional Chinese (zh-TW) translations
- * This module contains all Traditional Chinese UI strings for World Trade
+ * This module contains all Traditional Chinese UI strings for World Monitor
  */
 
 export const zhTWTranslations = {

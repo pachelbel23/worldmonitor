@@ -1,6 +1,6 @@
 /**
  * English translations
- * This module contains all English UI strings for World Trade
+ * This module contains all English UI strings for World Monitor
  */
 
 export const enTranslations = {

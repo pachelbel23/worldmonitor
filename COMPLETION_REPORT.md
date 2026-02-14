@@ -1,15 +1,15 @@
-# 世界監測儀表板 (World Trade) - 中文化整合完成報告
+# 世界監測儀表板 (World Monitor) - 中文化整合完成報告
 
-**項目:** World Trade 中文化版本 (Traditional Chinese Localization)
-**Fork 倉庫:** https://github.com/pachelbel23/worldtrade
-**原始項目:** https://github.com/koala73/worldtrade
+**項目:** World Monitor 中文化版本 (Traditional Chinese Localization)
+**Fork 倉庫:** https://github.com/pachelbel23/worldmonitor
+**原始項目:** https://github.com/koala73/worldmonitor
 **完成日期:** 2025 年 2 月 11 日
 
 ---
 
 ## 🎯 項目概述
 
-本項目成功地將 World Trade（一個全球實時智能儀表板）整合為完整的繁體中文版本，並配置了企業級 CI/CD 流程和自動化部署管道。
+本項目成功地將 World Monitor（一個全球實時智能儀表板）整合為完整的繁體中文版本，並配置了企業級 CI/CD 流程和自動化部署管道。
 
 ### 核心成就
 - ✅ **204 個翻譯鍵** - 完整的中英文支持
@@ -176,7 +176,7 @@ src/
 ```
 https://vercel.com/dashboard
 → Add New → Project
-→ Import pachelbel23/worldtrade
+→ Import pachelbel23/worldmonitor
 ```
 
 ### 2. 獲取 Vercel 認證信息
@@ -314,7 +314,7 @@ npm run preview
 ### 用戶需要完成的事項
 1. **連接到 Vercel**
    - 訪問 vercel.com
-   - 導入 pachelbel23/worldtrade 倉庫
+   - 導入 pachelbel23/worldmonitor 倉庫
    - 獲取 Project ID 和 Org ID
 
 2. **配置 GitHub Secrets**
@@ -376,4 +376,4 @@ npm run preview
 **報告生成日期:** 2025 年 2 月 11 日  
 **項目狀態:** ✅ 開發完成，等待部署配置  
 **維護者:** pachelbel23  
-**聯繫:** [GitHub Issues](https://github.com/pachelbel23/worldtrade/issues)
+**聯繫:** [GitHub Issues](https://github.com/pachelbel23/worldmonitor/issues)

@@ -225,8 +225,8 @@ Rules:
       headers: {
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
-        'HTTP-Referer': 'https://worldtrade.app',
-        'X-Title': 'WorldTrade',
+        'HTTP-Referer': 'https://worldmonitor.app',
+        'X-Title': 'WorldMonitor',
       },
       body: JSON.stringify({
         model: MODEL,
