@@ -258,6 +258,7 @@ export class App {
     this.setupEventListeners();
     this.setupUrlStateSync();
     this.syncDataFreshnessWithLayers();
+    this.prewarmChromeTranslator();
     await this.loadAllData();
 
     // Start CII learning mode after first data load
@@ -1853,6 +1854,13 @@ export class App {
         console.log('[App] User idle - pausing animations to save resources');
       }
     }, this.IDLE_PAUSE_MS);
+  }
+
+  private prewarmChromeTranslator(): void {
+    const warmUp = () => {
+      import('./services/translation').then(m => m.prewarmChromeTranslator()).catch(() => {});
+    };
+    document.addEventListener('click', warmUp, { once: true });
   }
 
   private setupUrlStateSync(): void {

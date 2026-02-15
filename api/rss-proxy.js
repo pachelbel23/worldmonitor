@@ -152,6 +152,8 @@ const ALLOWED_DOMAINS = [
   'www.fao.org',
   'worldbank.org',
   'www.imf.org',
+  // Chinese News Sources
+  'www3.nhk.or.jp',           // NHK World Chinese RSS
   // Additional
   'news.ycombinator.com',
 ];

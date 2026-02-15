@@ -99,7 +99,7 @@ export async function fetchFeed(feed: Feed): Promise<NewsItem[]> {
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     
     // Handle rss2json.com JSON format
-    if (feed.url.includes('api.rss2json.com')) {
+    if (feedUrl.includes('api.rss2json.com')) {
       const jsonData = await response.json();
       if (jsonData.status !== 'ok' || !jsonData.items) {
         throw new Error(`RSS feed error: ${jsonData.message || 'unknown'}`);
