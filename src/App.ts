@@ -1161,17 +1161,17 @@ export class App {
       <div class="modal-overlay" id="sourcesModal">
         <div class="modal sources-modal">
           <div class="modal-header">
-            <span class="modal-title">News Sources</span>
+            <span class="modal-title">${t('News Sources')}</span>
             <span class="sources-counter" id="sourcesCounter"></span>
             <button class="modal-close" id="sourcesModalClose">×</button>
           </div>
           <div class="sources-search">
-            <input type="text" id="sourcesSearch" placeholder="Filter sources..." />
+            <input type="text" id="sourcesSearch" placeholder="${t('Filter sources...')}" />
           </div>
           <div class="sources-toggle-grid" id="sourceToggles"></div>
           <div class="sources-footer">
-            <button class="sources-select-all" id="sourcesSelectAll">Select All</button>
-            <button class="sources-select-none" id="sourcesSelectNone">Select None</button>
+            <button class="sources-select-all" id="sourcesSelectAll">${t('Select All')}</button>
+            <button class="sources-select-none" id="sourcesSelectNone">${t('Select None')}</button>
           </div>
         </div>
       </div>

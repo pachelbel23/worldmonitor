@@ -506,7 +506,120 @@ export const zhTWTranslations = {
   'All-In Podcast': 'All-In 播客',
   'Hard Fork (NYT)': 'Hard Fork（紐約時報）',
   'DW News': '德國之聲',
-  'France 24': '法國24'
+  'France 24': '法國24',
+  // Region selector
+  'Global': '全球',
+  'Americas': '美洲',
+  'MENA': '中東北非',
+  'Europe': '歐洲',
+  'Asia': '亞洲',
+  'Oceania': '大洋洲',
+  // UI buttons & labels
+  'PANELS': '面板',
+  'SOURCES': '來源',
+  'Global Situation': '全球局勢',
+  'Global Tech': '全球科技',
+  'Panel Settings': '面板設定',
+  'News Sources': '新聞來源',
+  'Select All': '全選',
+  'Select None': '全不選',
+  'Copy failed': '複製失敗',
+  '+ Add Monitor': '+ 新增監控',
+  'Add keywords to monitor news': '新增關鍵字以監控新聞',
+  // Panel titles
+  'Technology / AI': '科技 / AI',
+  'Government / Policy': '政府 / 政策',
+  'AI / ML': 'AI / 機器學習',
+  'Country Instability Index': '國家不穩定指數',
+  'Prediction Markets': '預測市場',
+  'Economic Data': '經濟數據',
+  // Map layers missing translations
+  'Ship Traffic': '船舶流量',
+  'Weather Alerts': '天氣警報',
+  'Natural Events': '自然事件',
+  'Economic Centers': '經濟中心',
+  // Map UI
+  'Layers': '圖層',
+  'TIME RANGE': '時間範圍',
+  'LAST UPDATE': '最後更新',
+  'Map Layers Guide': '地圖圖層指南',
+  // Legend labels
+  'High Alert': '高度警戒',
+  'Base': '基線',
+  'Datacenter': '數據中心',
+  // Infrastructure cascade
+  'Cables': '電纜',
+  'Ports': '港口',
+  'Chokepoints': '咽喉要道',
+  'Analyze Impact': '分析影響',
+  'Select infrastructure to analyze cascade impact': '選擇基礎設施以分析連鎖影響',
+  'links': '條連結',
+  'Cascade Analysis': '連鎖分析',
+  'Failed to build dependency graph': '無法建構依賴圖',
+  // Strategic risk metrics
+  'Convergence': '匯聚度',
+  'CII Deviation': 'CII 偏差',
+  'Infra Events': '基礎設施事件',
+  'High Alerts': '高度警報',
+  'Escalating': '升級中',
+  'De-escalating': '降級中',
+  'Stable': '穩定',
+  'No country impacts detected': '未偵測到國家影響',
+  'no data': '無數據',
+  'Enable': '啟用',
+  // Strategic posture
+  'Acquiring Data': '正在獲取數據',
+  'Connecting to ADS-B network for military flight data.': '正在連接 ADS-B 網路以獲取軍事航班數據。',
+  'This may take 30-60 seconds on first load.': '首次加載可能需要 30-60 秒。',
+  'OpenSky ADS-B': 'OpenSky ADS-B',
+  'AIS Vessel Stream': 'AIS 船舶串流',
+  'Retry Now': '立即重試',
+  'Scanning Theaters': '掃描戰區',
+  'Aircraft positions': '飛機位置',
+  'Naval vessels': '海軍艦艇',
+  'Theater analysis': '戰區分析',
+  'Connecting to live ADS-B & AIS streams...': '正在連接即時 ADS-B 和 AIS 串流...',
+  'Feed Rate Limited': '資料源速率限制',
+  'Try Again': '再試一次',
+  'AIR': '空域',
+  'SEA': '海域',
+  'Using cached data - live feed temporarily unavailable': '使用快取數據 - 即時資料源暫時不可用',
+  // CII Panel
+  'Scanning intelligence feeds': '掃描情報來源中',
+  'Failed to calculate CII': '無法計算 CII',
+  // Economic panel
+  'Indicators': '指標',
+  'Gov': '政府',
+  'Oil': '石油',
+  'No economic data available': '無可用經濟數據',
+  'Oil data not available': '石油數據不可用',
+  'vs previous week': '對比上週',
+  'No recent government awards': '無最近政府採購',
+  'Region': '地區',
+  'High': '高',
+  'FRP': 'FRP',
+  'Total': '合計',
+  // Fires panel
+  'Scanning thermal data': '掃描熱感數據中',
+  // GDELT Intel topics
+  'Cyber Threats': '網路威脅',
+  'Nuclear': '核武',
+  'Sanctions': '制裁',
+  'Intelligence': '情報',
+  'Maritime Security': '海事安全',
+  // Prediction panel
+  'Failed to load predictions': '無法載入預測',
+  // Intelligence gap badge
+  'DETECTED': '已偵測',
+  // Monitor panel
+  'No matches found': '未找到匹配',
+  // Hotspot status
+  'BREAKING NEWS': '突發新聞',
+  'High activity': '高度活躍',
+  'Elevated activity': '活躍度升高',
+  'Recent mentions': '近期提及',
+  // StoryModal
+  'Link': '連結'
 } as const;
 
 export type ZhTWTranslationKey = keyof typeof zhTWTranslations;

@@ -238,7 +238,7 @@ export class StrategicRiskPanel extends Panel {
           <div class="risk-trend-container">
             <span class="risk-trend-label">${t('Trend')}</span>
             <div class="risk-trend" style="color: ${this.getTrendColor(this.overview.trend)}">
-              ${this.getTrendEmoji(this.overview.trend)} ${this.overview.trend.charAt(0).toUpperCase() + this.overview.trend.slice(1)}
+              ${this.getTrendEmoji(this.overview.trend)} ${t(this.overview.trend.charAt(0).toUpperCase() + this.overview.trend.slice(1))}
             </div>
           </div>
         </div>
@@ -265,9 +265,9 @@ export class StrategicRiskPanel extends Panel {
           ${getStatusIcon(source.status)}
         </span>
         <span class="risk-source-name">${escapeHtml(source.name)}</span>
-        <span class="risk-source-time">${source.status === 'no_data' ? 'no data' : timeSince}</span>
+        <span class="risk-source-time">${source.status === 'no_data' ? t('no data') : timeSince}</span>
         ${panelId && (source.status === 'no_data' || source.status === 'disabled') ? `
-          <button class="risk-source-enable" data-panel="${panelId}">Enable</button>
+          <button class="risk-source-enable" data-panel="${panelId}">${t('Enable')}</button>
         ` : ''}
       </div>
     `;
@@ -282,19 +282,19 @@ export class StrategicRiskPanel extends Panel {
       <div class="risk-metrics">
         <div class="risk-metric">
           <span class="risk-metric-value">${this.overview.convergenceAlerts}</span>
-          <span class="risk-metric-label">Convergence</span>
+          <span class="risk-metric-label">${t('Convergence')}</span>
         </div>
         <div class="risk-metric">
           <span class="risk-metric-value">${this.overview.avgCIIDeviation.toFixed(1)}</span>
-          <span class="risk-metric-label">CII Deviation</span>
+          <span class="risk-metric-label">${t('CII Deviation')}</span>
         </div>
         <div class="risk-metric">
           <span class="risk-metric-value">${this.overview.infrastructureIncidents}</span>
-          <span class="risk-metric-label">Infra Events</span>
+          <span class="risk-metric-label">${t('Infra Events')}</span>
         </div>
         <div class="risk-metric">
           <span class="risk-metric-value">${alertCounts.critical + alertCounts.high}</span>
-          <span class="risk-metric-label">High Alerts</span>
+          <span class="risk-metric-label">${t('High Alerts')}</span>
         </div>
       </div>
     `;

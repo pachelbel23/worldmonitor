@@ -260,7 +260,7 @@ export class MapComponent {
     ];
 
     slider.innerHTML = `
-      <span class="time-slider-label">TIME RANGE</span>
+      <span class="time-slider-label">${t('TIME RANGE')}</span>
       <div class="time-slider-buttons">
         ${ranges
           .map(
@@ -364,7 +364,7 @@ export class MapComponent {
     const helpBtn = document.createElement('button');
     helpBtn.className = 'layer-help-btn';
     helpBtn.textContent = '?';
-    helpBtn.title = 'Layer descriptions';
+    helpBtn.title = t('Layer descriptions');
     helpBtn.addEventListener('click', () => this.showLayerHelp());
     toggles.appendChild(helpBtn);
 
@@ -383,7 +383,7 @@ export class MapComponent {
 
     const techHelpContent = `
       <div class="layer-help-header">
-        <span>Map Layers Guide</span>
+        <span>${t('Map Layers Guide')}</span>
         <button class="layer-help-close">×</button>
       </div>
       <div class="layer-help-content">
@@ -412,7 +412,7 @@ export class MapComponent {
 
     const fullHelpContent = `
       <div class="layer-help-header">
-        <span>Map Layers Guide</span>
+        <span>${t('Map Layers Guide')}</span>
         <button class="layer-help-close">×</button>
       </div>
       <div class="layer-help-content">
@@ -513,9 +513,9 @@ export class MapComponent {
       legend.innerHTML = `
         <div class="map-legend-item"><span class="legend-dot high"></span>${t('HIGH ALERT')}</div>
         <div class="map-legend-item"><span class="legend-dot elevated"></span>${t('ELEVATED')}</div>
-        <div class="map-legend-item"><span class="legend-dot low"></span>MONITORING</div>
-        <div class="map-legend-item"><span class="map-legend-icon conflict">⚔</span>CONFLICT</div>
-        <div class="map-legend-item"><span class="map-legend-icon earthquake">●</span>EARTHQUAKE</div>
+        <div class="map-legend-item"><span class="legend-dot low"></span>${t('MONITORING')}</div>
+        <div class="map-legend-item"><span class="map-legend-icon conflict">⚔</span>${t('Conflict')}</div>
+        <div class="map-legend-item"><span class="map-legend-icon earthquake">●</span>${t('Natural Events')}</div>
         <div class="map-legend-item"><span class="map-legend-icon apt">⚠</span>APT</div>
       `;
     }
@@ -558,7 +558,7 @@ export class MapComponent {
 
   private updateTimestamp(el: HTMLElement): void {
     const now = new Date();
-    el.innerHTML = `LAST UPDATE: ${now.toUTCString().replace('GMT', 'UTC')}`;
+    el.innerHTML = `${t('LAST UPDATE')}: ${now.toUTCString().replace('GMT', 'UTC')}`;
   }
 
   private setupZoomHandlers(): void {
@@ -2207,7 +2207,7 @@ export class MapComponent {
           const darkIndicator = document.createElement('div');
           darkIndicator.className = 'dark-vessel-indicator';
           darkIndicator.textContent = '⚠️';
-          darkIndicator.title = 'AIS Signal Lost';
+          darkIndicator.title = t('AIS Signal Lost');
           div.appendChild(darkIndicator);
         }
 
@@ -2588,16 +2588,16 @@ export class MapComponent {
       // LOW: Default when no significant activity
       if (hasBreaking || matchedCount >= 4 || score >= 10) {
         spot.level = 'high';
-        spot.status = hasBreaking ? 'BREAKING NEWS' : 'High activity';
+        spot.status = hasBreaking ? t('BREAKING NEWS') : t('High activity');
       } else if (matchedCount >= 2 || score >= 4) {
         spot.level = 'elevated';
-        spot.status = 'Elevated activity';
+        spot.status = t('Elevated activity');
       } else if (matchedCount >= 1) {
         spot.level = 'low';
-        spot.status = 'Recent mentions';
+        spot.status = t('Recent mentions');
       } else {
         spot.level = 'low';
-        spot.status = 'Monitoring';
+        spot.status = t('MONITORING');
       }
 
       // Update dynamic escalation score

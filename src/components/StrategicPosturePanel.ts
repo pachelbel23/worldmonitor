@@ -1,5 +1,6 @@
 import { Panel } from './Panel';
 import { escapeHtml } from '@/utils/sanitize';
+import { t } from '@/utils';
 import { fetchCachedTheaterPosture, type CachedTheaterPosture } from '@/services/cached-theater-posture';
 import { fetchMilitaryVessels, isMilitaryVesselTrackingConfigured } from '@/services/military-vessels';
 import { recalcPostureWithVessels, type TheaterPostureSummary } from '@/services/military-surge';
@@ -17,7 +18,7 @@ export class StrategicPosturePanel extends Panel {
   constructor() {
     super({
       id: 'strategic-posture',
-      title: 'AI Strategic Posture',
+      title: t('AI Strategic Posture'),
       showCount: false,
       trackActivity: true,
       infoTooltip: `<strong>Methodology</strong>
@@ -64,23 +65,23 @@ export class StrategicPosturePanel extends Panel {
             <div class="posture-radar-sweep"></div>
             <div class="posture-radar-dot"></div>
           </div>
-          <div class="posture-loading-title">Scanning Theaters</div>
+          <div class="posture-loading-title">${t('Scanning Theaters')}</div>
           <div class="posture-loading-stages">
             <div class="posture-stage active">
               <span class="posture-stage-dot"></span>
-              <span>Aircraft positions</span>
+              <span>${t('Aircraft positions')}</span>
             </div>
             <div class="posture-stage pending">
               <span class="posture-stage-dot"></span>
-              <span>Naval vessels</span>
+              <span>${t('Naval vessels')}</span>
             </div>
             <div class="posture-stage pending">
               <span class="posture-stage-dot"></span>
-              <span>Theater analysis</span>
+              <span>${t('Theater analysis')}</span>
             </div>
           </div>
           <div class="posture-loading-tip">
-            Connecting to live ADS-B &amp; AIS streams...
+            ${t('Connecting to live ADS-B & AIS streams...')}
           </div>
           <div class="posture-loading-elapsed">Elapsed: 0s</div>
           <div class="posture-loading-note">
@@ -310,22 +311,22 @@ export class StrategicPosturePanel extends Panel {
       <div class="posture-panel">
         <div class="posture-no-data">
           <div class="posture-no-data-icon pulse">📡</div>
-          <div class="posture-no-data-title">Acquiring Data</div>
+          <div class="posture-no-data-title">${t('Acquiring Data')}</div>
           <div class="posture-no-data-desc">
-            Connecting to ADS-B network for military flight data.
-            This may take 30-60 seconds on first load.
+            ${t('Connecting to ADS-B network for military flight data.')}
+            ${t('This may take 30-60 seconds on first load.')}
           </div>
           <div class="posture-data-sources">
             <div class="posture-source">
               <span class="posture-source-icon connecting">✈️</span>
-              <span>OpenSky ADS-B</span>
+              <span>${t('OpenSky ADS-B')}</span>
             </div>
             <div class="posture-source">
               <span class="posture-source-icon waiting">🚢</span>
-              <span>AIS Vessel Stream</span>
+              <span>${t('AIS Vessel Stream')}</span>
             </div>
           </div>
-          <button class="posture-retry-btn">↻ Retry Now</button>
+          <button class="posture-retry-btn">↻ ${t('Retry Now')}</button>
         </div>
       </div>
     `);
@@ -338,7 +339,7 @@ export class StrategicPosturePanel extends Panel {
       <div class="posture-panel">
         <div class="posture-no-data">
           <div class="posture-no-data-icon">⚠️</div>
-          <div class="posture-no-data-title">Feed Rate Limited</div>
+          <div class="posture-no-data-title">${t('Feed Rate Limited')}</div>
           <div class="posture-no-data-desc">
             OpenSky API has request limits. The panel will automatically
             retry in a few minutes, or you can try again now.
@@ -346,7 +347,7 @@ export class StrategicPosturePanel extends Panel {
           <div class="posture-error-hint">
             <strong>Tip:</strong> Peak hours (UTC 12:00-20:00) often see higher limits.
           </div>
-          <button class="posture-retry-btn">↻ Try Again</button>
+          <button class="posture-retry-btn">↻ ${t('Try Again')}</button>
         </div>
       </div>
     `);
@@ -430,8 +431,8 @@ export class StrategicPosturePanel extends Panel {
         </div>
 
         <div class="posture-forces">
-          ${hasAir ? `<div class="posture-force-row"><span class="posture-domain">AIR</span><div class="posture-stats">${airChips.join('')}</div></div>` : ''}
-          ${hasNaval ? `<div class="posture-force-row"><span class="posture-domain">SEA</span><div class="posture-stats">${navalChips.join('')}</div></div>` : ''}
+          ${hasAir ? `<div class="posture-force-row"><span class="posture-domain">${t('AIR')}</span><div class="posture-stats">${airChips.join('')}</div></div>` : ''}
+          ${hasNaval ? `<div class="posture-force-row"><span class="posture-domain">${t('SEA')}</span><div class="posture-stats">${navalChips.join('')}</div></div>` : ''}
         </div>
 
         <div class="posture-footer">
@@ -455,7 +456,7 @@ export class StrategicPosturePanel extends Panel {
       : new Date().toLocaleTimeString();
 
     const staleWarning = this.isStale
-      ? '<div class="posture-stale-warning">⚠️ Using cached data - live feed temporarily unavailable</div>'
+      ? `<div class="posture-stale-warning">⚠️ ${t('Using cached data - live feed temporarily unavailable')}</div>`
       : '';
 
     const html = `
@@ -464,7 +465,7 @@ export class StrategicPosturePanel extends Panel {
         ${sorted.map((p) => this.renderTheater(p)).join('')}
 
         <div class="posture-footer">
-          <span class="posture-updated">${this.isStale ? '⚠️ ' : ''}Updated: ${updatedTime}</span>
+          <span class="posture-updated">${this.isStale ? '⚠️ ' : ''}${t('Updated')}: ${updatedTime}</span>
           <button class="posture-refresh-btn" title="Refresh">↻</button>
         </div>
       </div>

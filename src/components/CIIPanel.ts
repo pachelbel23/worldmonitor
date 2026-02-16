@@ -11,7 +11,7 @@ export class CIIPanel extends Panel {
   constructor() {
     super({
       id: 'cii',
-      title: 'Country Instability Index',
+      title: t('Country Instability Index'),
       showCount: true,
       trackActivity: true,
       infoTooltip: `<strong>CII Methodology</strong>
@@ -26,7 +26,7 @@ export class CIIPanel extends Panel {
         <em>U:S:I values show component scores.</em>
         Focal Point Detection correlates news entities with map signals for accurate scoring.`,
     });
-    this.showLoading('Scanning intelligence feeds');
+    this.showLoading(t('Scanning intelligence feeds'));
   }
 
   public setShareStoryHandler(handler: (code: string, name: string) => void): void {

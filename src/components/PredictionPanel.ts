@@ -1,12 +1,13 @@
 import { Panel } from './Panel';
 import type { PredictionMarket } from '@/types';
 import { escapeHtml } from '@/utils/sanitize';
+import { t } from '@/utils';
 
 export class PredictionPanel extends Panel {
   constructor() {
     super({
       id: 'polymarket',
-      title: 'Prediction Markets',
+      title: t('Prediction Markets'),
       infoTooltip: `<strong>Prediction Markets</strong>
         Real-money forecasting markets:
         <ul>
@@ -27,7 +28,7 @@ export class PredictionPanel extends Panel {
 
   public renderPredictions(data: PredictionMarket[]): void {
     if (data.length === 0) {
-      this.showError('Failed to load predictions');
+      this.showError(t('Failed to load predictions'));
       return;
     }
 

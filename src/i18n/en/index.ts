@@ -513,7 +513,120 @@ export const enTranslations = {
   'All-In Podcast': 'All-In Podcast',
   'Hard Fork (NYT)': 'Hard Fork (NYT)',
   'DW News': 'DW News',
-  'France 24': 'France 24'
+  'France 24': 'France 24',
+  // Region selector
+  'Global': 'Global',
+  'Americas': 'Americas',
+  'MENA': 'MENA',
+  'Europe': 'Europe',
+  'Asia': 'Asia',
+  'Oceania': 'Oceania',
+  // UI buttons & labels
+  'PANELS': 'PANELS',
+  'SOURCES': 'SOURCES',
+  'Global Situation': 'Global Situation',
+  'Global Tech': 'Global Tech',
+  'Panel Settings': 'Panel Settings',
+  'News Sources': 'News Sources',
+  'Select All': 'Select All',
+  'Select None': 'Select None',
+  'Copy failed': 'Copy failed',
+  '+ Add Monitor': '+ Add Monitor',
+  'Add keywords to monitor news': 'Add keywords to monitor news',
+  // Panel titles
+  'Technology / AI': 'Technology / AI',
+  'Government / Policy': 'Government / Policy',
+  'AI / ML': 'AI / ML',
+  'Country Instability Index': 'Country Instability Index',
+  'Prediction Markets': 'Prediction Markets',
+  'Economic Data': 'Economic Data',
+  // Map layers missing translations
+  'Ship Traffic': 'Ship Traffic',
+  'Weather Alerts': 'Weather Alerts',
+  'Natural Events': 'Natural Events',
+  'Economic Centers': 'Economic Centers',
+  // Map UI
+  'Layers': 'Layers',
+  'TIME RANGE': 'TIME RANGE',
+  'LAST UPDATE': 'LAST UPDATE',
+  'Map Layers Guide': 'Map Layers Guide',
+  // Legend labels
+  'High Alert': 'High Alert',
+  'Base': 'Base',
+  'Datacenter': 'Datacenter',
+  // Infrastructure cascade
+  'Cables': 'Cables',
+  'Ports': 'Ports',
+  'Chokepoints': 'Chokepoints',
+  'Analyze Impact': 'Analyze Impact',
+  'Select infrastructure to analyze cascade impact': 'Select infrastructure to analyze cascade impact',
+  'links': 'links',
+  'Cascade Analysis': 'Cascade Analysis',
+  'Failed to build dependency graph': 'Failed to build dependency graph',
+  // Strategic risk metrics
+  'Convergence': 'Convergence',
+  'CII Deviation': 'CII Deviation',
+  'Infra Events': 'Infra Events',
+  'High Alerts': 'High Alerts',
+  'Escalating': 'Escalating',
+  'De-escalating': 'De-escalating',
+  'Stable': 'Stable',
+  'No country impacts detected': 'No country impacts detected',
+  'no data': 'no data',
+  'Enable': 'Enable',
+  // Strategic posture
+  'Acquiring Data': 'Acquiring Data',
+  'Connecting to ADS-B network for military flight data.': 'Connecting to ADS-B network for military flight data.',
+  'This may take 30-60 seconds on first load.': 'This may take 30-60 seconds on first load.',
+  'OpenSky ADS-B': 'OpenSky ADS-B',
+  'AIS Vessel Stream': 'AIS Vessel Stream',
+  'Retry Now': 'Retry Now',
+  'Scanning Theaters': 'Scanning Theaters',
+  'Aircraft positions': 'Aircraft positions',
+  'Naval vessels': 'Naval vessels',
+  'Theater analysis': 'Theater analysis',
+  'Connecting to live ADS-B & AIS streams...': 'Connecting to live ADS-B & AIS streams...',
+  'Feed Rate Limited': 'Feed Rate Limited',
+  'Try Again': 'Try Again',
+  'AIR': 'AIR',
+  'SEA': 'SEA',
+  'Using cached data - live feed temporarily unavailable': 'Using cached data - live feed temporarily unavailable',
+  // CII Panel
+  'Scanning intelligence feeds': 'Scanning intelligence feeds',
+  'Failed to calculate CII': 'Failed to calculate CII',
+  // Economic panel
+  'Indicators': 'Indicators',
+  'Gov': 'Gov',
+  'Oil': 'Oil',
+  'No economic data available': 'No economic data available',
+  'Oil data not available': 'Oil data not available',
+  'vs previous week': 'vs previous week',
+  'No recent government awards': 'No recent government awards',
+  'Region': 'Region',
+  'High': 'High',
+  'FRP': 'FRP',
+  'Total': 'Total',
+  // Fires panel
+  'Scanning thermal data': 'Scanning thermal data',
+  // GDELT Intel topics
+  'Cyber Threats': 'Cyber Threats',
+  'Nuclear': 'Nuclear',
+  'Sanctions': 'Sanctions',
+  'Intelligence': 'Intelligence',
+  'Maritime Security': 'Maritime Security',
+  // Prediction panel
+  'Failed to load predictions': 'Failed to load predictions',
+  // Intelligence gap badge
+  'DETECTED': 'DETECTED',
+  // Monitor panel
+  'No matches found': 'No matches found',
+  // Hotspot status
+  'BREAKING NEWS': 'BREAKING NEWS',
+  'High activity': 'High activity',
+  'Elevated activity': 'Elevated activity',
+  'Recent mentions': 'Recent mentions',
+  // StoryModal
+  'Link': 'Link'
 } as const;
 
 export type EnTranslationKey = keyof typeof enTranslations;

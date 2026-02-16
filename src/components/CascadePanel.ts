@@ -22,10 +22,10 @@ export class CascadePanel extends Panel {
   constructor() {
     super({
       id: 'cascade',
-      title: 'Infrastructure Cascade',
+      title: t('Infrastructure Cascade'),
       showCount: true,
       trackActivity: true,
-      infoTooltip: `<strong>Cascade Analysis</strong>
+      infoTooltip: `<strong>${t('Cascade Analysis')}</strong>
         Models infrastructure dependencies:
         <ul>
           <li>Subsea cables, pipelines, ports, chokepoints</li>
@@ -47,7 +47,7 @@ export class CascadePanel extends Panel {
       this.render();
     } catch (error) {
       console.error('[CascadePanel] Init error:', error);
-      this.showError('Failed to build dependency graph');
+      this.showError(t('Failed to build dependency graph'));
     }
   }
 
@@ -95,9 +95,15 @@ export class CascadePanel extends Panel {
 
   private renderSelector(): string {
     const nodes = this.getFilteredNodes();
+    const filterLabels: Record<string, string> = {
+      cable: t('Cables'),
+      pipeline: t('Pipelines'),
+      port: t('Ports'),
+      chokepoint: t('Chokepoints'),
+    };
     const filterButtons = ['cable', 'pipeline', 'port', 'chokepoint'].map(f =>
       `<button class="cascade-filter-btn ${this.filter === f ? 'active' : ''}" data-filter="${f}">
-        ${this.getNodeTypeEmoji(f)} ${f.charAt(0).toUpperCase() + f.slice(1)}s
+        ${this.getNodeTypeEmoji(f)} ${filterLabels[f] || f}
       </button>`
     ).join('');
 
@@ -115,7 +121,7 @@ export class CascadePanel extends Panel {
           ${nodeOptions}
         </select>
         <button class="cascade-analyze-btn" ${!this.selectedNode ? 'disabled' : ''}>
-          Analyze Impact
+          ${t('Analyze Impact')}
         </button>
       </div>
     `;
@@ -181,7 +187,7 @@ export class CascadePanel extends Panel {
         <span>⚓ ${stats.ports}</span>
         <span>🌊 ${stats.chokepoints}</span>
         <span>🏳️ ${stats.countries}</span>
-        <span>📊 ${stats.edges} links</span>
+        <span>📊 ${stats.edges} ${t('links')}</span>
       </div>
     `;
 
@@ -189,7 +195,7 @@ export class CascadePanel extends Panel {
       <div class="cascade-panel">
         ${statsHtml}
         ${this.renderSelector()}
-        ${this.cascadeResult ? this.renderCascadeResult() : '<div class="cascade-hint">Select infrastructure to analyze cascade impact</div>'}
+        ${this.cascadeResult ? this.renderCascadeResult() : `<div class="cascade-hint">${t('Select infrastructure to analyze cascade impact')}</div>`}
       </div>
     `;
 

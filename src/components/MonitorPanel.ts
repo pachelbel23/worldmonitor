@@ -9,7 +9,7 @@ export class MonitorPanel extends Panel {
   private onMonitorsChange?: (monitors: Monitor[]) => void;
 
   constructor(initialMonitors: Monitor[] = []) {
-    super({ id: 'monitors', title: 'My Monitors' });
+    super({ id: 'monitors', title: t('My Monitors') });
     this.monitors = initialMonitors;
     this.renderInput();
   }
@@ -19,8 +19,8 @@ export class MonitorPanel extends Panel {
     const inputContainer = document.createElement('div');
     inputContainer.className = 'monitor-input-container';
     inputContainer.innerHTML = `
-      <input type="text" class="monitor-input" id="monitorKeywords" placeholder="Keywords (comma separated)">
-      <button class="monitor-add-btn" id="addMonitorBtn">+ Add Monitor</button>
+      <input type="text" class="monitor-input" id="monitorKeywords" placeholder="${t('Keywords (comma separated)')}">
+      <button class="monitor-add-btn" id="addMonitorBtn">${t('+ Add Monitor')}</button>
     `;
 
     this.content.appendChild(inputContainer);
@@ -99,7 +99,7 @@ export class MonitorPanel extends Panel {
 
     if (this.monitors.length === 0) {
       results.innerHTML =
-        '<div style="color: var(--text-dim); font-size: 10px; margin-top: 12px;">Add keywords to monitor news</div>';
+        `<div style="color: var(--text-dim); font-size: 10px; margin-top: 12px;">${t('Add keywords to monitor news')}</div>`;
       return;
     }
 

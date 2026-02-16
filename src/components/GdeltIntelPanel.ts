@@ -44,7 +44,7 @@ export class GdeltIntelPanel extends Panel {
       tab.className = `gdelt-intel-tab ${topic.id === this.activeTopic.id ? 'active' : ''}`;
       tab.dataset.topicId = topic.id;
       tab.title = topic.description;
-      tab.innerHTML = `<span class="tab-icon">${topic.icon}</span><span class="tab-label">${escapeHtml(topic.name)}</span>`;
+      tab.innerHTML = `<span class="tab-icon">${topic.icon}</span><span class="tab-label">${escapeHtml(t(topic.name))}</span>`;
 
       tab.addEventListener('click', () => this.selectTopic(topic));
       this.tabsEl!.appendChild(tab);

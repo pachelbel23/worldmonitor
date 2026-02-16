@@ -1,4 +1,5 @@
 import { Panel } from './Panel';
+import { t } from '@/utils';
 import type { FireRegionStats } from '@/services/firms-satellite';
 
 export class SatelliteFiresPanel extends Panel {
@@ -9,12 +10,12 @@ export class SatelliteFiresPanel extends Panel {
   constructor() {
     super({
       id: 'satellite-fires',
-      title: 'Fires',
+      title: t('Fires'),
       showCount: true,
       trackActivity: true,
       infoTooltip: 'NASA FIRMS VIIRS satellite thermal detections across monitored conflict regions. High-intensity = brightness &gt;360K &amp; confidence &gt;80%.',
     });
-    this.showLoading('Scanning thermal data');
+    this.showLoading(t('Scanning thermal data'));
   }
 
   public update(stats: FireRegionStats[], totalCount: number): void {
@@ -59,16 +60,16 @@ export class SatelliteFiresPanel extends Panel {
         <table class="fires-table">
           <thead>
             <tr>
-              <th>Region</th>
-              <th>Fires</th>
-              <th>High</th>
-              <th>FRP</th>
+              <th>${t('Region')}</th>
+              <th>${t('Fires')}</th>
+              <th>${t('High')}</th>
+              <th>${t('FRP')}</th>
             </tr>
           </thead>
           <tbody>${rows}</tbody>
           <tfoot>
             <tr class="fire-totals">
-              <td>Total</td>
+              <td>${t('Total')}</td>
               <td>${this.totalCount}</td>
               <td>${totalHigh}</td>
               <td>${totalFrp >= 1000 ? `${(totalFrp / 1000).toFixed(1)}k` : Math.round(totalFrp).toLocaleString()}</td>
@@ -103,9 +104,9 @@ function escapeHtml(s: string): string {
 
 function timeSince(date: Date): string {
   const secs = Math.floor((Date.now() - date.getTime()) / 1000);
-  if (secs < 60) return 'just now';
+  if (secs < 60) return t('just now');
   const mins = Math.floor(secs / 60);
-  if (mins < 60) return `${mins}m ago`;
+  if (mins < 60) return `${mins}${t('m ago')}`;
   const hrs = Math.floor(mins / 60);
-  return `${hrs}h ago`;
+  return `${hrs}${t('h ago')}`;
 }

@@ -2,7 +2,6 @@ import { getRecentSignals, type CorrelationSignal } from '@/services/correlation
 import { getRecentAlerts, type UnifiedAlert } from '@/services/cross-module-integration';
 import { getSignalContext } from '@/utils/analysis-constants';
 import { escapeHtml } from '@/utils/sanitize';
-import { pluralize } from '@/utils/pluralize';
 import { t } from '@/utils';
 
 const LOW_COUNT_THRESHOLD = 3;
@@ -41,7 +40,7 @@ export class IntelligenceFindingsBadge {
   constructor() {
     this.badge = document.createElement('button');
     this.badge.className = 'intel-findings-badge';
-    this.badge.title = 'Intelligence findings';
+    this.badge.title = t('Intelligence findings');
     this.badge.innerHTML = '<span class="findings-icon">🎯</span><span class="findings-count">0</span>';
 
     this.dropdown = document.createElement('div');
@@ -144,20 +143,16 @@ export class IntelligenceFindingsBadge {
     this.badge.classList.remove('status-none', 'status-low', 'status-high');
     if (count === 0) {
       this.badge.classList.add('status-none');
-      this.badge.title = 'No recent intelligence findings';
+      this.badge.title = t('No recent intelligence findings');
     } else if (hasCritical || hasHigh) {
       this.badge.classList.add('status-high');
-      this.badge.title = `${count} intelligence findings - review recommended`;
+      this.badge.title = `${count} ${t('intelligence findings')} - ${t('review recommended')}`;
     } else if (count <= LOW_COUNT_THRESHOLD) {
       this.badge.classList.add('status-low');
-      this.badge.title = pluralize(count, {
-        one: `${count} intelligence finding`,
-        other: `${count} intelligence findings`,
-        zh_tw: `${count} 個智能發現`
-      });
+      this.badge.title = `${count} ${t('intelligence findings')}`;
     } else {
       this.badge.classList.add('status-high');
-      this.badge.title = `${count} intelligence findings - review recommended`;
+      this.badge.title = `${count} ${t('intelligence findings')} - ${t('review recommended')}`;
     }
 
     this.renderDropdown();
@@ -215,13 +210,13 @@ export class IntelligenceFindingsBadge {
     if (this.findings.length === 0) {
       this.dropdown.innerHTML = `
         <div class="findings-header">
-          <span class="header-title">Intelligence Findings</span>
-          <span class="findings-badge none">MONITORING</span>
+          <span class="header-title">${t('Intelligence Findings')}</span>
+          <span class="findings-badge none">${t('MONITORING')}</span>
         </div>
         <div class="findings-content">
           <div class="findings-empty">
             <span class="empty-icon">📡</span>
-            <span class="empty-text">Scanning for correlations and anomalies...</span>
+            <span class="empty-text">${t('Scanning for correlations and anomalies...')}</span>
           </div>
         </div>
       `;
@@ -232,10 +227,10 @@ export class IntelligenceFindingsBadge {
     const highCount = this.findings.filter(f => f.priority === 'high' || f.confidence >= 70).length;
 
     let statusClass = 'moderate';
-    let statusText = `${this.findings.length} DETECTED`;
+    let statusText = `${this.findings.length} ${t('DETECTED')}`;
     if (criticalCount > 0) {
       statusClass = 'critical';
-      statusText = `${criticalCount} CRITICAL`;
+      statusText = `${criticalCount} ${t('CRITICAL')}`;
     } else if (highCount > 0) {
       statusClass = 'high';
       statusText = `${highCount} ${t('HIGH PRIORITY')}`;
@@ -265,14 +260,14 @@ export class IntelligenceFindingsBadge {
     const moreCount = this.findings.length - MAX_VISIBLE_FINDINGS;
     this.dropdown.innerHTML = `
       <div class="findings-header">
-        <span class="header-title">Intelligence Findings</span>
+        <span class="header-title">${t('Intelligence Findings')}</span>
         <span class="findings-badge ${statusClass}">${statusText}</span>
       </div>
       <div class="findings-content">
         <div class="findings-list">
           ${findingsHtml}
         </div>
-        ${moreCount > 0 ? `<div class="findings-more">+${moreCount} more findings</div>` : ''}
+        ${moreCount > 0 ? `<div class="findings-more">+${moreCount} ${t('more findings')}</div>` : ''}
       </div>
     `;
   }
@@ -321,10 +316,10 @@ export class IntelligenceFindingsBadge {
 
   private formatTimeAgo(date: Date): string {
     const ms = Date.now() - date.getTime();
-    if (ms < 60000) return 'just now';
-    if (ms < 3600000) return `${Math.floor(ms / 60000)}m ago`;
-    if (ms < 86400000) return `${Math.floor(ms / 3600000)}h ago`;
-    return `${Math.floor(ms / 86400000)}d ago`;
+    if (ms < 60000) return t('just now');
+    if (ms < 3600000) return `${Math.floor(ms / 60000)}${t('m ago')}`;
+    if (ms < 86400000) return `${Math.floor(ms / 3600000)}${t('h ago')}`;
+    return `${Math.floor(ms / 86400000)}${t('d ago')}`;
   }
 
   private toggleDropdown(): void {
@@ -370,7 +365,7 @@ export class IntelligenceFindingsBadge {
     overlay.innerHTML = `
       <div class="findings-modal">
         <div class="findings-modal-header">
-          <span class="findings-modal-title">🎯 All Intelligence Findings (${this.findings.length})</span>
+          <span class="findings-modal-title">🎯 ${t('All Intelligence Findings')} (${this.findings.length})</span>
           <button class="findings-modal-close">×</button>
         </div>
         <div class="findings-modal-content">
