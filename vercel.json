@@ -2,5 +2,12 @@
   "buildCommand": "npm run build",
   "outputDirectory": "./dist",
   "framework": "vite",
-  "regions": ["sin1"]
+  "regions": ["sin1"],
+  "git": {
+    "deploymentEnabled": {
+      "gh-pages": false,
+      "claude/fork-worldtrade-project-AD5Wy": false,
+      "feature/chinese-localization": false
+    }
+  }
 }
